@@ -8,6 +8,7 @@ export default {
                 <RouterLink to="/">Home</RouterLink>
                 <RouterLink to="/gmail">Gmail</RouterLink> 
                 <RouterLink to="/keep">Keep</RouterLink>
+                <RouterLink to="/youtube">youtube</RouterLink>
                 <RouterLink to="/about">About us</RouterLink>
             </nav>
         </header>

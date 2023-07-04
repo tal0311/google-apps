@@ -75,11 +75,19 @@ function animateCSS(el, animation) {
 }
 
 function setFavIcon(app) {
+
     const iconsUrls = {
         keep: {
             url: 'https://ssl.gstatic.com/keep/keep_2020q4v2.ico', title: 'Google Keep'
         },
-        gmail: { url: 'https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico', title: 'Gmail' }
+        gmail: {
+            url: 'https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico',
+            title: 'Gmail'
+        },
+        youtube: {
+            url: 'https://www.youtube.com/s/desktop/afaf5292/img/favicon.ico',
+            title: 'YouTube'
+        }
     }
     const linkElement = document.createElement('link');
     linkElement.rel = 'shortcut icon';

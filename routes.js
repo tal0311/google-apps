@@ -6,6 +6,7 @@ import MailList from './cmps/MailList.js'
 import MailDetails from './pages/MailDetails.js'
 import NoteList from './cmps/NoteList.js'
 import NoteDetails from './pages/NoteDetails.js'
+import YouTubeIndex from './pages/YouTubeIndex.js'
 
 
 const { createRouter, createWebHashHistory } = VueRouter
@@ -53,13 +54,22 @@ const options = {
                     path: '/note',
                     component: NoteList,
                     name: 'note',
+                    children: [
+                        {
+                            path: '/note/:id',
+                            component: NoteDetails,
+                            name: 'note-details',
+                        },
+                    ]
                 },
-                {
-                    path: '/note/:id',
-                    component: NoteDetails,
-                    name: 'note-details',
-                },
+
             ]
+        },
+        {
+            path: '/youtube',
+            component: YouTubeIndex,
+            name: 'youtube'
+
         },
 
 
