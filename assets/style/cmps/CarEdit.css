@@ -1,0 +1,12 @@
+.car-edit {
+    display: grid;
+    justify-items: start;
+    gap: 5px;
+    padding: 10px;
+    background-color: var(--rich-black);
+    color: whitesmoke;
+}
+
+.car-edit button {
+    justify-self: end;
+}

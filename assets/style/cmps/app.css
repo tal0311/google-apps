@@ -1,0 +1,4 @@
+.main-route {
+    min-height: calc(90vh - 20px);
+    padding: 0 1em;
+}

@@ -1,0 +1,19 @@
+:root {
+    --clr1: rgb(96, 107, 91);
+    --clr2: rgb(120, 99, 110);
+
+    --clr11: rgb(153, 166, 149);
+    --clr12: rgb(205, 221, 200);
+    --clr21: rgb(233, 206, 221);
+    --clr22: rgb(253, 236, 246);
+
+    --gray1: rgb(240, 240, 240);
+    --gray2: rgb(155, 155, 155);
+    --gray3: rgb(44, 44, 44);
+    
+    --saffron: #e3b505ff;
+    --rich-black: #031927ff;
+    --thistle: #c8adc0ff;
+    --air-force-blue: #508aa8ff;
+    --columbia-blue: #c8e0f4ff;
+}

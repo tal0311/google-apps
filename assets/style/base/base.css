@@ -1,0 +1,49 @@
+/* Box Sizing */
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    color: var(--gray3);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0.5em 0;
+    /* font-family: Inter;
+    font-weight: 500; */
+    font-family: Roboto;
+    font-weight: 400;
+}
+
+p {
+    margin-block: 0 1em;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Dont stretch my Media */
+img,
+embed,
+video,
+object {
+    max-width: 100%;
+}
+
+/* Simple and useful CSS Debugging Technique */
+.debug * {
+    outline: 1px solid gold;
+}
