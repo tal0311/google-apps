@@ -1,7 +1,9 @@
+import AppFilter from "./AppFilter.js"
 export default {
     template: `
         <header class="app-header">
             <h1>Google Apps</h1>
+            <AppFilter/>
             <nav>
                 <RouterLink to="/">Home</RouterLink>
                 <RouterLink to="/gmail">Gmail</RouterLink> 
@@ -13,5 +15,8 @@ export default {
     data() {
         return {}
     },
-    methods: {}
+    methods: {},
+    components: {
+        AppFilter
+    }
 }

@@ -16,25 +16,30 @@ const options = {
     routes: [
         {
             path: '/',
-            component: HomePage
+            component: HomePage,
+            name: 'home'
         },
         {
             path: '/about',
             component: AboutPage,
+            name: 'about'
 
         },
         {
             path: '/gmail',
             component: MailIndex,
             redirect: '/mail',
+            name: 'gmail',
             children: [
                 {
                     path: '/mail',
-                    component: MailList
+                    component: MailList,
+                    name: 'mail',
                 },
                 {
                     path: '/mail/:id',
-                    component: MailDetails
+                    component: MailDetails,
+                    name: 'mail-details',
                 },
             ]
         },
@@ -42,14 +47,17 @@ const options = {
             path: '/keep',
             component: KeepIndex,
             redirect: '/note',
+            name: 'keep',
             children: [
                 {
                     path: '/note',
-                    component: NoteList
+                    component: NoteList,
+                    name: 'note',
                 },
                 {
                     path: '/note/:id',
-                    component: NoteDetails
+                    component: NoteDetails,
+                    name: 'note-details',
                 },
             ]
         },

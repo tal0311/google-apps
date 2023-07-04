@@ -4,7 +4,6 @@ export const utilService = {
     getRandomIntInclusive,
     loadFromStorage,
     saveToStorage,
-    padNum,
     getDayName,
     getMonthName,
     animateCSS,
@@ -47,9 +46,6 @@ function loadFromStorage(key) {
     return (data) ? JSON.parse(data) : undefined
 }
 
-function padNum(num) {
-    return (num > 9) ? num + '' : '0' + num
-}
 
 function getDayName(date, locale) {
     date = new Date(date)
@@ -86,9 +82,9 @@ function setFavIcon(app) {
         gmail: { url: 'https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico', title: 'Gmail' }
     }
     const linkElement = document.createElement('link');
-    linkElement.setAttribute('rel', 'shortcut icon');
-    linkElement.setAttribute('href', iconsUrls[app].url);
-    linkElement.setAttribute('type', 'image/x-icon');
+    linkElement.rel = 'shortcut icon';
+    linkElement.href = iconsUrls[app].url;
+    linkElement.type = 'image/x-icon';
     document.head.appendChild(linkElement);
     document.title = iconsUrls[app].title
 }
