@@ -8,6 +8,7 @@ export const utilService = {
     getDayName,
     getMonthName,
     animateCSS,
+    setFavIcon
 }
 
 function makeId(length = 6) {
@@ -63,11 +64,11 @@ function getMonthName(date) {
 }
 function animateCSS(el, animation) {
     return new Promise(resolve => {
-        
+
         const animationName = `animate__${animation}`
         el.classList.add(`animate__animated`, animationName)
         el.addEventListener('animationend', handleAnimationEnd, { once: true })
-        
+
         // When the animation ends, we clean the classes and resolve the Promise
         function handleAnimationEnd(event) {
             event.stopPropagation()
@@ -75,4 +76,16 @@ function animateCSS(el, animation) {
             resolve('Animation ended')
         }
     })
+}
+
+function setFavIcon(app) {
+    const iconsUrls = {
+        keep: 'https://ssl.gstatic.com/keep/keep_2020q4v2.ico',
+        gmail: 'https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico'
+    }
+    var linkElement = document.createElement('link');
+    linkElement.setAttribute('rel', 'shortcut icon');
+    linkElement.setAttribute('href', iconsUrls[app]);
+    linkElement.setAttribute('type', 'image/x-icon');
+    document.head.appendChild(linkElement);
 }

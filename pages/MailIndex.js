@@ -1,5 +1,7 @@
+
 // import { carService } from '../services/car.service.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
+import { utilService } from '../services/util.service.js'
 
 // import CarFilter from '../cmps/CarFilter.js'
 // import CarList from '../cmps/CarList.js'
@@ -22,10 +24,14 @@ export default {
 
     },
     created() {
+        utilService.setFavIcon('gmail')
+
+
         // carService.query()
         //     .then(cars => this.cars = cars)
     },
     methods: {
+
         // removeCar(carId) {
         //     carService.remove(carId)
         //         .then(() => {
