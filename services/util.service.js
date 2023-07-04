@@ -80,12 +80,15 @@ function animateCSS(el, animation) {
 
 function setFavIcon(app) {
     const iconsUrls = {
-        keep: 'https://ssl.gstatic.com/keep/keep_2020q4v2.ico',
-        gmail: 'https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico'
+        keep: {
+            url: 'https://ssl.gstatic.com/keep/keep_2020q4v2.ico', title: 'Google Keep'
+        },
+        gmail: { url: 'https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico', title: 'Gmail' }
     }
-    var linkElement = document.createElement('link');
+    const linkElement = document.createElement('link');
     linkElement.setAttribute('rel', 'shortcut icon');
-    linkElement.setAttribute('href', iconsUrls[app]);
+    linkElement.setAttribute('href', iconsUrls[app].url);
     linkElement.setAttribute('type', 'image/x-icon');
     document.head.appendChild(linkElement);
+    document.title = iconsUrls[app].title
 }
