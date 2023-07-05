@@ -1,3 +1,21 @@
-.sideNav {
+.side-nav {
  grid-area: sideNav;
+}
+
+.actions-container {
+ gap: 0.2rem;
+}
+
+.actions-container .action {
+ grid-auto-flow: column;
+ column-gap: 1rem;
+ align-items: center;
+ grid-template-columns: min-content 1fr;
+ border-bottom-right-radius: 1rem;
+ border-top-right-radius: 1rem;
+ padding: 0.2rem 1rem;
+ margin-inline-start: -1rem;
+}
+.actions-container :is(.action:hover, .action.selected) {
+ background: var(--Mclr3);
 }
