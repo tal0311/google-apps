@@ -51,8 +51,7 @@ function query() {
 }
 
 function get(mailId) {
-    return storageService.get(MAIL_KEY, mailId)
-        .then(mail => _setNextPrevMailId(mail))
+    return storageService.getById(MAIL_KEY, mailId).then(mail => mail)
 }
 
 function _setNextPrevMailId(mail) {

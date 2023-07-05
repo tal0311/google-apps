@@ -1,41 +1,77 @@
-// import { carService } from '../services/car.service.js'
+import { mailService } from "../../../services/mail.service.js"
 
 export default {
     template: `
-        <section class="mail-details" >
-            mail-details
-        </section>
+       <section class="mail-details-container grid" v-if="mail">
+           <i class="back material-symbols-outlined">
+             arrow_back
+           </i>
+           <section class="list-actions grid">
+        <i v-for="action,idx in actions1" :key="idx"
+          @click="mailAction(mail.id, action.actionType)"
+          :title="action.title" class="material-symbols-outlined">
+            {{action.iconName}}
+          </i>|
+        <i v-for="action,idx in actions2" :key="idx"
+          @click="mailAction(mail.id, action.actionType)"
+          :title="action.title" class="material-symbols-outlined">
+            {{action.iconName}}
+          </i>|
+        <i v-for="action,idx in actions3" :key="idx"
+          @click="mailAction(mail.id, action.actionType)"
+          :title="action.title" class="material-symbols-outlined">
+            {{action.iconName}}
+          </i>
+
+
+         
+           </section>
+            <section v-if="mail" class="mail-details grid">
+              <p>{{mail.body}}</p>
+              
+            </section>
+          </section>
     `,
     data() {
         return {
-
+            mail: null,
+            actions1: [
+                { iconName: 'archive', actionType: 'toggleArchive', title: 'Archive' },
+                { iconName: 'report', actionType: 'report', title: 'Report Spam' },
+                { iconName: 'delete', actionType: 'remove', title: 'Delete Mail' }
+            ],
+            actions2: [
+                { iconName: 'mail', actionType: 'toggleRead', title: 'Mark read' },
+                { iconName: 'schedule', actionType: 'schedule', title: 'schedule' },
+                { iconName: 'add_task', actionType: 'addTask', title: 'Add Task' }
+            ],
+            actions3: [
+                { iconName: 'drive_file_move', actionType: 'moveTo', title: 'Move to' },
+                { iconName: 'label', actionType: 'addLabel', title: 'Label' },
+                { iconName: 'more_vert', actionType: 'more', title: 'More' }
+            ]
         }
     },
     created() {
-        // this.loadCar()
+        this.loadMail()
     },
     methods: {
-        // loadCar() {
-        //     const { carId } = this.$route.params
-        //     carService
-        //         .get(carId)
-        //         .then(car => {
-        //             this.car = car
-        //         })
-        //         .catch(err => {
-        //             alert('Cannot load car')
-        //             this.$router.push('/car')
-        //         })
-        // },
-        // setDefaultImg() {
-        //     console.log(this.$refs.carImg)
-        //     this.$refs.carImg.src = "../assets/img/default.png"
-        // }
+        loadMail() {
+            const { id } = this.$route.params
+            mailService
+                .get(id)
+                .then(mail => {
+                    this.mail = mail
+                })
+                .catch(err => {
+                    alert('Cannot find mail')
+                    this.$router.push('/mail')
+                })
+        },
+
     },
     watch: {
-        // carId() {
-        //     this.loadCar()
-        // },
+
     },
     computed: {
 

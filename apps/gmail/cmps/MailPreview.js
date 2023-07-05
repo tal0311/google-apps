@@ -1,9 +1,9 @@
 import { utilService } from "./../../../services/util.service.js"
 export default {
- name: 'MailPreview',
- props: ['mail'],
- template: `
-        <section className="mail-preview grid">
+  name: 'MailPreview',
+  props: ['mail'],
+  template: `
+        <section @click="navigateTo(mail.id)" className="mail-preview grid">
          <div className="actions-start grid">
          <input type="checkbox" name="" id="" /> 
          <span class="material-symbols-outlined">
@@ -33,28 +33,32 @@ export default {
          </div>
         </section>
         `,
- components: {},
- created() { },
- data() {
-  return {
-   actionsEnd: [
-    { iconName: 'mail', actionType: 'toggleRead', title: 'Mark read' },
-    { iconName: 'archive', actionType: 'toggleArchive', title: 'Archive' },
-    { iconName: 'schedule', actionType: 'schedule', title: 'schedule' }
-   ]
-  }
- },
- methods: {
-  getMailDate(ts) {
-   return utilService.getFormattedDate(ts)
+  components: {},
+  created() { },
+  data() {
+    return {
+      actionsEnd: [
+        { iconName: 'mail', actionType: 'toggleRead', title: 'Mark read' },
+        { iconName: 'archive', actionType: 'toggleArchive', title: 'Archive' },
+        { iconName: 'schedule', actionType: 'schedule', title: 'schedule' }
+      ]
+    }
   },
-  mailAction(mailId, actionType) {
-   console.log(mailId, actionType);
-  }
- },
- computed: {
+  methods: {
+    getMailDate(ts) {
+      return utilService.getFormattedDate(ts)
+    },
+    mailAction(mailId, actionType) {
+      console.log(mailId, actionType);
+    },
+    navigateTo(mailId) {
+      console.log('mailId:', mailId)
+      this.$router.push(`/mail/${mailId}`)
+    }
+  },
+  computed: {
 
- },
+  },
 }
 
 // subject,

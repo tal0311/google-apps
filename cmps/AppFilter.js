@@ -1,8 +1,20 @@
+import { eventBus } from './../services/event-bus.service.js'
+
 export default {
     template: `
         <section class="app-filter">
-           <form v-if="isNavDisplay">
-            <input type="search" name="txt" id="" />
+
+            {{$route.name}}
+           <form v-if="isNavDisplay"  @submit.prevent="setFilter">
+            <input type="search" name="txt" id="" v-model="filterBy.txt" />
+
+            <!-- <div v-if="$route.name==='mail'">
+              
+                <input type="checkbox" name="" id="" />
+                <input type="checkbox" name="" id="" />
+                <input type="checkbox" name="" id="" />
+                <input type="date" name="" id="" />
+            </div> -->
            </form>
         </section>
     `,
@@ -14,6 +26,20 @@ export default {
             isNavDisplay: false
         }
     },
+    methods: {
+        setFilter() {
+            const { name } = this.$route
+            console.log('name:', name)
+            if (name === 'mail') {
+                eventBus.emit('mail-filter', { ...this.filterBy })
+
+            }
+
+        }
+
+    },
+
+
     watch: {
         $route: {
             handler(newVal, oldVal) {

@@ -1,9 +1,9 @@
 export const storageService = {
     query,
-    get,
     post,
     put,
     remove,
+    getById
 }
 
 function query(entityType, delay = 500) {
@@ -11,16 +11,16 @@ function query(entityType, delay = 500) {
     return new Promise(resolve => setTimeout(() => resolve(entities), delay))
 }
 
-function get(entityType, entityId) {
+function getById(entityType, entityId) {
     return query(entityType).then(entities => {
-        const entity = entities.find(entity => entity.id === entityId)
-        if (!entity) throw new Error(`Get failed, cannot find entity with id: ${entityId} in: ${entityType}`)
-        return entity
+        const item = entities.find((entity => entity.id === entityId))
+        if (!item) throw new Error('Can not find entity')
+        return item
     })
 }
 
 function post(entityType, newEntity) {
-    newEntity = JSON.parse(JSON.stringify(newEntity)) 
+    newEntity = JSON.parse(JSON.stringify(newEntity))
     newEntity.id = _makeId()
     return query(entityType).then(entities => {
         entities.push(newEntity)
@@ -30,7 +30,7 @@ function post(entityType, newEntity) {
 }
 
 function put(entityType, updatedEntity) {
-    updatedEntity = JSON.parse(JSON.stringify(updatedEntity))    
+    updatedEntity = JSON.parse(JSON.stringify(updatedEntity))
     return query(entityType).then(entities => {
         const idx = entities.findIndex(entity => entity.id === updatedEntity.id)
         if (idx < 0) throw new Error(`Update failed, cannot find entity with id: ${entityId} in: ${entityType}`)

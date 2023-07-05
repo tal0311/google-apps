@@ -1,5 +1,6 @@
 import { mailService } from '../../../services/mail.service.js'
 import { utilService } from '../../../services/util.service.js'
+import { eventBus } from './../../../services/event-bus.service.js'
 
 import SideNav from '../cmps/SideNav.js'
 import MailCompose from '../cmps/MailCompose.js'
@@ -28,13 +29,19 @@ export default {
 
     },
     created() {
+        eventBus.on('mail-filter', this.setFilter)
         utilService.setFavIcon('gmail')
+
 
 
         // carService.query()
         //     .then(cars => this.cars = cars)
     },
     methods: {
+
+        setFilter(filterBy) {
+            console.log('filterBy:', filterBy)
+        }
 
 
         // removeCar(carId) {
