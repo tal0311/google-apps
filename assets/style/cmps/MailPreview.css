@@ -1,0 +1,47 @@
+.mail-preview {
+    grid-auto-flow: column;
+    grid-template-columns: 5% min-content 1fr fit-content;
+    padding: 0.5rem 0.5rem;
+    gap: 5px;
+    align-items: center;
+}
+
+.mail-preview :is(p, h5) {
+    margin: 0;
+}
+
+.mail-preview:hover {
+    position: relative;
+    bottom: -1px;
+    z-index: 10;
+
+    box-shadow: 4px 2px 5px 2px rgb(105 105 105 / 33%);
+    /* border-bottom: 2px solid rgb(220, 220, 220);
+    border-top: 2px solid rgb(220, 220, 220); */
+}
+
+.actions-end {
+    display: none;
+}
+.mail-preview:hover .actions-end {
+    display: block;
+}
+.mail-preview:hover .mail-date {
+    display: none;
+}
+
+.small-preview {
+    grid-auto-flow: column;
+    margin: 0;
+    padding-inline: 1em;
+}
+.mail-subject,
+.mail-body {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.actions-start {
+    grid-auto-flow: column;
+}

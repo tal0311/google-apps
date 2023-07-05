@@ -81,7 +81,6 @@ function save(mail) {
 
 function getEmptyMail(subject, body, from = 'momo@momo.com', to = 'user@appsus.com') {
     return {
-
         subject,
         body,
         isRead: false,

@@ -7,7 +7,8 @@ export const utilService = {
     getDayName,
     getMonthName,
     animateCSS,
-    setFavIcon
+    setFavIcon,
+    getFormattedDate
 }
 
 function makeId(length = 6) {
@@ -50,6 +51,11 @@ function loadFromStorage(key) {
 function getDayName(date, locale) {
     date = new Date(date)
     return date.toLocaleDateString(locale, { weekday: 'long' })
+}
+
+function getFormattedDate(ts) {
+    const date = new Date(ts).toDateString().split(' ')
+    return { month: date[1], day: date[2] }
 }
 
 function getMonthName(date) {

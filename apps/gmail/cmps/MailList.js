@@ -3,7 +3,7 @@ import MailPreview from "./MailPreview.js"
 export default {
   name: 'MailList',
   template: `
-        <section v-if="mails" class="mail-list">
+        <section v-if="mails" class="mail-list grid">
           <MailPreview v-for="mail in mails" :key="mail.id" :mail="mail"/>
         </section>
     `,
