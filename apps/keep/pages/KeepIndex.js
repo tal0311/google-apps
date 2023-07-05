@@ -1,7 +1,7 @@
-
+import NoteList from '../cmps/NoteList.js'
 // import { carService } from '../services/car.service.js'
-import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { utilService } from '../services/util.service.js'
+import { utilService } from '../../../services/util.service.js'
+
 
 // import CarFilter from '../cmps/CarFilter.js'
 // import CarList from '../cmps/CarList.js'
@@ -9,8 +9,9 @@ import { utilService } from '../services/util.service.js'
 
 export default {
     template: `
-        <section class="car-index">
-           <h1>MailIndex</h1>
+        <section class="note-index">
+           <h1>KeepIndex</h1>
+           <NoteList/>
            <RouterView/>
         </section>
     `,
@@ -24,13 +25,12 @@ export default {
 
     },
     created() {
-        utilService.setFavIcon('gmail')
-
-
+        utilService.setFavIcon('keep')
         // carService.query()
         //     .then(cars => this.cars = cars)
     },
     methods: {
+
 
         // removeCar(carId) {
         //     carService.remove(carId)
@@ -49,6 +49,7 @@ export default {
         // }
     },
     components: {
+        NoteList
         // CarFilter,
         // CarList,
     }

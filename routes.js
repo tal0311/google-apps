@@ -1,11 +1,11 @@
-import MailIndex from './pages/MailIndex.js'
-import KeepIndex from './pages/KeepIndex.js'
+import MailIndex from './apps/gmail/pages/MailIndex.js'
+import KeepIndex from './apps/keep/pages/KeepIndex.js'
 import HomePage from './pages/HomePage.js'
 import AboutPage from './pages/AboutPage.js'
-import MailList from './cmps/MailList.js'
-import MailDetails from './pages/MailDetails.js'
-import NoteDetails from './pages/NoteDetails.js'
-import YouTubeIndex from './pages/YouTubeIndex.js'
+import MailList from './apps/gmail/pages/MailIndex.js'
+import MailDetails from './apps/gmail/pages/MailDetails.js'
+import NoteDetails from './apps/keep/pages/NoteDetails.js'
+import YouTubeIndex from './apps/youtube/pages/YouTubeIndex.js'
 
 
 const { createRouter, createWebHashHistory } = VueRouter

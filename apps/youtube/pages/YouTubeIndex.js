@@ -1,7 +1,6 @@
-import NoteList from '../cmps/NoteList.js'
 // import { carService } from '../services/car.service.js'
-import { utilService } from '../services/util.service.js'
-import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
+import { utilService } from "./../../../services/util.service.js"
+
 
 // import CarFilter from '../cmps/CarFilter.js'
 // import CarList from '../cmps/CarList.js'
@@ -9,10 +8,9 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 export default {
     template: `
-        <section class="note-index">
-           <h1>KeepIndex</h1>
-           <NoteList/>
-           <RouterView/>
+        <section class="youtube-index">
+           <h1>youtube index</h1>
+           
         </section>
     `,
     data() {
@@ -25,7 +23,8 @@ export default {
 
     },
     created() {
-        utilService.setFavIcon('keep')
+
+        utilService.setFavIcon('youtube')
         // carService.query()
         //     .then(cars => this.cars = cars)
     },
@@ -49,7 +48,6 @@ export default {
         // }
     },
     components: {
-        NoteList
         // CarFilter,
         // CarList,
     }

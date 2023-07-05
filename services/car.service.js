@@ -101,20 +101,6 @@ function getNextNoteId(noteId) {
     })
 }
 
-function getNoteCountBySpeedMap() {
-    return storageService.query(CAR_KEY).then(note => {
-        const noteCountBySpeedMap = note.reduce(
-            (map, note) => {
-                if (note.maxSpeed < 120) map.slow++
-                else if (note.maxSpeed < 200) map.normal++
-                else map.fast++
-                return map
-            },
-            { slow: 0, normal: 0, fast: 0 }
-        )
-        return noteCountBySpeedMap
-    })
-}
 
 function _createNotes() {
     let note = utilService.loadFromStorage(CAR_KEY)
