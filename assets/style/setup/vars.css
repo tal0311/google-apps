@@ -10,10 +10,28 @@
     --gray1: rgb(240, 240, 240);
     --gray2: rgb(155, 155, 155);
     --gray3: rgb(44, 44, 44);
-    
+
     --saffron: #e3b505ff;
     --rich-black: #031927ff;
     --thistle: #c8adc0ff;
     --air-force-blue: #508aa8ff;
     --columbia-blue: #c8e0f4ff;
+
+    /* mail vars */
+    /* for BE */
+    --Mclr1: #f6f8fc;
+    /* for search bar */
+    --Mclr2: #eaf1fb;
+    /* for compose */
+    --Mclr3: #c2e7ff;
+    /* for links */
+    --Mclr4: #d3e3fd;
+    /* mail-list */
+    --Mclr5: #ffff;
+
+    /* scroll bar */
+    --sb-track-color: #232e33;
+    --sb-thumb-color: #e5e5e5;
+    --ClrHover: #e5e5e5;
+    --ClrScroll: #606060;
 }

@@ -7,9 +7,9 @@
     "compose mail-router mail-router"
     "sideNav mail-router mail-router";
   height: 90vh;
-  overflow-y: scroll;
 }
 
 .mail-router {
+  padding-top: 1rem;
   grid-area: mail-router;
 }

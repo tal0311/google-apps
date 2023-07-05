@@ -17,6 +17,7 @@
 
 @import "cmps/MailIndex.css";
 @import "cmps/MailCompose.css";
+@import "cmps/MailList.css";
 @import "cmps/MailPreview.css";
 
 @import "cmps/CarFilter.css";

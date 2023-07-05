@@ -7,7 +7,7 @@ export const utilService = {
     getDayName,
     getMonthName,
     animateCSS,
-    setFavIcon,
+    setFavIcon: setAppConfig,
     getFormattedDate
 }
 
@@ -80,19 +80,23 @@ function animateCSS(el, animation) {
     })
 }
 
-function setFavIcon(app) {
+function setAppConfig(app) {
 
     const iconsUrls = {
         keep: {
-            url: 'https://ssl.gstatic.com/keep/keep_2020q4v2.ico', title: 'Google Keep'
+            url: 'https://ssl.gstatic.com/keep/keep_2020q4v2.ico',
+            title: 'Google Keep',
+            bgc: 'var(--Mclr5)'
         },
         gmail: {
             url: 'https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico',
-            title: 'Gmail'
+            title: 'Gmail',
+            bgc: 'var(--Mclr1)'
         },
         youtube: {
             url: 'https://www.youtube.com/s/desktop/afaf5292/img/favicon.ico',
-            title: 'YouTube'
+            title: 'YouTube',
+            bgc: 'var(--Mclr5)'
         }
     }
     const linkElement = document.createElement('link');
@@ -101,4 +105,5 @@ function setFavIcon(app) {
     linkElement.type = 'image/x-icon';
     document.head.appendChild(linkElement);
     document.title = iconsUrls[app].title
+    document.body.style.background = iconsUrls[app].bgc
 }
