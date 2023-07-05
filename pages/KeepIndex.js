@@ -1,3 +1,4 @@
+import NoteList from '../cmps/NoteList.js'
 // import { carService } from '../services/car.service.js'
 import { utilService } from '../services/util.service.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
@@ -8,8 +9,9 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 export default {
     template: `
-        <section class="car-index">
+        <section class="note-index">
            <h1>KeepIndex</h1>
+           <NoteList/>
            <RouterView/>
         </section>
     `,
@@ -47,6 +49,7 @@ export default {
         // }
     },
     components: {
+        NoteList
         // CarFilter,
         // CarList,
     }

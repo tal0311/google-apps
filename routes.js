@@ -4,7 +4,6 @@ import HomePage from './pages/HomePage.js'
 import AboutPage from './pages/AboutPage.js'
 import MailList from './cmps/MailList.js'
 import MailDetails from './pages/MailDetails.js'
-import NoteList from './cmps/NoteList.js'
 import NoteDetails from './pages/NoteDetails.js'
 import YouTubeIndex from './pages/YouTubeIndex.js'
 
@@ -45,24 +44,15 @@ const options = {
             ]
         },
         {
-            path: '/keep',
+            path: '/note',
             component: KeepIndex,
-            redirect: '/note',
-            name: 'keep',
+            name: 'note',
             children: [
                 {
-                    path: '/note',
-                    component: NoteList,
-                    name: 'note',
-                    children: [
-                        {
-                            path: '/note/:id',
-                            component: NoteDetails,
-                            name: 'note-details',
-                        },
-                    ]
+                    path: '/note/:id',
+                    component: NoteDetails,
+                    name: 'note-details',
                 },
-
             ]
         },
         {
@@ -71,9 +61,6 @@ const options = {
             name: 'youtube'
 
         },
-
-
-
     ]
 }
 export const router = createRouter(options)

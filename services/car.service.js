@@ -2,84 +2,84 @@ import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
 const PAGE_SIZE = 5
-const CAR_KEY = 'carDB'
+const CAR_KEY = 'noteDB'
 
 var gFilterBy = { txt: '', minSpeed: 0 }
 var gSortBy = { vendor: 1 }
 var gPageIdx
 
-_createCars()
+_createNotes()
 
-export const carService = {
+export const noteService = {
     query,
     get,
     remove,
     save,
-    getEmptyCar,
-    getNextCarId,
+    getEmptyNote,
+    getNextNoteId,
     getFilterBy,
     setFilterBy,
-    getCarCountBySpeedMap,
+    getNoteCountBySpeedMap,
 }
-window.carService = carService
+window.noteService = noteService
 
 function query() {
-    return storageService.query(CAR_KEY).then(cars => {
+    return storageService.query(CAR_KEY).then(note => {
         if (gFilterBy.txt) {
             const regex = new RegExp(gFilterBy.txt, 'i')
-            cars = cars.filter(car => regex.test(car.vendor))
+            note = note.filter(note => regex.test(note.vendor))
         }
         if (gFilterBy.minSpeed) {
-            cars = cars.filter(car => car.maxSpeed >= gFilterBy.minSpeed)
+            note = note.filter(note => note.maxSpeed >= gFilterBy.minSpeed)
         }
         if (gPageIdx !== undefined) {
             const startIdx = gPageIdx * PAGE_SIZE
-            cars = cars.slice(startIdx, startIdx + PAGE_SIZE)
+            note = note.slice(startIdx, startIdx + PAGE_SIZE)
         }
         if (gSortBy.maxSpeed !== undefined) {
-            cars.sort(
+            note.sort(
                 (c1, c2) => (c1.maxSpeed - c2.maxSpeed) * gSortBy.maxSpeed
             )
         } else if (gSortBy.vendor !== undefined) {
-            cars.sort(
+            note.sort(
                 (c1, c2) => c1.vendor.localeCompare(c2.vendor) * gSortBy.vendor
             )
         }
 
-        return cars
+        return note
     })
 }
 
-function get(carId) {
-    return storageService.get(CAR_KEY, carId)
-        .then(car => _setNextPrevCarId(car))
+function get(noteId) {
+    return storageService.get(CAR_KEY, noteId)
+        .then(note => _setNextPrevNoteId(note))
 }
 
-function _setNextPrevCarId(car) {
+function _setNextPrevNoteId(note) {
     return storageService.query(CAR_KEY)
-        .then(cars => {
-            const carIdx = cars.findIndex(currCar => currCar.id === car.id)
-            car.nextCarId = cars[carIdx + 1] ? cars[carIdx + 1].id : cars[0].id
-            car.prevCarId = cars[carIdx - 1]
-                ? cars[carIdx - 1].id
-                : cars[cars.length - 1].id
-            return car
+        .then(note => {
+            const noteIdx = note.findIndex(currNote => currNote.id === note.id)
+            note.nextNoteId = note[noteIdx + 1] ? note[noteIdx + 1].id : note[0].id
+            note.prevNoteId = note[noteIdx - 1]
+                ? note[noteIdx - 1].id
+                : note[note.length - 1].id
+            return note
         })
 }
 
-function remove(carId) {
-    return storageService.remove(CAR_KEY, carId)
+function remove(noteId) {
+    return storageService.remove(CAR_KEY, noteId)
 }
 
-function save(car) {
-    if (car.id) {
-        return storageService.put(CAR_KEY, car)
+function save(note) {
+    if (note.id) {
+        return storageService.put(CAR_KEY, note)
     } else {
-        return storageService.post(CAR_KEY, car)
+        return storageService.post(CAR_KEY, note)
     }
 }
 
-function getEmptyCar(vendor = '', maxSpeed = 0) {
+function getEmptyNote(vendor = '', maxSpeed = 0) {
     return { id: '', vendor, maxSpeed }
 }
 
@@ -93,43 +93,43 @@ function setFilterBy(filterBy = {}) {
     return gFilterBy
 }
 
-function getNextCarId(carId) {
-    return storageService.query(CAR_KEY).then(cars => {
-        var idx = cars.findIndex(car => car.id === carId)
-        if (idx === cars.length - 1) idx = -1
-        return cars[idx + 1].id
+function getNextNoteId(noteId) {
+    return storageService.query(CAR_KEY).then(note => {
+        var idx = note.findIndex(note => note.id === noteId)
+        if (idx === note.length - 1) idx = -1
+        return note[idx + 1].id
     })
 }
 
-function getCarCountBySpeedMap() {
-    return storageService.query(CAR_KEY).then(cars => {
-        const carCountBySpeedMap = cars.reduce(
-            (map, car) => {
-                if (car.maxSpeed < 120) map.slow++
-                else if (car.maxSpeed < 200) map.normal++
+function getNoteCountBySpeedMap() {
+    return storageService.query(CAR_KEY).then(note => {
+        const noteCountBySpeedMap = note.reduce(
+            (map, note) => {
+                if (note.maxSpeed < 120) map.slow++
+                else if (note.maxSpeed < 200) map.normal++
                 else map.fast++
                 return map
             },
             { slow: 0, normal: 0, fast: 0 }
         )
-        return carCountBySpeedMap
+        return noteCountBySpeedMap
     })
 }
 
-function _createCars() {
-    let cars = utilService.loadFromStorage(CAR_KEY)
-    if (!cars || !cars.length) {
-        cars = []
-        cars.push(_createCar('audu', 300))
-        cars.push(_createCar('fiak', 120))
-        cars.push(_createCar('subali', 100))
-        cars.push(_createCar('mitsu', 150))
-        utilService.saveToStorage(CAR_KEY, cars)
+function _createNotes() {
+    let note = utilService.loadFromStorage(CAR_KEY)
+    if (!note || !note.length) {
+        note = []
+        note.push(_createNote('audu', 300))
+        note.push(_createNote('fiak', 120))
+        note.push(_createNote('subali', 100))
+        note.push(_createNote('mitsu', 150))
+        utilService.saveToStorage(CAR_KEY, note)
     }
 }
 
-function _createCar(vendor, maxSpeed = 250) {
-    const car = getEmptyCar(vendor, maxSpeed)
-    car.id = utilService.makeId()
-    return car
+function _createNote(vendor, maxSpeed = 250) {
+    const note = getEmptyNote(vendor, maxSpeed)
+    note.id = utilService.makeId()
+    return note
 }
