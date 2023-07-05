@@ -2,7 +2,7 @@ import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
 const PAGE_SIZE = 5
-const CAR_KEY = 'noteDB'
+const NOTE_KEY = 'note_db'
 
 var gFilterBy = { txt: '', minSpeed: 0 }
 var gSortBy = { vendor: 1 }
@@ -24,7 +24,7 @@ export const noteService = {
 window.noteService = noteService
 
 function query() {
-    return storageService.query(CAR_KEY).then(note => {
+    return storageService.query(NOTE_KEY).then(note => {
         if (gFilterBy.txt) {
             const regex = new RegExp(gFilterBy.txt, 'i')
             note = note.filter(note => regex.test(note.vendor))
@@ -51,12 +51,12 @@ function query() {
 }
 
 function get(noteId) {
-    return storageService.get(CAR_KEY, noteId)
+    return storageService.get(NOTE_KEY, noteId)
         .then(note => _setNextPrevNoteId(note))
 }
 
 function _setNextPrevNoteId(note) {
-    return storageService.query(CAR_KEY)
+    return storageService.query(NOTE_KEY)
         .then(note => {
             const noteIdx = note.findIndex(currNote => currNote.id === note.id)
             note.nextNoteId = note[noteIdx + 1] ? note[noteIdx + 1].id : note[0].id
@@ -68,14 +68,14 @@ function _setNextPrevNoteId(note) {
 }
 
 function remove(noteId) {
-    return storageService.remove(CAR_KEY, noteId)
+    return storageService.remove(NOTE_KEY, noteId)
 }
 
 function save(note) {
     if (note.id) {
-        return storageService.put(CAR_KEY, note)
+        return storageService.put(NOTE_KEY, note)
     } else {
-        return storageService.post(CAR_KEY, note)
+        return storageService.post(NOTE_KEY, note)
     }
 }
 
@@ -94,7 +94,7 @@ function setFilterBy(filterBy = {}) {
 }
 
 function getNextNoteId(noteId) {
-    return storageService.query(CAR_KEY).then(note => {
+    return storageService.query(NOTE_KEY).then(note => {
         var idx = note.findIndex(note => note.id === noteId)
         if (idx === note.length - 1) idx = -1
         return note[idx + 1].id
@@ -103,14 +103,49 @@ function getNextNoteId(noteId) {
 
 
 function _createNotes() {
-    let note = utilService.loadFromStorage(CAR_KEY)
+    let note = utilService.loadFromStorage(NOTE_KEY)
     if (!note || !note.length) {
-        note = []
-        note.push(_createNote('audu', 300))
-        note.push(_createNote('fiak', 120))
-        note.push(_createNote('subali', 100))
-        note.push(_createNote('mitsu', 150))
-        utilService.saveToStorage(CAR_KEY, note)
+        note = [
+            {
+                id: 'n101',
+                createdAt: 1112222,
+                type: 'NoteTxt',
+                isPinned: true,
+                style: {
+                    backgroundColor: '#00d'
+                },
+                info: {
+                    txt: 'Fullstack Me Baby!'
+                }
+            },
+            {
+                id: 'n102',
+                type: 'NoteImg',
+                isPinned: false,
+                info: {
+                    url: 'http://some-img/me',
+                    title: 'Bobi and Me'
+                },
+                style: {
+                    backgroundColor: '#00d'
+                }
+            },
+            {
+                id: 'n103',
+                type: 'NoteTodos',
+                isPinned: false,
+                info: {
+                    title: 'Get my stuff together',
+                    todos: [
+                        { txt: 'Driving license', doneAt: null },
+                        { txt: 'Coding power', doneAt: 187111111 }
+                    ]
+                }
+            }
+
+        ]
+
+        utilService.saveToStorage(NOTE_KEY, note)
     }
 }
 

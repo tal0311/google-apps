@@ -10,7 +10,7 @@ var gPageIdx
 
 _createMails()
 
-export const carService = {
+export const mailService = {
     query,
     get,
     remove,
@@ -19,32 +19,32 @@ export const carService = {
     getNextMailId,
     getFilterBy,
     setFilterBy,
-    getMailCountBySpeedMap,
+
 }
-window.carService = carService
+window.mailService = mailService
 
 function query() {
     return storageService.query(MAIL_KEY).then(mails => {
-        if (gFilterBy.txt) {
-            const regex = new RegExp(gFilterBy.txt, 'i')
-            mails = mails.filter(mail => regex.test(mail.vendor))
-        }
-        if (gFilterBy.minSpeed) {
-            mails = mails.filter(mail => mail.maxSpeed >= gFilterBy.minSpeed)
-        }
-        if (gPageIdx !== undefined) {
-            const startIdx = gPageIdx * PAGE_SIZE
-            mails = mails.slice(startIdx, startIdx + PAGE_SIZE)
-        }
-        if (gSortBy.maxSpeed !== undefined) {
-            mails.sort(
-                (c1, c2) => (c1.maxSpeed - c2.maxSpeed) * gSortBy.maxSpeed
-            )
-        } else if (gSortBy.vendor !== undefined) {
-            mails.sort(
-                (c1, c2) => c1.vendor.localeCompare(c2.vendor) * gSortBy.vendor
-            )
-        }
+        // if (gFilterBy.txt) {
+        //     const regex = new RegExp(gFilterBy.txt, 'i')
+        //     mails = mails.filter(mail => regex.test(mail.vendor))
+        // }
+        // if (gFilterBy.minSpeed) {
+        //     mails = mails.filter(mail => mail.maxSpeed >= gFilterBy.minSpeed)
+        // }
+        // if (gPageIdx !== undefined) {
+        //     const startIdx = gPageIdx * PAGE_SIZE
+        //     mails = mails.slice(startIdx, startIdx + PAGE_SIZE)
+        // }
+        // if (gSortBy.maxSpeed !== undefined) {
+        //     mails.sort(
+        //         (c1, c2) => (c1.maxSpeed - c2.maxSpeed) * gSortBy.maxSpeed
+        //     )
+        // } else if (gSortBy.vendor !== undefined) {
+        //     mails.sort(
+        //         (c1, c2) => c1.vendor.localeCompare(c2.vendor) * gSortBy.vendor
+        //     )
+        // }
 
         return mails
     })
@@ -79,8 +79,17 @@ function save(mail) {
     }
 }
 
-function getEmptyMail(vendor = '', maxSpeed = 0) {
-    return { id: '', vendor, maxSpeed }
+function getEmptyMail(subject, body, from = 'momo@momo.com', to = 'user@appsus.com') {
+    return {
+
+        subject,
+        body,
+        isRead: false,
+        sentAt: Date.now(),
+        removedAt: null,
+        from,
+        to
+    }
 }
 
 function getFilterBy() {
@@ -106,16 +115,18 @@ function _createMails() {
     let mails = utilService.loadFromStorage(MAIL_KEY)
     if (!mails || !mails.length) {
         mails = []
-        mails.push(_createMail('audu', 300))
-        mails.push(_createMail('fiak', 120))
-        mails.push(_createMail('subali', 100))
-        mails.push(_createMail('mitsu', 150))
+        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20)))
+        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20)))
+        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20)))
+        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20)))
+        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20)))
+
         utilService.saveToStorage(MAIL_KEY, mails)
     }
 }
 
-function _createMail(vendor, maxSpeed = 250) {
-    const mail = getEmptyMail(vendor, maxSpeed)
+function _createMail(subject, body) {
+    const mail = getEmptyMail(subject, body)
     mail.id = utilService.makeId()
     return mail
 }

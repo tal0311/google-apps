@@ -1,0 +1,18 @@
+.compose {
+ grid-area: compose;
+}
+
+#editor-container {
+ height: 200px;
+ width: 350px;
+}
+
+.ql-toolbar {
+ width: 350px;
+}
+
+.mail-compose {
+ position: fixed;
+ bottom: 0;
+ right: 1em;
+}

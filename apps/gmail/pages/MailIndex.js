@@ -1,21 +1,27 @@
 
-// import { carService } from '../services/car.service.js'
+import { mailService } from '../../../services/mail.service.js'
 import { utilService } from '../../../services/util.service.js'
 
+import SideNav from '../cmps/SideNav.js'
+import MailCompose from '../cmps/MailCompose.js'
 // import CarFilter from '../cmps/CarFilter.js'
 // import CarList from '../cmps/CarList.js'
 
 
 export default {
     template: `
-        <section class="car-index">
-           <h1>MailIndex</h1>
-           <RouterView/>
+        <section class="mail-index grid">
+            <button class="compose">compose</button>
+           <SideNav/>
+           <section className="mail-router">
+               <RouterView/>
+           </section>
+          <MailCompose/>
         </section>
     `,
     data() {
         return {
-            mails: [],
+
             filterBy: null,
         }
     },
@@ -30,6 +36,7 @@ export default {
         //     .then(cars => this.cars = cars)
     },
     methods: {
+
 
         // removeCar(carId) {
         //     carService.remove(carId)
@@ -50,5 +57,7 @@ export default {
     components: {
         // CarFilter,
         // CarList,
+        SideNav,
+        MailCompose
     }
 }

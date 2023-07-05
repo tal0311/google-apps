@@ -1,16 +1,29 @@
-
+import MailPreview from "./MailPreview.js"
 
 export default {
   name: 'MailList',
   template: `
-        <section class="mail-list">
-          <h1>mail list</h1>
+        <section v-if="mails" class="mail-list">
+          <MailPreview v-for="mail in mails" :key="mail.id" :mail="mail"/>
         </section>
     `,
-  methods: {
 
+  created() {
+    this.loadMails()
+  },
+  data() {
+    return {
+      mails: null
+    }
+  },
+  methods: {
+    loadMails() {
+      mailService.query().then(mails => {
+        this.mails = mails
+      })
+    }
   },
   components: {
-
+    MailPreview
   },
 }

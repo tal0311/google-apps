@@ -1,0 +1,15 @@
+.mail-index {
+  /* background: lightgray; */
+  grid-template-columns: 0.6fr 1.4fr 1fr;
+  grid-template-rows: 0.3fr 2.3fr;
+  gap: 10px 10px;
+  grid-template-areas:
+    "compose mail-router mail-router"
+    "sideNav mail-router mail-router";
+  height: 90vh;
+  overflow-y: scroll;
+}
+
+.mail-router {
+  grid-area: mail-router;
+}
