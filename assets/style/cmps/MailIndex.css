@@ -13,3 +13,24 @@
   padding-top: 1rem;
   grid-area: mail-router;
 }
+
+.compose {
+  background: var(--Mclr3);
+  border-radius: 1rem;
+  grid-area: compose;
+  grid-auto-flow: column;
+  align-items: center;
+  margin-inline-start: -0.5rem;
+  max-width: 140px;
+}
+
+.compose:hover {
+  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302), 0 4px 8px 3px rgba(60, 64, 67, 0.149);
+}
+.compose p {
+  margin: 0;
+  font-size: 1rem;
+  color: #001d35;
+  min-width: 100px;
+  font-weight: 500;
+}

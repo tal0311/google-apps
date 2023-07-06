@@ -83,10 +83,11 @@ function getEmptyMail(subject, body, from = 'momo@momo.com', to = 'user@appsus.c
         subject,
         body,
         isRead: false,
-        sentAt: Date.now(),
+        sentAt: null,
         removedAt: null,
         from,
-        to
+        to,
+        isStared: false
     }
 }
 

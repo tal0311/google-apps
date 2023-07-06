@@ -17,5 +17,5 @@
  margin-inline-start: -1rem;
 }
 .actions-container :is(.action:hover, .action.selected) {
- background: var(--Mclr3);
+ background: var(--Mclr4);
 }

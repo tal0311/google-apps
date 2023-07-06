@@ -11,18 +11,25 @@ import MailCompose from '../cmps/MailCompose.js'
 export default {
     template: `
         <section class="mail-index grid">
-            <button class="compose">compose</button>
+            <button @click="setCompose" class="compose grid">
+                <span class="material-symbols-outlined">
+                    edit
+                </span>
+                <p>Compose</p>
+            </button>
            <SideNav/>
            <section className="mail-router">
                <RouterView/>
            </section>
-          <MailCompose/>
+          <MailCompose v-if="isOpen"/>
         </section>
+        
     `,
     data() {
         return {
 
             filterBy: null,
+            isOpen: false
         }
     },
     computed: {
@@ -38,7 +45,9 @@ export default {
         //     .then(cars => this.cars = cars)
     },
     methods: {
-
+        setCompose() {
+            this.$router.push({ name: 'mail', query: { compose: 'new' } })
+        },
         setFilter(filterBy) {
             console.log('filterBy:', filterBy)
         }
@@ -59,6 +68,16 @@ export default {
         // setFilterBy(filterBy) {
         //     this.filterBy = filterBy
         // }
+    },
+    watch: {
+        $route: {
+            deep: true,
+            immediate: true,
+            handler: function (val, oldVal) {
+                const { compose } = val.query
+                compose ? this.isOpen = true : this.isOpen = false
+            }
+        },
     },
     components: {
         // CarFilter,
