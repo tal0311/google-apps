@@ -1,0 +1,8 @@
+.user-preview {
+ background: var(--Mclr6);
+ height: 40px;
+ width: 40px;
+ border-radius: 50%;
+ place-items: center;
+ color: var(--Mclr5);
+}
