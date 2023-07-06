@@ -4,7 +4,7 @@ export default {
     template: `
         <section class="app-filter">
 
-            {{$route.name}}
+            <!-- {{$route.name}} -->
            <form v-if="isNavDisplay"  @submit.prevent="setFilter">
             <input type="search" name="txt" id="" v-model="filterBy.txt" />
 
