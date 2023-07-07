@@ -1,5 +1,4 @@
 import { mailService } from "../../../services/mail.service.js"
-import { utilService } from "../../../services/util.service.js";
 
 export default {
         name: 'MailCompose',
@@ -20,15 +19,15 @@ export default {
                  </i>
               </div>
            </header>
-            <form >
-                <input type="text" name="" id="" v-model="mail.to"/>
-                <input type="text" name="" id="" v-model="mail.subject" />
-                <textarea name="" v-model="mail.body" @input="saveToDraft" id="" cols="30" rows="10"></textarea>
+            <form  @submit.prevent="">
+                <input type="text" name="to" v-model="mail.to"/>
+                <input type="text" name="subject" v-model="mail.subject" />
+                <textarea name="" v-model="mail.body" @input="saveToDraft" @blur="isDirty=false" id="" cols="30" rows="10"></textarea>
            <!-- <div ref="quill" id="quill-container"></div> -->
             </form>
             <footer>
                 <div class="compose-actions">
-                        <button>send</button>
+                        <button @click="composeAction('send')">send</button>
                 </div>
             </footer>
   
@@ -67,7 +66,8 @@ export default {
 
                         }
                         if (actionTYpe === 'close') {
-                                if (this.isDirty)
+                                console.log('ok:',)
+                                if (!this.isDirty)
                                         mailService.save({ ...this.mail }).then(() => {
                                                 this.$router.push('/mail')
                                         })
@@ -76,6 +76,11 @@ export default {
                         if (actionTYpe === 'expend') {
                                 this.isExpend = !this.isExpend
                                 this.composeStatus = this.isExpend ? 'expend' : 'small'
+                        }
+                        if (actionTYpe === 'send') {
+                                mailService.save({ ...this.mail }).then(() => {
+                                        this.$router.push('/mail')
+                                })
                         }
                 },
                 saveToDraft() {

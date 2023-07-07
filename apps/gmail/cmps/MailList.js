@@ -1,4 +1,5 @@
 import MailPreview from "./MailPreview.js"
+import { eventBus } from "./../../../services/event-bus.service.js"
 
 export default {
   name: 'MailList',
@@ -17,18 +18,27 @@ export default {
 
   created() {
     this.loadMails()
+    eventBus.on('mail-filter', this.setFilter)
   },
   data() {
     return {
-      mails: null
+      mails: null,
+      filterBy: {}
     }
   },
   methods: {
     loadMails() {
-      mailService.query().then(mails => {
+      mailService.query({ ...this.filterBy }).then(mails => {
         this.mails = mails
       })
+    },
+    setFilter(filterBy) {
+      this.filterBy = { ...this.filterBy, ...filterBy }
+      this.loadMails()
     }
+  },
+  computed: {
+
   },
   components: {
     MailPreview

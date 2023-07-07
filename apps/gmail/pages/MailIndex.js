@@ -1,6 +1,6 @@
 import { mailService } from '../../../services/mail.service.js'
 import { utilService } from '../../../services/util.service.js'
-import { eventBus } from './../../../services/event-bus.service.js'
+
 
 import SideNav from '../cmps/SideNav.js'
 import MailCompose from '../cmps/MailCompose.js'
@@ -36,13 +36,7 @@ export default {
 
     },
     created() {
-        eventBus.on('mail-filter', this.setFilter)
         utilService.setFavIcon('gmail')
-
-
-
-        // carService.query()
-        //     .then(cars => this.cars = cars)
     },
     methods: {
         setCompose() {
@@ -51,23 +45,6 @@ export default {
         setFilter(filterBy) {
             console.log('filterBy:', filterBy)
         }
-
-
-        // removeCar(carId) {
-        //     carService.remove(carId)
-        //         .then(() => {
-        //             const idx = this.cars.findIndex(car => car.id === carId)
-        //             this.cars.splice(idx, 1)
-        //             showSuccessMsg('Car removed')
-        //         })
-        //         .catch(err => {
-        //             showErrorMsg('Cannot remove car')
-        //         })
-        // },
-
-        // setFilterBy(filterBy) {
-        //     this.filterBy = filterBy
-        // }
     },
     watch: {
         $route: {
@@ -80,8 +57,6 @@ export default {
         },
     },
     components: {
-        // CarFilter,
-        // CarList,
         SideNav,
         MailCompose
     }
