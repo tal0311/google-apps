@@ -40,6 +40,16 @@ export default {
   computed: {
 
   },
+  watch: {
+    '$route.query': {
+      deep: true,
+      immediate: true,
+      handler: function (val, oldVal) {
+        this.setFilter({ tab: val.tab })
+
+      }
+    },
+  },
   components: {
     MailPreview
   },

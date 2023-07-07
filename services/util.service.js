@@ -1,15 +1,4 @@
-export const utilService = {
-    makeId,
-    makeLorem,
-    getRandomIntInclusive,
-    loadFromStorage,
-    saveToStorage,
-    getDayName,
-    getMonthName,
-    animateCSS,
-    setFavIcon: setAppConfig,
-    getFormattedDate
-}
+
 
 function makeId(length = 6) {
     var txt = ''
@@ -106,4 +95,31 @@ function setAppConfig(app) {
     document.head.appendChild(linkElement);
     document.title = iconsUrls[app].title
     document.body.style.background = iconsUrls[app].bgc
+}
+
+const debounce = (func, wait) => {
+    let timeout
+    return (...args) => {
+        const later = () => {
+            clearTimeout(timeout)
+            func(...args)
+        }
+
+        clearTimeout(timeout)
+        timeout = setTimeout(later, wait)
+    }
+}
+
+export const utilService = {
+    makeId,
+    makeLorem,
+    getRandomIntInclusive,
+    loadFromStorage,
+    saveToStorage,
+    getDayName,
+    getMonthName,
+    animateCSS,
+    setFavIcon: setAppConfig,
+    getFormattedDate,
+    debounce
 }

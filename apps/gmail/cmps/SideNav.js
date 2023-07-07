@@ -26,10 +26,11 @@ export default {
     return {
       actions: [
         { iconName: 'inbox', actionType: 'inbox', title: 'Inbox', isSelected: false },
-        { iconName: 'star', actionType: 'starred', title: 'Sent', isSelected: false },
+        { iconName: 'star', actionType: 'starred', title: 'Starred', isSelected: false },
         { iconName: 'schedule', actionType: 'Snoozed', title: 'Snoozed', isSelected: false },
         { iconName: 'send', actionType: 'sent', title: 'Sent', isSelected: false },
-        { iconName: 'draft', actionType: 'draft', title: 'Draft', isSelected: false }
+        { iconName: 'draft', actionType: 'draft', title: 'Draft', isSelected: false },
+        { iconName: 'delete', actionType: 'trash', title: 'Trash', isSelected: false }
       ]
     }
   },
@@ -47,7 +48,7 @@ export default {
       this.setRouter(actionType)
     },
     setRouter(action) {
-
+      this.$router.push({ name: 'mail', query: { tab: action } })
     }
   },
   computed: {},

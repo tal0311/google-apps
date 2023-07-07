@@ -6,7 +6,7 @@ export default {
         <section @click="navigateTo(mail.id)" className="mail-preview grid">
          <div className="actions-start grid">
          <input type="checkbox" name="" id="" /> 
-         <span class="material-symbols-outlined">
+         <span :class="[ mail.isStared? 'starred':'' ,'star material-symbols-outlined']">
            star
           </span>
          </div>
@@ -29,7 +29,7 @@ export default {
          </div>
 
          <div class="mail-date">
-          {{getMailDate(mail.sentAt).month}} {{getMailDate(mail.sentAt).day}}
+          {{getMailDate(mail).month}} {{getMailDate(mail).day}}
          </div>
         </section>
         `,
@@ -45,7 +45,8 @@ export default {
     }
   },
   methods: {
-    getMailDate(ts) {
+    getMailDate(mail) {
+      const ts = mail.sentAt ? mail.sentAt : mail.createdAt
       return utilService.getFormattedDate(ts)
     },
     mailAction(mailId, actionType) {

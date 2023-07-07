@@ -11,7 +11,6 @@
     --gray2: rgb(155, 155, 155);
     --gray3: rgb(44, 44, 44);
 
-    --saffron: #e3b505ff;
     --rich-black: #031927ff;
     --thistle: #c8adc0ff;
     --air-force-blue: #508aa8ff;
@@ -32,6 +31,8 @@
     --Mclr6: #474849;
     /* for mail font color */
     --Mclr7: #1f1f1f;
+    /* for starred mail*/
+    --Mclr8: #e3b505ff;
 
     /* scroll bar */
     --sb-track-color: #232e33;

@@ -1,4 +1,5 @@
 import { mailService } from "../../../services/mail.service.js"
+import { utilService } from "../../../services/util.service.js"
 
 export default {
         name: 'MailCompose',
@@ -6,7 +7,7 @@ export default {
         template: `
          <section :class="['mail-compose small grid', composeStatus]" v-if="mail" >
             <header class="compose-header grid">
-              <h4>New Message</h4>
+              <h4>{{title}}</h4>
               <div className="header-actions">
                 <i class="material-symbols-outlined" @click="composeAction('expend')">
                   {{isExpend?'close_fullscreen':'open_in_full'}}
@@ -35,13 +36,14 @@ export default {
         `,
         components: {},
         created() {
+                this.saveToDraft = utilService.debounce(this.saveToDraft, 3000)
         },
         data() {
                 return {
                         mail: null,
                         isExpend: false,
                         composeStatus: 'small',
-                        isDirty: false
+                        title: 'New Message'
                 }
         },
         mounted() {
@@ -66,11 +68,10 @@ export default {
 
                         }
                         if (actionTYpe === 'close') {
-                                console.log('ok:',)
-                                if (!this.isDirty)
-                                        mailService.save({ ...this.mail }).then(() => {
-                                                this.$router.push('/mail')
-                                        })
+                                if (!this.mail.subject) this.mail.subject = '(No subject)'
+                                mailService.save({ ...this.mail }).then(() => {
+                                        this.$router.push('/mail')
+                                })
 
                         }
                         if (actionTYpe === 'expend') {
@@ -83,10 +84,16 @@ export default {
                                 })
                         }
                 },
+                setTitle() {
+                        setTimeout(() => {
+                                this.title = 'New Message'
+                        }, 3000)
+                },
                 saveToDraft() {
-                        if (this.isDirty) return
-                        this.isDirty = true
+                        // this.isDirty = true
                         mailService.save({ ...this.mail }).then(mail => {
+                                this.title = 'Saved Draft'
+                                this.setTitle()
                                 this.$router.push({ name: 'mail', query: { compose: mail.id } })
                         })
                 }

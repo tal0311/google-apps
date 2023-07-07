@@ -25,22 +25,21 @@ function query(filterBy = { tab: 'inbox', txt: '' }) {
             const regex = new RegExp(filterBy.txt, 'i')
             mails = mails.filter(mail => regex.test(mail.subject) || regex.test(mail.body) || regex.test(mail.from))
         }
-        //     if (filterBy.minSpeed) {
-        //         mails = mails.filter(mail => mail.maxSpeed >= filterBy.minSpeed)
-        //     }
-        //     if (gPageIdx !== undefined) {
-        //         const startIdx = gPageIdx * PAGE_SIZE
-        //         mails = mails.slice(startIdx, startIdx + PAGE_SIZE)
-        //     }
-        //     if (gSortBy.maxSpeed !== undefined) {
-        //         mails.sort(
-        //             (c1, c2) => (c1.maxSpeed - c2.maxSpeed) * gSortBy.maxSpeed
-        //         )
-        //     } else if (gSortBy.vendor !== undefined) {
-        //         mails.sort(
-        //             (c1, c2) => c1.vendor.localeCompare(c2.vendor) * gSortBy.vendor
-        //         )
-        //     }
+        if (filterBy.tab === 'inbox') {
+            mails = mails.filter(mail => mail.sentAt)
+        }
+        if (filterBy.tab === 'draft') {
+            mails = mails.filter(mail => !mail.sentAt)
+        }
+        if (filterBy.tab === 'trash') {
+            mails = mails.filter(mail => mail.removedAt)
+        }
+        if (filterBy.tab === 'starred') {
+            mails = mails.filter(mail => mail.isStared)
+        }
+        if (filterBy.tab === 'Snoozed') {
+            mails = mails.filter(mail => mail.snoozedAt)
+        }
 
         return mails
     })
@@ -74,18 +73,7 @@ function save(mail) {
     }
 }
 
-function getEmptyMail(subject, body, from = 'momo@momo.com', to = 'user@appsus.com') {
-    return {
-        subject,
-        body,
-        isRead: false,
-        sentAt: null,
-        removedAt: null,
-        from,
-        to,
-        isStared: false
-    }
-}
+
 
 
 
@@ -103,17 +91,17 @@ function _createMails() {
     let mails = utilService.loadFromStorage(MAIL_KEY)
     if (!mails || !mails.length) {
         mails = []
-        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20)))
-        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20)))
-        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20)))
-        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20)))
-        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20)))
-        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20)))
-        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20)))
-        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20)))
-        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20)))
-        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20)))
-        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20)))
+        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20), Date.now()))
+        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20), Date.now()))
+        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20), Date.now()))
+        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20), Date.now()))
+        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20), Date.now()))
+        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20), Date.now()))
+        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20), Date.now()))
+        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20), Date.now()))
+        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20), Date.now()))
+        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20), Date.now()))
+        mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20), Date.now()))
         mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20)))
         mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20)))
         mails.push(_createMail(utilService.makeLorem(10), utilService.makeLorem(20)))
@@ -126,8 +114,24 @@ function _createMails() {
     }
 }
 
-function _createMail(subject, body) {
-    const mail = getEmptyMail(subject, body)
+function _createMail(subject, body, sentAt = null) {
+    const mail = getEmptyMail(subject, body, sentAt)
     mail.id = utilService.makeId()
     return mail
+}
+
+
+function getEmptyMail(subject, body, sentAt) {
+    return {
+        subject,
+        body,
+        isRead: false,
+        sentAt,
+        removedAt: Math.random() > 0.5 ? null : Date.now(),
+        from: 'momo@momo.com',
+        to: 'user@appsus.com',
+        isStared: Math.random() > 0.9 ? true : false,
+        snoozedAt: Math.random() > 0.7 ? Date.now() : null,
+        createdAt: Date.now()
+    }
 }
