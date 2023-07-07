@@ -28,7 +28,7 @@ const options = {
         {
             path: '/gmail',
             component: MailIndex,
-            redirect: '/mail',
+            redirect: '/mail?tab=inbox',
             name: 'gmail',
             children: [
                 {

@@ -29,7 +29,6 @@ export default {
     methods: {
         setFilter() {
             const { name } = this.$route
-            console.log('name:', name)
             if (name === 'mail') {
                 eventBus.emit('mail-filter', { ...this.filterBy })
 

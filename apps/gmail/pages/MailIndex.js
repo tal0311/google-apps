@@ -36,15 +36,12 @@ export default {
 
     },
     created() {
-        utilService.setFavIcon('gmail')
+        utilService.setAppConfig('gmail')
     },
     methods: {
         setCompose() {
             this.$router.push({ name: 'mail', query: { compose: 'new' } })
         },
-        setFilter(filterBy) {
-            console.log('filterBy:', filterBy)
-        }
     },
     watch: {
         $route: {

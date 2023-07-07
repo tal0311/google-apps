@@ -20,15 +20,15 @@ export default {
                  </i>
               </div>
            </header>
-            <form  @submit.prevent="">
-                <input type="text" name="to" v-model="mail.to"/>
-                <input type="text" name="subject" v-model="mail.subject" />
+            <form  @submit.prevent="" class="mail-form grid" >
+                <input type="text" placeholder="To" name="to" v-model="mail.to"/>
+                <input type="text" placeholder="Subject" name="subject" v-model="mail.subject" />
                 <textarea name="" v-model="mail.body" @input="saveToDraft" @blur="isDirty=false" id="" cols="30" rows="10"></textarea>
            <!-- <div ref="quill" id="quill-container"></div> -->
             </form>
             <footer>
                 <div class="compose-actions">
-                        <button @click="composeAction('send')">send</button>
+                        <button class="send-btn" @click="composeAction('send')">send</button>
                 </div>
             </footer>
   

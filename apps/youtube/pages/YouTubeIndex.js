@@ -24,7 +24,7 @@ export default {
     },
     created() {
 
-        utilService.setFavIcon('youtube')
+        utilService.setAppConfig('youtube')
         // carService.query()
         //     .then(cars => this.cars = cars)
     },

@@ -69,7 +69,7 @@ function animateCSS(el, animation) {
     })
 }
 
-function setAppConfig(app) {
+function setAppConfig(app, title = null) {
 
     const iconsUrls = {
         keep: {
@@ -93,9 +93,11 @@ function setAppConfig(app) {
     linkElement.href = iconsUrls[app].url;
     linkElement.type = 'image/x-icon';
     document.head.appendChild(linkElement);
-    document.title = iconsUrls[app].title
+    document.title = title || iconsUrls[app].title
     document.body.style.background = iconsUrls[app].bgc
 }
+
+
 
 const debounce = (func, wait) => {
     let timeout
@@ -119,7 +121,7 @@ export const utilService = {
     getDayName,
     getMonthName,
     animateCSS,
-    setFavIcon: setAppConfig,
+    setAppConfig,
     getFormattedDate,
     debounce
 }

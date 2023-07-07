@@ -50,10 +50,9 @@ export default {
       return utilService.getFormattedDate(ts)
     },
     mailAction(mailId, actionType) {
-      console.log(mailId, actionType);
+      console.info(mailId, actionType);
     },
     navigateTo(mailId) {
-      console.log('mailId:', mailId)
       this.$router.push(`/mail/${mailId}`)
     }
   },

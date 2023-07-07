@@ -11,6 +11,7 @@
 /* Components */
 
 @import "cmps/app.css";
+@import "cmps/HomePage.css";
 @import "cmps/UserMsg.css";
 @import "cmps/AppHeader.css";
 @import "cmps/AppFooter.css";

@@ -25,7 +25,7 @@ export default {
 
     },
     created() {
-        utilService.setFavIcon('keep')
+        utilService.setAppConfig('keep')
         // carService.query()
         //     .then(cars => this.cars = cars)
     },

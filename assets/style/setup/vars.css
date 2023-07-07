@@ -33,6 +33,12 @@
     --Mclr7: #1f1f1f;
     /* for starred mail*/
     --Mclr8: #e3b505ff;
+    /* Mbtn */
+    --Mbtn: #0b57d0;
+    /* for mail font color */
+    --Mclr9: #001d35;
+    /* border radius */
+    --Mbr: 0.8rem;
 
     /* scroll bar */
     --sb-track-color: #232e33;

@@ -8,18 +8,28 @@
 }
 
 .mail-compose {
+ border-top-left-radius: var(--Mbr);
+ border-top-right-radius: var(--Mbr);
+
+ padding-bottom: 0.5rem;
+ /* border-radius: var(--Mbr); */
+
+ /* grid-template-columns: 0.2rem 1fr 0.2rem; */
  grid-template-rows: 2rem 1fr 2rem;
  align-items: center;
  background: var(--Mclr5);
  position: fixed;
- bottom: 10px;
+ bottom: 0px;
  right: 1em;
  z-index: 100;
  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
+.mail-compose > * {
+ padding-inline: 0.5rem;
+}
 .mail-compose.small {
- height: 300px;
- width: 350px;
+ height: 60%;
+ width: 50%;
 }
 .mail-compose.collapsed {
  height: 40px;
@@ -41,12 +51,47 @@
 }
 
 .compose-header {
+ border-top-left-radius: var(--Mbr);
+ border-top-right-radius: var(--Mbr);
  grid-area: 1;
  grid-auto-flow: column;
  background: var(--Mclr1);
  height: 100%;
  align-items: center;
 }
+
+.compose-header h4 {
+ color: var(--Mclr9);
+}
 .compose-header > * {
  margin: 0;
+}
+.compose-header .header-actions {
+ margin-inline-start: auto;
+}
+.mail-form {
+ display: grid;
+ gap: 0.5em;
+ height: 100%;
+ grid-template-rows: 40px 40px 1fr;
+}
+
+.mail-form :is(input, textarea) {
+ outline: none;
+ border: none;
+ border-bottom: 2px solid var(--Mclr1);
+ background: var(--Mclr5);
+ padding: 0.5em;
+}
+
+.mail-form textarea {
+ resize: none;
+ border: none;
+}
+
+.compose-actions .send-btn {
+ padding: 0.5em 1em;
+ background: var(--Mbtn);
+ color: var(--Mclr1);
+ font-weight: 600;
 }
