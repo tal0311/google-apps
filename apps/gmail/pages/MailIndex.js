@@ -4,6 +4,7 @@ import { utilService } from '../../../services/util.service.js'
 
 import SideNav from '../cmps/SideNav.js'
 import MailCompose from '../cmps/MailCompose.js'
+import UserMsg from '../../../cmps/UserMsg.js'
 // import CarFilter from '../cmps/CarFilter.js'
 // import CarList from '../cmps/CarList.js'
 
@@ -22,6 +23,7 @@ export default {
                <RouterView/>
            </section>
           <MailCompose v-if="isOpen"/>
+          <UserMsg/>
         </section>
         
     `,
@@ -40,7 +42,9 @@ export default {
     },
     methods: {
         setCompose() {
-            this.$router.push({ name: 'mail', query: { compose: 'new' } })
+            console.log(this.$route);
+            // this.$router.push({ name: 'mail', params: { username: 'eduardo' }, query: { compose: 'new' } })
+            this.$router.push(`/mail?tab=${this.$route.query.tab}&compose=new`)
         },
     },
     watch: {
@@ -55,6 +59,7 @@ export default {
     },
     components: {
         SideNav,
-        MailCompose
+        MailCompose,
+        UserMsg
     }
 }

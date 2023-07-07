@@ -1,7 +1,8 @@
 import MailPreview from "./MailPreview.js"
-import { eventBus } from "./../../../services/event-bus.service.js"
+import { eventBus, showSuccessMsg } from "./../../../services/event-bus.service.js"
 import { utilService } from "./../../../services/util.service.js"
 import { userService } from "../../../services/user.service.js"
+import { mailService } from "../../../services/mail.service.js"
 
 
 export default {
@@ -14,7 +15,9 @@ export default {
            </section>
             <section v-if="mails" class="mail-list grid">
               
-              <MailPreview v-for="mail in mails" :key="mail.id" :mail="mail"/>
+              <MailPreview v-for="mail in mails" :key="mail.id" :mail="mail"
+              @update-mail="updateMail"
+              />
             </section>
           </section>
     `,
@@ -64,8 +67,41 @@ export default {
         extraInfo = `${loggedUser.username}`
       }
       utilService.setAppConfig('gmail', `${title}  ${extraInfo}`)
-    }
+    },
+    updateMail({ action, mailId }) {
+      console.debug('♠️ ~ file: MailList.js:72 ~ updateMail ~ action, mailId:', action, mailId)
+      // })
+      let mail = this.mails.find(m => m.id === mailId)
+      // console.debug('♠️ ~ file: MailList.js:77 ~ updateMail ~ mail:', mail)
+      let msg = ''
+      if (action === 'star') {
+        mail.isStared = !mail.isStared
+        msg = mail.isStared ? 'Mail was awarded a star' : 'Mail was un starred'
+      }
+      // debugger
+      if (action === 'toggleArchive') {
+        console.log('action:', action)
+        if (mail.removedAt) {
+          this.removeMail(mailId)
+          return
+        }
+        mail.removedAt = Date.now()
+        msg = 'Conversation moved to trash'
+      }
 
+      mailService.save({ ...mail }).then(() => {
+        // console.log('msg:', msg)
+        // throw new Error()
+        showSuccessMsg(msg)
+      }).catch(() => showSuccessMsg('we are having problem completing your request'))
+        .finally(this.loadMails)
+    },
+    removeMail(mailId) {
+      mailService.remove(mailId).then(() => {
+        showSuccessMsg('conversation was permanently deleted')
+      }).catch(() => showSuccessMsg('we are having problem completing your request'))
+        .finally(this.loadMails)
+    }
   },
   computed: {
 

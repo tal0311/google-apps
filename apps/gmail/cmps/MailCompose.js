@@ -47,6 +47,7 @@ export default {
                 }
         },
         mounted() {
+
                 // new Quill('#quill-container', {
                 //         modules: {
                 //                 toolbar: [
@@ -94,7 +95,9 @@ export default {
                         mailService.save({ ...this.mail }).then(mail => {
                                 this.title = 'Saved Draft'
                                 this.setTitle()
-                                this.$router.push({ name: 'mail', query: { compose: mail.id } })
+                                this.$router.push(`/mail?tab=
+                                ${this.$route.query.tab}
+                                &compose=${mail.id}`)
                         })
                 }
         },

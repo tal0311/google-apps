@@ -95,6 +95,8 @@ function setAppConfig(app, title = null) {
     document.head.appendChild(linkElement);
     document.title = title || iconsUrls[app].title
     document.body.style.background = iconsUrls[app].bgc
+    document.body.setAttribute('app', app)
+
 }
 
 

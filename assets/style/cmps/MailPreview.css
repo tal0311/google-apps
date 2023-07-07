@@ -9,6 +9,7 @@
 }
 
 .mail-preview :is(p, h5) {
+    font-size: 0.9rem;
     margin: 0;
 }
 

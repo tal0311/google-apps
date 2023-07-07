@@ -1,17 +1,25 @@
 .user-msg {
-    background-color: lightgray;
-    padding: 1em;
+    padding: 1rem 1rem;
+    min-width: 30%;
     position: fixed;
-    top: .5em;
-    right: .5em;
-}
-.user-msg.success {
-    background-color: lightgreen;
-}
-.user-msg.error {
-    background-color: lightcoral;
+    left: 1rem;
+    bottom: 3rem;
+    background: var(--Mclr7);
+    color: var(--Mclr1);
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    border-radius: 0.3rem;
+    font-weight: 400;
+    text-transform: capitalize;
 }
 
-.user-msg button {
-    float: right;
+.user-msg .btn {
+    margin-inline-start: auto;
+    color: var(--Mclr1);
+    border-radius: 0.3rem;
+    padding: 0.2rem 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 200;
+    cursor: pointer;
 }

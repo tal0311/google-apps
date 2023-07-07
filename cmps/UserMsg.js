@@ -4,19 +4,23 @@ import { eventBus } from '../services/event-bus.service.js'
 export default {
     template: `
         <div class="user-msg" :class="msg.type" v-if="msg">
-            <button @click="msg=null">x</button>
-            <p>
+            <span>
                 {{msg.txt}}
-            </p>
+            </span>
+            <i @click="msg=null" class="btn material-symbols-outlined">
+               close
+            </i>
         </div>
     `,
     data() {
         return {
+            // msg: null
             msg: null
         }
     },
     created() {
         this.unsubscribe = eventBus.on('show-msg', (msg) => {
+            console.log('msg:', msg)
             this.msg = msg
             setTimeout(() => {
                 this.msg = null

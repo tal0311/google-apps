@@ -6,7 +6,8 @@ export default {
 
             <!-- {{$route.name}} -->
            <form v-if="isNavDisplay"  @submit.prevent="setFilter">
-            <input type="search" name="txt" id="" v-model="filterBy.txt" />
+            <i class="material-symbols-outlined">search</i>
+            <input type="search" name="txt" id="" v-model="filterBy.txt" :placeholder="setPlaceHolder" />
 
             <!-- <div v-if="$route.name==='mail'">
               
@@ -36,6 +37,16 @@ export default {
 
         }
 
+    },
+    computed: {
+        setPlaceHolder() {
+            const { name } = this.$route
+            if (name.includes('mail')) {
+                return 'Search mail'
+            } else {
+                return 'Search'
+            }
+        }
     },
 
 

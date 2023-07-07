@@ -26,7 +26,7 @@ function query(filterBy = { tab: 'inbox', txt: '' }) {
             mails = mails.filter(mail => regex.test(mail.subject) || regex.test(mail.body) || regex.test(mail.from))
         }
         if (filterBy.tab === 'inbox') {
-            mails = mails.filter(mail => mail.sentAt)
+            mails = mails.filter(mail => mail.sentAt && !mail.removedAt)
         }
         if (filterBy.tab === 'draft') {
             mails = mails.filter(mail => !mail.sentAt)
