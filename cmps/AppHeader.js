@@ -7,17 +7,27 @@ export default {
                 <div class="app-name">{{setLogoByApp.appName}}</div>
             </div>
             <AppFilter/>
-            <nav>
-                <RouterLink to="/">Home</RouterLink>
-                <RouterLink to="/gmail">Gmail</RouterLink> 
-                <RouterLink to="/note">Keep</RouterLink>
-                <RouterLink to="/youtube">youtube</RouterLink>
-                <RouterLink to="/about">About us</RouterLink>
-            </nav>
+            <span @click="isOpen=!isOpen" class="apps-btn material-symbols-outlined">apps</span>
+            <nav v-if="isOpen" class="grid">
+                <RouterLink to="/">
+                    <span>Home</span><div class="link-logo apps"></div>
+                </RouterLink>
+                <RouterLink to="/gmail">
+                    <span>Gmail</span><div class="link-logo gmail"></div>
+                </RouterLink> 
+                <RouterLink to="/note">
+                    <span>Keep</span><div class="link-logo keep"></div>
+                </RouterLink>
+                <RouterLink to="/youtube">
+                    <span>YouTube</span><div class="link-logo yt"></div>
+                </RouterLink>
+              </nav>
         </header>
     `,
     data() {
-        return {}
+        return {
+            isOpen: false
+        }
     },
     computed: {
         setLogoByApp() {
