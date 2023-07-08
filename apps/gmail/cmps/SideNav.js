@@ -31,7 +31,7 @@ export default {
       add
       </i>
     </div>
-  <div class="label grid" v-for="item in user.labels" :key="item.id" @click="setRouterByLabel(item.name)">
+  <div v-if="user.labels" class="label grid" v-for="item in user.labels" :key="item.id" @click="setRouterByLabel(item.name)">
       <i  class="material-symbols-outlined">label</i>
     <span>{{item.name}}</span>
   </div>
@@ -79,7 +79,7 @@ export default {
 
     },
     setRouterByLabel(label) {
-      this.$router.push(`mail/${label}`)
+      this.$router.push({ name: 'mail', query: { label: label, tab: this.$route.query.tab } })
     },
     getType(action) {
       const allow = ['inbox', 'draft']

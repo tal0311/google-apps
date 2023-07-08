@@ -119,7 +119,7 @@ export default {
       deep: true,
       immediate: true,
       handler: function (val, oldVal) {
-        this.setFilter({ tab: val.tab })
+        this.setFilter({ tab: val.tab, label: val.label })
 
       }
     },

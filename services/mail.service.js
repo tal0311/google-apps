@@ -20,10 +20,15 @@ export const mailService = {
 window.mailService = mailService
 
 function query(filterBy = { tab: 'inbox', txt: '' }) {
+    console.debug('♠️ ~ file: mail.service.js:23 ~ query ~ filterBy:', filterBy)
+
     return storageService.query(MAIL_KEY).then(mails => {
         if (filterBy.txt) {
             const regex = new RegExp(filterBy.txt, 'i')
             mails = mails.filter(mail => regex.test(mail.subject) || regex.test(mail.body) || regex.test(mail.from))
+        }
+        if (filterBy.label) {
+            return mails = mails.filter(mail => mail.label === filterBy.label)
         }
         if (filterBy.tab === 'inbox') {
             mails = mails.filter(mail => mail.sentAt && !mail.removedAt)
@@ -40,6 +45,10 @@ function query(filterBy = { tab: 'inbox', txt: '' }) {
         if (filterBy.tab === 'Snoozed') {
             mails = mails.filter(mail => mail.snoozedAt)
         }
+        if (filterBy.tab === 'sent') {
+            mails = mails.filter(mail => mail.sentAt)
+        }
+
 
         return mails
     })
@@ -132,6 +141,7 @@ function getEmptyMail(subject, body, sentAt) {
         to: 'user@appsus.com',
         isStared: Math.random() > 0.9 ? true : false,
         snoozedAt: Math.random() > 0.7 ? Date.now() : null,
-        createdAt: Date.now()
+        createdAt: Date.now(),
+        label: Math.random() > 0.7 ? 'label 1' : 'new'
     }
 }

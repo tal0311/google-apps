@@ -29,7 +29,6 @@ export default {
    userService.addLabel(this.labelName)
    eventBus.emit('update-user')
    this.$emit('close-modal')
-
   }
  },
  computed: {},

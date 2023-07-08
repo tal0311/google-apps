@@ -8,7 +8,7 @@ export const userService = {
 
 const USER_KEY = 'loggedInUser'
 
-// _createUser()
+_createUser()
 
 function getLoggedInUser() {
  return utilService.loadFromStorage(USER_KEY)
