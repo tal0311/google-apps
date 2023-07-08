@@ -4,7 +4,7 @@ import { userService } from "../services/user.service.js"
 
 export default {
  name: '',
- props: [],
+ props: ['extraData'],
  template: `
 
          <form @submit.prevent="" class="label-list grid">
@@ -18,14 +18,19 @@ export default {
          </form>
         `,
  components: {},
- created() { },
+ created() {
+  console.log(this.extraData);
+ },
  data() {
   return {
-   labelName: ''
+   labelName: this.extraData.name || ''
   }
  },
  methods: {
   createLabel() {
+   if (!this.labelName) {
+    userService.updateLabel({ ...this.extraData }, this.labelName)
+   }
    userService.addLabel(this.labelName)
    eventBus.emit('update-user')
    this.$emit('close-modal')

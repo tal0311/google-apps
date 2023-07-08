@@ -10,7 +10,8 @@ export default {
              <i @click="closeModal" class="material-symbols-outlined">
                 close
              </i>
-            <component v-if="modalType" :is="modalType" @close-modal="closeModal"/>
+            <component v-if="modalType" :is="modalType" 
+            @close-modal="closeModal" :extraData="extraData"/>
         </dialog>
         `,
 
@@ -20,15 +21,18 @@ export default {
    },
    data() {
       return {
-         modalType: 'LabelList'
+         modalType: '',
+         extraData: null
       }
    },
    mounted() {
       // this.openModal()
    },
    methods: {
-      setModal(type) {
-         this.modalType = type
+      setModal({ modalType, data = null }) {
+         console.log('data:', data)
+         if (data) this.extraData = data
+         this.modalType = modalType
          this.openModal()
       },
       openModal() {

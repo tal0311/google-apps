@@ -4,7 +4,8 @@ export default {
   emits: ['update-mail'],
   props: ['mail'],
   template: `
-        <section @click="navigateTo(mail.id)" className="mail-preview grid">
+        <section @click="navigateTo(mail.id)" :class="['mail-preview grid', mail.isRead
+        ?'is-read':'']">
          <div className="actions-start grid">
          <input type="checkbox" name="" id="" /> 
          <span @click.stop="updateMail('star' ,mail.id)" :class="[ mail.isStared? 'starred':'' ,'star material-symbols-outlined']">

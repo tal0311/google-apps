@@ -3,12 +3,13 @@ import { utilService } from "./util.service.js"
 export const userService = {
  getLoggedInUser,
  createLabel,
- addLabel
+ addLabel,
+ updateLabel
 }
 
 const USER_KEY = 'loggedInUser'
 
-_createUser()
+// _createUser()
 
 function getLoggedInUser() {
  return utilService.loadFromStorage(USER_KEY)
@@ -22,6 +23,14 @@ function addLabel(labelName) {
  utilService.saveToStorage(USER_KEY, user)
  console.debug('♠️ ~ file: user.service.js:22 ~ addLabel ~ user:', user)
 
+}
+
+function updateLabel(label, labelName) {
+ const user = getLoggedInUser()
+ const labelIdx = user.labels.findIndex(currLabel => currLabel.id === label.id)
+ user.labels[labelIdx].name = labelName
+ utilService.saveToStorage(USER_KEY, user)
+ console.debug('♠️ ~ file: user.service.js:22 ~ addLabel ~ user:', user)
 }
 
 function _createUser() {

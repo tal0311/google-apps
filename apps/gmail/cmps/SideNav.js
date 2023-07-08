@@ -33,7 +33,8 @@ export default {
     </div>
   <div v-if="user.labels" class="label grid" v-for="item in user.labels" :key="item.id" @click="setRouterByLabel(item.name)">
       <i  class="material-symbols-outlined">label</i>
-    <span>{{item.name}}</span>
+    <span >{{item.name}}</span>
+      <!-- <i @click.stop="editLabel(item)" class="material-symbols-outlined">more_vert</i> -->
   </div>
   
 </div>
@@ -87,6 +88,9 @@ export default {
     },
     openMOdal(modalType) {
       eventBus.emit('show-modal', modalType)
+    },
+    editLabel(label) {
+      eventBus.emit('show-modal', { modalType: 'LabelList', data: label })
     }
   },
   computed: {
