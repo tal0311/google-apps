@@ -16,6 +16,9 @@
 @import "cmps/AppHeader.css";
 @import "cmps/AppFooter.css";
 @import "cmps/UserPreview.css";
+@import "cmps/AppFilter.css";
+@import "cmps/AppModal.css";
+@import "cmps/LabelList.css";
 
 @import "cmps/MailIndex.css";
 @import "cmps/MailCompose.css";
@@ -23,7 +26,3 @@
 @import "cmps/MailPreview.css";
 @import "cmps/MailDetails.css";
 @import "cmps/sideNav.css";
-
-@import "cmps/CarFilter.css";
-@import "cmps/CarList.css";
-@import "cmps/CarPreview.css";

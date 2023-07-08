@@ -1,5 +1,9 @@
 .side-nav {
  grid-area: sideNav;
+ /* background: lightblue; */
+ /* display: grid; */
+ grid-template-rows: min-content min-content;
+ gap: 1rem;
 }
 
 .actions-container {
@@ -18,4 +22,24 @@
 }
 .actions-container :is(.action:hover, .action.selected) {
  background: var(--Mclr4);
+}
+
+.label-container .header-container {
+ grid-auto-flow: column;
+ align-items: center;
+ justify-content: space-between;
+}
+/* .label-container .header-container i {
+ 
+} */
+.label-container .label {
+ grid-template-columns: min-content 1fr;
+ grid-auto-flow: column;
+ font-size: 0.8rem;
+ font-weight: 500;
+ gap: 0.5rem;
+ align-items: center;
+}
+.label-container .label span {
+ margin-inline-start: 0;
 }

@@ -60,15 +60,18 @@ export default {
         const count = mails.filter(m => !m.sentAt).length
         title = `Drafts (${count}) -`
         extraInfo = `${loggedUser.username}`
+        eventBus.emit('get-count', { count, tab })
       }
       if (tab !== 'inbox' && tab !== 'draft') {
 
         title = tab.substring(0, 1).toLocaleUpperCase() + tab.substring(1) + ' Mail -'
         extraInfo = `${loggedUser.username}`
+
       }
       utilService.setAppConfig('gmail', `${title}  ${extraInfo}`)
     },
     updateMail({ action, mailId }) {
+      // debugger
       console.debug('♠️ ~ file: MailList.js:72 ~ updateMail ~ action, mailId:', action, mailId)
       // })
       let mail = this.mails.find(m => m.id === mailId)
@@ -85,9 +88,13 @@ export default {
           this.removeMail(mailId)
           return
         }
-        mail.removedAt = Date.now()
-        msg = 'Conversation moved to trash'
       }
+      if (action === 'schedule') {
+        console.log('action:', action)
+        mail.snoozedAt = mail.snoozedAt ? null : Date.now()
+        msg = 'Conversation was scheduled a reminder'
+      }
+
 
       mailService.save({ ...mail }).then(() => {
         // console.log('msg:', msg)
@@ -95,6 +102,7 @@ export default {
         showSuccessMsg(msg)
       }).catch(() => showSuccessMsg('we are having problem completing your request'))
         .finally(this.loadMails)
+
     },
     removeMail(mailId) {
       mailService.remove(mailId).then(() => {

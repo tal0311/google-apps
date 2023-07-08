@@ -1,0 +1,18 @@
+.label-list {
+ gap: 1rem;
+ width: 50vw;
+}
+
+.label-list .action-container {
+ justify-content: end;
+ grid-auto-flow: column;
+}
+.action-container button {
+ border-radius: 100vh;
+ padding: 0.5rem 1rem;
+}
+
+.action-container .create {
+ background: var(--Mbtn);
+ color: var(--Mclr5);
+}

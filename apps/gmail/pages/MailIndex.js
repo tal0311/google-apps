@@ -2,9 +2,13 @@ import { mailService } from '../../../services/mail.service.js'
 import { utilService } from '../../../services/util.service.js'
 
 
+
+
 import SideNav from '../cmps/SideNav.js'
 import MailCompose from '../cmps/MailCompose.js'
 import UserMsg from '../../../cmps/UserMsg.js'
+import { userService } from '../../../services/user.service.js'
+import { eventBus } from '../../../services/event-bus.service.js'
 // import CarFilter from '../cmps/CarFilter.js'
 // import CarList from '../cmps/CarList.js'
 
@@ -18,12 +22,13 @@ export default {
                 </span>
                 <p>Compose</p>
             </button>
-           <SideNav/>
+           <SideNav :user="loggedUser"/>
            <section className="mail-router">
                <RouterView/>
            </section>
           <MailCompose v-if="isOpen"/>
           <UserMsg/>
+          
         </section>
         
     `,
@@ -31,14 +36,17 @@ export default {
         return {
 
             filterBy: null,
-            isOpen: false
+            isOpen: false,
+            loggedUser: null
         }
     },
     computed: {
 
     },
     created() {
+        this.loadUser()
         utilService.setAppConfig('gmail')
+        eventBus.on('update-user', this.loadUser)
     },
     methods: {
         setCompose() {
@@ -46,6 +54,9 @@ export default {
             // this.$router.push({ name: 'mail', params: { username: 'eduardo' }, query: { compose: 'new' } })
             this.$router.push(`/mail?tab=${this.$route.query.tab}&compose=new`)
         },
+        loadUser() {
+            this.loggedUser = userService.getLoggedInUser()
+        }
     },
     watch: {
         $route: {

@@ -2,10 +2,10 @@ import { eventBus } from "../../../services/event-bus.service.js"
 
 export default {
   name: 'SideNav',
-  props: [],
+  props: ['user'],
   template: `
-  <aside class="side-nav" >
-   <div class="actions-container grid">
+  <aside class="side-nav grid" >
+   <section class="actions-container grid">
     <div v-for ="action,idx in actions" :key="idx"
     :title="action.title"
     @click=updateLabel(action.actionType)
@@ -22,7 +22,21 @@ export default {
         {{action.count}}
       </span>
     </div>
-   </div>
+  </section>
+
+  <div class="label-container grid">
+    <div class="header-container grid">
+      <h3>labels</h3>
+      <i @click="openMOdal('LabelList')" class="material-symbols-outlined">
+      add
+      </i>
+    </div>
+  <div class="label grid" v-for="item in user.labels" :key="item.id" @click="setRouterByLabel(item.name)">
+      <i  class="material-symbols-outlined">label</i>
+    <span>{{item.name}}</span>
+  </div>
+  
+</div>
    
   </aside>
 
@@ -64,9 +78,15 @@ export default {
       action.count = count
 
     },
+    setRouterByLabel(label) {
+      this.$router.push(`mail/${label}`)
+    },
     getType(action) {
       const allow = ['inbox', 'draft']
       return allow.includes(action)
+    },
+    openMOdal(modalType) {
+      eventBus.emit('show-modal', modalType)
     }
   },
   computed: {

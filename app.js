@@ -5,6 +5,7 @@ import { router } from './routes.js'
 import AppHeader from './cmps/AppHeader.js'
 import AppFooter from './cmps/AppFooter.js'
 import UserMsg from './cmps/UserMsg.js'
+import AppModal from './cmps/AppModal.js'
 
 const options = {
     template: `
@@ -15,6 +16,7 @@ const options = {
         </div>
         <AppFooter />
         <UserMsg />
+        <AppModal/>
     </section>
     `,
     data() {
@@ -23,7 +25,8 @@ const options = {
     components: {
         AppHeader,
         AppFooter,
-        UserMsg
+        UserMsg,
+        AppModal
     }
 }
 const app = createApp(options)

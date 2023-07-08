@@ -44,3 +44,7 @@
   font-variation-settings: "FILL" 1;
   color: var(--Mclr8);
 }
+.mail-index .label .material-symbols-outlined {
+  font-variation-settings: "FILL" 1;
+  color: var(--Mclr6);
+}
