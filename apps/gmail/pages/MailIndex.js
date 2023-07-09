@@ -51,7 +51,6 @@ export default {
     methods: {
         setCompose() {
             console.log(this.$route);
-            // this.$router.push({ name: 'mail', params: { username: 'eduardo' }, query: { compose: 'new' } })
             this.$router.push(`/mail?tab=${this.$route.query.tab}&compose=new`)
         },
         loadUser() {

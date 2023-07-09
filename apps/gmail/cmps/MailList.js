@@ -52,7 +52,6 @@ export default {
       let extraInfo = ''
       if (tab === 'inbox') {
         const count = mails.filter(m => !m.isRead).length
-        eventBus.emit('get-count', { count, tab })
         title = 'Inbox'
         extraInfo = `(${count})`
       }
@@ -68,10 +67,17 @@ export default {
         extraInfo = `${loggedUser.username}`
 
       }
+
+      this.countMails(mails)
       utilService.setAppConfig('gmail', `${title}  ${extraInfo}`)
     },
+    countMails(mails) {
+      const inboxCount = mails.filter(m => !m.isRead).length
+      const draftCount = mails.filter(m => !m.sentAt).length
+      eventBus.emit('get-count', { count: inboxCount, tab: 'inbox' })
+      eventBus.emit('get-count', { count: draftCount, tab: 'draft' })
+    },
     updateMail({ action, mailId }) {
-      debugger
       console.debug('♠️ ~ file: MailList.js:72 ~ updateMail ~ action, mailId:', action, mailId)
       // })
       let mail = this.mails.find(m => m.id === mailId)
@@ -81,7 +87,7 @@ export default {
         mail.isStared = !mail.isStared
         msg = mail.isStared ? 'Mail was awarded a star' : 'Mail was un starred'
       }
-      // debugger
+
       if (action === 'toggleArchive') {
         if (mail.removedAt) {
           this.removeMail(mailId)
