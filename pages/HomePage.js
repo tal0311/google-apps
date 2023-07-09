@@ -1,3 +1,4 @@
+import { utilService } from './../services/util.service.js'
 export default {
     template: `
         <section class="home grid">
@@ -10,5 +11,8 @@ export default {
         return {
 
         }
-    }
+    },
+    created() {
+        utilService.setAppConfig('apps')
+    },
 }

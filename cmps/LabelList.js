@@ -3,9 +3,9 @@ import { userService } from "../services/user.service.js"
 
 
 export default {
- name: '',
- props: ['extraData'],
- template: `
+        name: '',
+        props: ['extraData'],
+        template: `
 
          <form @submit.prevent="" class="label-list grid">
           <h1>New label</h1>
@@ -17,24 +17,24 @@ export default {
           </div>
          </form>
         `,
- components: {},
- created() {
-  console.log(this.extraData);
- },
- data() {
-  return {
-   labelName: this.extraData.name || ''
-  }
- },
- methods: {
-  createLabel() {
-   if (!this.labelName) {
-    userService.updateLabel({ ...this.extraData }, this.labelName)
-   }
-   userService.addLabel(this.labelName)
-   eventBus.emit('update-user')
-   this.$emit('close-modal')
-  }
- },
- computed: {},
+        components: {},
+        created() {
+                console.log(this.extraData);
+        },
+        data() {
+                return {
+                        labelName: this.extraData ? this.extraData.name : ''
+                }
+        },
+        methods: {
+                createLabel() {
+                        if (!this.labelName) {
+                                userService.updateLabel({ ...this.extraData }, this.labelName)
+                        }
+                        userService.addLabel(this.labelName)
+                        eventBus.emit('update-user')
+                        this.$emit('close-modal')
+                }
+        },
+        computed: {},
 }

@@ -71,7 +71,7 @@ export default {
       utilService.setAppConfig('gmail', `${title}  ${extraInfo}`)
     },
     updateMail({ action, mailId }) {
-      // debugger
+      debugger
       console.debug('♠️ ~ file: MailList.js:72 ~ updateMail ~ action, mailId:', action, mailId)
       // })
       let mail = this.mails.find(m => m.id === mailId)
@@ -83,11 +83,13 @@ export default {
       }
       // debugger
       if (action === 'toggleArchive') {
-        console.log('action:', action)
         if (mail.removedAt) {
           this.removeMail(mailId)
           return
         }
+        mail.removedAt = Date.now()
+        msg = 'Conversation was moved to archive'
+
       }
       if (action === 'schedule') {
         console.log('action:', action)
@@ -99,6 +101,7 @@ export default {
       mailService.save({ ...mail }).then(() => {
         // console.log('msg:', msg)
         // throw new Error()
+        if (!msg) return
         showSuccessMsg(msg)
       }).catch(() => showSuccessMsg('we are having problem completing your request'))
         .finally(this.loadMails)

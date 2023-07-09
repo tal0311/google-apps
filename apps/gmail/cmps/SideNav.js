@@ -87,7 +87,7 @@ export default {
       return allow.includes(action)
     },
     openMOdal(modalType) {
-      eventBus.emit('show-modal', modalType)
+      eventBus.emit('show-modal', { modalType })
     },
     editLabel(label) {
       eventBus.emit('show-modal', { modalType: 'LabelList', data: label })

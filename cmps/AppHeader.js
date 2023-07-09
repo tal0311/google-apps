@@ -42,7 +42,7 @@ export default {
                 if (name.includes('home')) {
                     return {
                         logoClass: 'apps',
-                        appName: 'Google Apps'
+                        appName: 'Apps'
                     }
                 }
                 if (name.includes('youtube')) {

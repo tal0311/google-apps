@@ -72,6 +72,11 @@ function animateCSS(el, animation) {
 function setAppConfig(app, title = null) {
 
     const iconsUrls = {
+        apps: {
+            url: '',
+            title: 'Google-Apps',
+            bgc: 'var(--Mclr5)'
+        },
         keep: {
             url: 'https://ssl.gstatic.com/keep/keep_2020q4v2.ico',
             title: 'Google Keep',
