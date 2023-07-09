@@ -71,7 +71,7 @@ export default {
                         if (actionTYpe === 'close') {
                                 if (!this.mail.subject) this.mail.subject = '(No subject)'
                                 mailService.save({ ...this.mail }).then(() => {
-                                        this.$router.push('/mail')
+                                        this.$router.push('/mail?tab=inbox')
                                 })
 
                         }
@@ -81,7 +81,7 @@ export default {
                         }
                         if (actionTYpe === 'send') {
                                 mailService.save({ ...this.mail }).then(() => {
-                                        this.$router.push('/mail')
+                                        this.$router.push('/mail?tab=sent')
                                 })
                         }
                 },
@@ -93,11 +93,10 @@ export default {
                 saveToDraft() {
                         // this.isDirty = true
                         mailService.save({ ...this.mail }).then(mail => {
+                                debugger
                                 this.title = 'Saved Draft'
                                 this.setTitle()
-                                this.$router.push(`/mail?tab=
-                                ${this.$route.query.tab}
-                                &compose=${mail.id}`)
+                                this.$router.push(`/mail?tab=${this.$route.query.tab}&compose=${mail.id}`)
                         })
                 }
         },
