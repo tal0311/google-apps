@@ -28,8 +28,23 @@ body[app="gmail"] .app-filter input[type="search"] {
     font-size: 1.5rem;
     cursor: pointer;
 }
-.app-filter form input[type="search"]:focus {
+body[app="gmail"] .app-filter form input[type="search"]:focus {
     background: #fff;
     outline: transparent;
     box-shadow: 0 2px 3px 0px #dadada;
+}
+
+body[app="keep"] .app-filter input[type="search"] {
+    background: var(--Kclr2);
+    border-radius: var(--Kbr);
+    padding: 0.8rem;
+    font-size: 1rem;
+    padding-inline-start: 3rem;
+    border-radius: var(--Kbr);
+    /* box-shadow: 0 0 2px 4px var(--Mclr1); */
+}
+body[app="keep"] .app-filter form input[type="search"]:focus {
+    background: var(--Kclr1);
+    outline: transparent;
+    box-shadow: 0px 0px 2px 1px #dadada;
 }

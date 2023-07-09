@@ -3,19 +3,9 @@ import { eventBus } from './../services/event-bus.service.js'
 export default {
     template: `
         <section class="app-filter">
-
-            <!-- {{$route.name}} -->
            <form v-if="isNavDisplay"  @submit.prevent="setFilter">
             <i class="material-symbols-outlined">search</i>
             <input type="search" name="txt" id="" v-model="filterBy.txt" :placeholder="setPlaceHolder" />
-
-            <!-- <div v-if="$route.name==='mail'">
-              
-                <input type="checkbox" name="" id="" />
-                <input type="checkbox" name="" id="" />
-                <input type="checkbox" name="" id="" />
-                <input type="date" name="" id="" />
-            </div> -->
            </form>
         </section>
     `,
@@ -48,8 +38,6 @@ export default {
             }
         }
     },
-
-
     watch: {
         $route: {
             handler(newVal, oldVal) {
