@@ -11,7 +11,6 @@ export const noteService = {
     remove,
     save,
     getEmptyNote,
-    getNextNoteId,
 }
 window.noteService = noteService
 
@@ -44,7 +43,7 @@ function query() {
 
 function get(noteId) {
     return storageService.getById(NOTE_KEY, noteId)
-        .then(note => _setNextPrevNoteId(note))
+
 }
 
 function remove(noteId) {

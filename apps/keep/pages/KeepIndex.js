@@ -1,39 +1,47 @@
 import NoteList from '../cmps/NoteList.js'
 import SideNav from '../cmps/SideNav.js'
-// import { carService } from '../services/car.service.js'
+import { noteService } from './../../../services/note.service.js'
 import { utilService } from '../../../services/util.service.js'
+import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
+import AddNote from '../cmps/AddNote.js'
 
 
-// import CarFilter from '../cmps/CarFilter.js'
-// import CarList from '../cmps/CarList.js'
+
 
 
 export default {
     template: `
         <section class="note-index">
-           <h1>KeepIndex</h1>
-           <NoteList/>
-           <NoteList/>
+           <AddNote/>
+           <NoteList v-if="pinnedNotes" title="pinned" :notes="pinnedNotes"/>
+           <NoteList v-if="notes" title="other" :notes="notes"/>
            <RouterView/>
            <SideNav/>
         </section>
     `,
     data() {
         return {
-            mails: [],
+            notes: [],
+            pinnedNotes: [],
             filterBy: null,
         }
+    },
+    created() {
+        utilService.setAppConfig('keep')
+        this.loadNots()
     },
     computed: {
 
     },
-    created() {
-        utilService.setAppConfig('keep')
-        // carService.query()
-        //     .then(cars => this.cars = cars)
-    },
-    methods: {
 
+    methods: {
+        loadNots() {
+            noteService.query().then(notes => {
+                console.log(notes);
+                this.pinnedNotes = notes.filter(note => note.isPinned)
+                this.notes = notes.filter(note => !note.isPinned)
+            })
+        }
 
         // removeCar(carId) {
         //     carService.remove(carId)
@@ -53,7 +61,8 @@ export default {
     },
     components: {
         NoteList,
-        SideNav
+        SideNav,
+        AddNote
         // CarFilter,
         // CarList,
     }
