@@ -1,6 +1,6 @@
 .k-side-nav {
- width: 40px; /* Initial width */
- transition: all 0.2s ease-in 0.3s; /* Transition for width with a delay of 1s */
+ width: 60px; /* Initial width */
+ transition: width 0.2s ease 0.2s; /* Transition for width with a delay of 1s */
  position: fixed;
  left: 1rem;
  top: 61px;
@@ -8,7 +8,7 @@
  /* padding: 1rem; */
  box-shadow: none;
  margin-inline-start: -1rem;
- padding: 1rem;
+ /* padding: 1rem; */
  height: 100vh;
 }
 
@@ -16,4 +16,27 @@
  width: 250px; /* Target width on hover */
  box-shadow: 1px 20px 10px 3px rgb(48 48 48 / 20%);
  /* border-inline-end: 1px solid var(--Kclr2); */
+}
+.k-side-nav:hover .actions-list .title {
+ opacity: 1;
+}
+.k-side-nav i {
+ margin-inline-start: 1rem;
+ padding: 0.5rem;
+ /* color: var(--Kclr2); */
+ font-size: 1.5rem;
+}
+.k-side-nav .k-action-icon.selected {
+ /* background: var(--Kclr3); */
+ padding: 0.5rem;
+ border-radius: 50%;
+ font-size: 1.5rem;
+}
+.k-action {
+ grid-auto-flow: column;
+ align-items: center;
+}
+.actions-list .title {
+ transition: opacity 0.2s ease 0.2s;
+ opacity: 0;
 }
