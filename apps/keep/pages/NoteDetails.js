@@ -21,8 +21,8 @@ export default {
     },
     methods: {
         loadNote() {
-            const noteId = this.$route.params.noteId
-            noteService.getById(noteId)
+            const noteId = this.$route.params.id
+            noteService.get(noteId)
                 .then(note => {
                     this.note = note
                 })

@@ -1,17 +1,21 @@
+import NotePreview from "./NotePreview.js"
+
 
 
 export default {
   name: 'NoteList',
+  props: ['notes', 'title'],
   template: `
         <section class="note-list">
-          <h1>note list</h1>
-          <RouterView/>
+          <small>{{title}} notes</small>
+          <NotePreview v-for="note in notes" :key="note.id" :note="note"/>
+         
         </section>
     `,
   methods: {
 
   },
   components: {
-
+    NotePreview
   },
 }
