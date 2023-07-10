@@ -1,4 +1,5 @@
 import NoteList from '../cmps/NoteList.js'
+import SideNav from '../cmps/SideNav.js'
 // import { carService } from '../services/car.service.js'
 import { utilService } from '../../../services/util.service.js'
 
@@ -12,7 +13,9 @@ export default {
         <section class="note-index">
            <h1>KeepIndex</h1>
            <NoteList/>
+           <NoteList/>
            <RouterView/>
+           <SideNav/>
         </section>
     `,
     data() {
@@ -49,7 +52,8 @@ export default {
         // }
     },
     components: {
-        NoteList
+        NoteList,
+        SideNav
         // CarFilter,
         // CarList,
     }

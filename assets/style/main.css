@@ -26,3 +26,6 @@
 @import "cmps/MailPreview.css";
 @import "cmps/MailDetails.css";
 @import "cmps/sideNav.css";
+
+@import "cmps/NoteIndex.css";
+@import "cmps/k-SideNav.css";

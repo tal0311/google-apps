@@ -40,6 +40,19 @@
     /* border radius */
     --Mbr: 0.8rem;
 
+    /* keep vars */
+    /* BG */
+    --Kclr1: #fff;
+    /* for search bar */
+    --Kclr2: #f1f3f4;
+    /* border-radios */
+    --Kclr3: #feefc3;
+    --Kbr: 0.5rem;
+    /* search gbar BS */
+    --K-sreach-bar-box-shadow: 0 0 4px 2px lightgray;
+    /* for preview border */
+    --K-preview-border: 1px solid #dedede;
+
     /* scroll bar */
     --sb-track-color: #232e33;
     --sb-thumb-color: #e5e5e5;
