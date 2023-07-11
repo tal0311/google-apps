@@ -12,7 +12,7 @@ import AddNote from '../cmps/AddNote.js'
 export default {
     template: `
         <section class="note-index">
-           <AddNote/>
+           <AddNote @add-note="addNote"/>
            <NoteList v-if="pinnedNotes" title="pinned" :notes="pinnedNotes"/>
            <NoteList v-if="notes" title="other" :notes="notes"/>
            <RouterView/>
@@ -35,6 +35,19 @@ export default {
     },
 
     methods: {
+        addNote(note) {
+            console.debug('♠️ ~ file: KeepIndex.js:39 ~ addNote ~ note:', note)
+
+            noteService.save(note)
+                .then((note) => {
+                    showSuccessMsg('Note added')
+                }).catch(err => {
+                    console.debug('♠️ ~ file: KeepIndex.js:43 ~ .then ~ err:', err)
+                    showErrorMsg('Cannot add note')
+                }).finally(() => {
+                    this.loadNots()
+                })
+        },
         loadNots() {
             noteService.query().then(notes => {
                 console.log(notes);
