@@ -1,11 +1,22 @@
 import NoteActions from "./NoteActions.js"
 import ColorList from "./ColorList.js"
+import NoteImg from "./daynamicCmps/NoteImg.js"
+import NoteTxt from "./daynamicCmps/NoteTxt.js"
+import NoteTodo from "./daynamicCmps/NoteTodo.js"
+import NoteVideo from "./daynamicCmps/NoteVideo.js"
+import NoteAudio from "./daynamicCmps/NoteAudio.js"
+import NoteMap from "./daynamicCmps/NoteMap.js"
+import NoteCanvas from "./daynamicCmps/NoteCanvas.js"
+
+
+
 export default {
        name: 'NotePreview',
        props: ['note'],
        template: `
         <section class="note-preview" @click="navigateTo(note.id)">
-         <pre>{{note}}</pre>
+               <component :is="note.type" :info="note.info" />
+               <h4>{{note.title}}</h4>
          <NoteActions @note-action="noteAction"/>
          <ColorList v-if="isPaletteOpen" @color-selected="noteAction('color-select', $event)"
           @cover-selected="noteAction('cover-select', $event)" />
@@ -40,6 +51,14 @@ export default {
        computed: {},
        components: {
               NoteActions,
-              ColorList
+              ColorList,
+              NoteImg,
+              NoteTxt,
+              NoteTodo,
+              NoteVideo,
+              NoteAudio,
+              NoteMap,
+              NoteCanvas,
+
        },
 }

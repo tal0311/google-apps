@@ -75,10 +75,11 @@ function _createNotes() {
     if (!note || !note.length) {
         note = [
             {
-                id: 'n101',
+                id: utilService.makeId(),
                 createdAt: 1112222,
                 type: 'NoteTxt',
                 isPinned: true,
+                title: 'fullstack both sides',
                 style: {
                     backgroundColor: '#00d'
                 },
@@ -87,23 +88,35 @@ function _createNotes() {
                 }
             },
             {
-                id: 'n102',
+                id: utilService.makeId(),
                 type: 'NoteImg',
                 isPinned: false,
+                title: 'Desert',
                 info: {
-                    url: 'http://some-img/me',
-                    title: 'Bobi and Me'
+                    url: 'https://images.unsplash.com/photo-1682685797498-3bad2c6e161a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
                 },
                 style: {
                     backgroundColor: '#00d'
                 }
             },
             {
-                id: 'n103',
-                type: 'NoteTodos',
+                id: utilService.makeId(),
+                type: 'NoteVideo',
                 isPinned: false,
+                title: 'Vue is better than React',
                 info: {
-                    title: 'Get my stuff together',
+                    url: 'https://www.youtube.com/embed?v=nhBVL41-_Cw',
+                },
+                style: {
+                    backgroundColor: '#00d'
+                }
+            },
+            {
+                id: utilService.makeId(),
+                type: 'NoteTodo',
+                isPinned: false,
+                title: 'Get my stuff together',
+                info: {
                     todos: [
                         { txt: 'Driving license', doneAt: null },
                         { txt: 'Coding power', doneAt: 187111111 }
@@ -119,13 +132,13 @@ function _createNotes() {
 
 
 function _getInfoByType(type) {
-    if (type === 'NoteTxt') return { txt: '', title: '' }
-    if (type === 'NoteImg' || type === 'NoteVid') return { url: '', title: '' }
-    if (type === 'NoteVideo') return { title: '', url: '' }
-    if (type === 'NoteTodo') return { title: '', todos: [] }
-    if (type === 'NoteMap') return { title: '', loc: {} }
-    if (type === 'NoteCanvas') return { title: '', base64url: '' }
-    if (type === 'NoteAudio') return { title: '', url: '' }
-    if (type === 'NoteMail') return { title: '', body: '' }
+    if (type === 'NoteTxt') return { txt: '' }
+    if (type === 'NoteImg' || type === 'NoteVid') return { url: '' }
+    if (type === 'NoteVideo') return { url: '' }
+    if (type === 'NoteTodo') return { todos: [] }
+    if (type === 'NoteMap') return { loc: {} }
+    if (type === 'NoteCanvas') return { base64url: '' }
+    if (type === 'NoteAudio') return { url: '' }
+    if (type === 'NoteMail') return { body: '' }
 
 }
