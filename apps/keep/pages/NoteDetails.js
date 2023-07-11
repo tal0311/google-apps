@@ -1,10 +1,14 @@
+import NoteActions from "../cmps/NoteActions.js"
+
 // import { carService } from '../services/car.service.js'
+
 
 export default {
     template: `
         <dialog ref="details-modal" class="note-details" >
             <section v-if="note">
                 <pre>{{note}}</pre>
+                <NoteActions @note-action="noteAction"/>
             </section>
         </dialog>
     `,
@@ -13,7 +17,8 @@ export default {
     },
     data() {
         return {
-            note: null
+            note: null,
+            isPaletteOpen: false
         }
     },
     mounted() {
@@ -29,7 +34,14 @@ export default {
         },
         openModal() {
             this.$refs['details-modal'].showModal()
+        },
+        noteAction(actionType) {
+            console.log('actionType:', actionType)
+
         }
+    },
+    components: {
+        NoteActions
     }
 
 }
