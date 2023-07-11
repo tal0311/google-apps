@@ -3,8 +3,7 @@ export default {
  props: ['info'],
  template: `
          <article class="note-todo">
-          {{info}}
-          <ul>
+         <ul>
            <li :class="['todo-item', todo.donAt? 'done':'']" v-for="todo in info.todos" :key="todo.id">
             <p>{{todo.txt}}</p>
             <input type="checkbox" :checked="todo.isChecked" name=""  id="" />         

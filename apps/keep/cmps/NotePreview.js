@@ -1,4 +1,4 @@
-import NoteActions from "./NoteActions.js"
+import NoteActions from "./AddNoteActions.js"
 import ColorList from "./ColorList.js"
 import NoteImg from "./daynamicCmps/NoteImg.js"
 import NoteTxt from "./daynamicCmps/NoteTxt.js"
@@ -15,9 +15,10 @@ export default {
        props: ['note'],
        template: `
         <section class="note-preview" @click="navigateTo(note.id)">
+          <i class="material-symbols-outlined">push_pin</i>
                <component :is="note.type" :info="note.info" />
                <h4>{{note.title}}</h4>
-         <NoteActions @note-action="noteAction"/>
+         <!-- <NoteActions @note-action="noteAction"/> -->
          <ColorList v-if="isPaletteOpen" @color-selected="noteAction('color-select', $event)"
           @cover-selected="noteAction('cover-select', $event)" />
         </section>

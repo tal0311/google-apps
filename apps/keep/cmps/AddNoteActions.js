@@ -1,5 +1,5 @@
 export default {
-       name: 'NoteActions',
+       name: 'AddNoteActions',
        emits: ['note-action'],
        props: [],
        template: `  
@@ -16,12 +16,13 @@ export default {
        data() {
               return {
                      actions: [
-                            { icon: 'archive', title: 'Archive', actionType: 'archive' },
-                            { icon: 'image', title: 'Image', actionType: 'image' },
-                            { icon: 'smart_display', title: 'Video', actionType: 'video' },
-                            { icon: 'map', title: 'Map', actionType: 'map' },
+                            { icon: 'image', title: 'Image', actionType: 'NoteImg' },
+                            { icon: 'edit_note', title: 'Plain text', actionType: 'NoteTxt' },
+                            { icon: 'smart_display', title: 'Video', actionType: 'NoteVideo' },
+                            { icon: 'map', title: 'Map', actionType: 'NoteMap' },
+                            { icon: 'checklist', title: 'Checklist', actionType: 'NoteTodo' },
                             { icon: 'palette', title: 'Note Color', actionType: 'color' },
-                            { icon: 'draw', title: 'Draw', actionType: 'draw' },
+                            { icon: 'draw', title: 'Draw', actionType: 'NoteCanvas' },
                      ]
               }
        },

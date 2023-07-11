@@ -1,4 +1,4 @@
-import NoteActions from "../cmps/NoteActions.js"
+import NoteActions from "../cmps/AddNoteActions.js"
 import ColorList from "../cmps/ColorList.js"
 // import { carService } from '../services/car.service.js'
 
@@ -8,7 +8,7 @@ export default {
         <dialog ref="details-modal" class="note-details" >
             <section v-if="note">
                 <pre>{{note}}</pre>
-                <NoteActions @note-action="noteAction"/>
+                <!-- <NoteActions @note-action="noteAction"/> -->
                   <ColorList v-if="isPaletteOpen" @color-selected="noteAction('color-select', $event)"
           @cover-selected="noteAction('cover-select', $event)" />
             </section>

@@ -51,6 +51,7 @@ function remove(noteId) {
 }
 
 function save(note) {
+    debugger
     if (note.id) {
         return storageService.put(NOTE_KEY, note)
     } else {
@@ -60,7 +61,7 @@ function save(note) {
 
 function getEmptyNote(type, isPinned = false, style = { backgroundColor: '#00d' }) {
     return {
-        id: utilService.makeId(),
+
         createdAt: Date.now(),
         type,
         isPinned,
@@ -84,7 +85,7 @@ function _createNotes() {
                     backgroundColor: '#00d'
                 },
                 info: {
-                    txt: 'Fullstack Me Baby!'
+                    content: 'Fullstack Me Baby!'
                 }
             },
             {
@@ -93,7 +94,7 @@ function _createNotes() {
                 isPinned: false,
                 title: 'Desert',
                 info: {
-                    url: 'https://images.unsplash.com/photo-1682685797498-3bad2c6e161a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
+                    content: 'https://images.unsplash.com/photo-1682685797498-3bad2c6e161a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
                 },
                 style: {
                     backgroundColor: '#00d'
@@ -105,7 +106,7 @@ function _createNotes() {
                 isPinned: false,
                 title: 'Vue is better than React',
                 info: {
-                    url: 'https://www.youtube.com/embed?v=nhBVL41-_Cw',
+                    content: 'https://www.youtube.com/embed?v=nhBVL41-_Cw',
                 },
                 style: {
                     backgroundColor: '#00d'
@@ -132,13 +133,10 @@ function _createNotes() {
 
 
 function _getInfoByType(type) {
-    if (type === 'NoteTxt') return { txt: '' }
-    if (type === 'NoteImg' || type === 'NoteVid') return { url: '' }
-    if (type === 'NoteVideo') return { url: '' }
+    const contentNotes = ['NoteTxt', 'NoteImg', 'NoteVid', 'NoteVideo', 'NoteCanvas', 'NoteAudio', 'NoteMail']
+    if (contentNotes.includes(type)) return { content: '' }
     if (type === 'NoteTodo') return { todos: [] }
-    if (type === 'NoteMap') return { loc: {} }
-    if (type === 'NoteCanvas') return { base64url: '' }
-    if (type === 'NoteAudio') return { url: '' }
-    if (type === 'NoteMail') return { body: '' }
+    if (type === 'NoteMap') return { pos: {} }
+
 
 }
