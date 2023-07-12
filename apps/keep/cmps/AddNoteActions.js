@@ -19,13 +19,15 @@ export default {
        data() {
               return {
                      actions: [
-                            { icon: 'image', title: 'Image', actionType: 'NoteImg', isPartial: true },
-                            { icon: 'edit_note', title: 'Plain text', actionType: 'NoteTxt', isPartial: false },
-                            { icon: 'smart_display', title: 'Video', actionType: 'NoteVideo', isPartial: false },
-                            { icon: 'map', title: 'Map', actionType: 'NoteMap', isPartial: false },
-                            { icon: 'checklist', title: 'Checklist', actionType: 'NoteTodo', isPartial: true },
-                            { icon: 'palette', title: 'Note Color', actionType: 'color', isPartial: false },
-                            { icon: 'draw', title: 'Draw', actionType: 'NoteCanvas', isPartial: true },
+                            { icon: 'smart_display', title: 'Video', actionType: 'NoteVideo', visibleStatus: ['1'], isPartial: false, isPreview: false },
+                            { icon: 'edit_note', title: 'Plain text', actionType: 'NoteTxt', visibleStatus: ['1'], isPartial: false, isPreview: false },
+                            { icon: 'map', title: 'Map', actionType: 'NoteMap', visibleStatus: ['1'], isPartial: false, isPreview: false },
+                            { icon: 'image', title: 'Image', actionType: 'NoteImg', visibleStatus: ['0'], isPartial: true, isPreview: false },
+                            { icon: 'checklist', title: 'Checklist', actionType: 'NoteTodo', visibleStatus: ['0'], isPartial: true, isPreview: false },
+                            { icon: 'palette', title: 'Note Color', actionType: 'color', visibleStatus: ['1', '3'], isPartial: false, isPreview: true },
+                            { icon: 'draw', title: 'Draw', actionType: 'NoteCanvas', visibleStatus: ['0'], isPartial: true, isPreview: false },
+                            { icon: 'archive', title: 'Archive', actionType: 'archive', visibleStatus: ['1', '3'], isPartial: false, isPreview: true },
+                            { icon: 'delete', title: 'Delete', actionType: 'delete', visibleStatus: ['3'], isPartial: false, isPreview: true },
                      ]
               }
        },
@@ -36,11 +38,16 @@ export default {
        },
        computed: {
               filteredActions() {
-                     console.log('this.$attrs.partials:', this.$attrs.partial);
-                     if (this.$attrs.partial) {
-                            return this.actions.filter(action => action.isPartial)
-                     }
-                     return this.actions
+                     const visibleStatus = this.$attrs.visibleStatus;
+                     return this.actions.filter(action => action.visibleStatus.includes(visibleStatus))
+                     // console.log('this.$attrs.partials:', this.$attrs.partial);
+                     // if (this.$attrs.partial) {
+                     //        return this.actions.filter(action => action.isPartial)
+                     // }
+                     // if (this.$attrs.preview) {
+                     //        return this.actions.filter(action => action.isPreview)
+                     // }
+                     // return this.actions.filter(action => !action.isPartial && !action.isPreview)
               }
        },
 }

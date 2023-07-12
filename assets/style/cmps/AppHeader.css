@@ -85,6 +85,7 @@ body[app="keep"] .app-header {
     position: sticky;
     top: 0;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+    z-index: 20;
 }
 body[app="youtube"] .app-header {
     background: var(--Mclr5);

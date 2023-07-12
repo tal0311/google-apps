@@ -11,7 +11,7 @@ export default {
          <template v-if="!isOpen">
            <header class="grid">
                <h3 contenteditable="true" @focus="isOpen=true">Title...</h3>
-               <AddNoteActions @note-action="setAction" partial="partial"/>
+               <AddNoteActions @note-action="setAction" visibleStatus="0"/>
          </header>   
         </template>
 
@@ -24,7 +24,7 @@ export default {
             <input type="text" autofocus  placeholder="Title"  :placeHolder="placeHolder" v-model="content"/>
           </main>
           <footer class="grid">
-           <AddNoteActions @note-action="setAction"/>
+           <AddNoteActions @note-action="setAction" visibleStatus="1"/>
            <button @click="addMsg">Close</button>
           </footer>
         </template>

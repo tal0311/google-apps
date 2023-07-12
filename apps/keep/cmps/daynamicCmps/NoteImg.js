@@ -4,7 +4,7 @@ export default {
   template: `
          <article class="note-img">
            <img :src="info.content" alt="note-url" />
-        </article>1
+        </article>
         `,
   components: {},
   created() { },

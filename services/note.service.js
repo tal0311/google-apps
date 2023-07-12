@@ -79,6 +79,32 @@ function _createNotes() {
                 id: utilService.makeId(),
                 createdAt: 1112222,
                 type: 'NoteTxt',
+                isPinned: false,
+                title: utilService.makeLorem(10),
+                style: {
+                    backgroundColor: '#00d'
+                },
+                info: {
+                    content: utilService.makeLorem(40)
+                }
+            },
+            {
+                id: utilService.makeId(),
+                createdAt: 1112222,
+                type: 'NoteTxt',
+                isPinned: false,
+                title: utilService.makeLorem(10),
+                style: {
+                    backgroundColor: '#00d'
+                },
+                info: {
+                    content: utilService.makeLorem(40)
+                }
+            },
+            {
+                id: utilService.makeId(),
+                createdAt: 1112222,
+                type: 'NoteTxt',
                 isPinned: true,
                 title: 'fullstack both sides',
                 style: {
