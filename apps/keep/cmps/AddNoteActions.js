@@ -3,8 +3,9 @@ export default {
        emits: ['note-action'],
        props: [],
        template: `  
- <section class="note-actions">
-       <div v-for="action,idx in actions" :key="idx" :title="action.title" @click.stop="onNoteAction(action.actionType)">
+ <section class="add-note-actions grid">
+      
+       <div v-for="action,idx in filteredActions" :key="idx" :title="action.title" @click.stop="onNoteAction(action.actionType)">
               <i class="material-symbols-outlined">
                      {{action.icon}}
               </i>
@@ -12,17 +13,19 @@ export default {
  </section>
         `,
        components: {},
-       created() { },
+       created() {
+
+       },
        data() {
               return {
                      actions: [
-                            { icon: 'image', title: 'Image', actionType: 'NoteImg' },
-                            { icon: 'edit_note', title: 'Plain text', actionType: 'NoteTxt' },
-                            { icon: 'smart_display', title: 'Video', actionType: 'NoteVideo' },
-                            { icon: 'map', title: 'Map', actionType: 'NoteMap' },
-                            { icon: 'checklist', title: 'Checklist', actionType: 'NoteTodo' },
-                            { icon: 'palette', title: 'Note Color', actionType: 'color' },
-                            { icon: 'draw', title: 'Draw', actionType: 'NoteCanvas' },
+                            { icon: 'image', title: 'Image', actionType: 'NoteImg', isPartial: true },
+                            { icon: 'edit_note', title: 'Plain text', actionType: 'NoteTxt', isPartial: false },
+                            { icon: 'smart_display', title: 'Video', actionType: 'NoteVideo', isPartial: false },
+                            { icon: 'map', title: 'Map', actionType: 'NoteMap', isPartial: false },
+                            { icon: 'checklist', title: 'Checklist', actionType: 'NoteTodo', isPartial: true },
+                            { icon: 'palette', title: 'Note Color', actionType: 'color', isPartial: false },
+                            { icon: 'draw', title: 'Draw', actionType: 'NoteCanvas', isPartial: true },
                      ]
               }
        },
@@ -31,5 +34,13 @@ export default {
                      this.$emit('note-action', actionType)
               }
        },
-       computed: {},
+       computed: {
+              filteredActions() {
+                     console.log('this.$attrs.partials:', this.$attrs.partial);
+                     if (this.$attrs.partial) {
+                            return this.actions.filter(action => action.isPartial)
+                     }
+                     return this.actions
+              }
+       },
 }

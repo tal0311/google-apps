@@ -4,7 +4,7 @@ export default {
   emits: ['updateInfo'],
   template: `
          <article class="note-txt">
-           <p contenteditable="true" @blur="updateNote">{{info.content}}</p>
+           <p contenteditable="true" @click.stop="" @blur="updateNote">{{info.content}}</p>
          </article>
         `,
   components: {},

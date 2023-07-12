@@ -7,21 +7,28 @@ export default {
    emits: ['add-note'],
 
    template: `
-        <section class="add-note">
-         <pre>{{note}}</pre>
-         <span class="material-symbols-outlined">
-            push_pin
-         </span>
-         <header>
+        <section :class="['add-note grid', isOpen? 'expended':'minimize']">
+         <template v-if="!isOpen">
+           <header class="grid">
+               <h3 contenteditable="true" @focus="isOpen=true">Title...</h3>
+               <AddNoteActions @note-action="setAction" partial="partial"/>
+         </header>   
+        </template>
 
+        <template v-if="isOpen">
+           <header>
+              <i class="close-btn material-symbols-outlined">push_pin</i>
+               <h3 contenteditable="true" >Title...</h3>
          </header>
          <main>
-            <input type="text" placeholder="Title" :placeHolder="placeHolder" v-model="content"/>
+            <input type="text" autofocus  placeholder="Title"  :placeHolder="placeHolder" v-model="content"/>
           </main>
-          <footer>
+          <footer class="grid">
            <AddNoteActions @note-action="setAction"/>
            <button @click="addMsg">Close</button>
           </footer>
+        </template>
+
             <ColorList v-if="isPaletteOpen"/>
         </section>
         `,
@@ -31,6 +38,7 @@ export default {
    },
    data() {
       return {
+         isOpen: false,
          content: '',
          pos: { lat: 0, lng: 0 },
          isPaletteOpen: false,
@@ -39,6 +47,15 @@ export default {
       }
    },
    methods: {
+      // setFocus() {
+      //    if (this.isOpen) {
+      //       this.$refs.title.focus()
+      //       return
+      //    }
+      //    this.isOpen = true
+
+
+      // },
       setAction(actionType) {
          if (actionType === 'color') {
             this.isPaletteOpen = !this.isPaletteOpen
@@ -59,11 +76,16 @@ export default {
          this.note = noteService.getEmptyNote(actionType)
       },
       addMsg() {
+         if (!this.content) {
+            this.isOpen = false
+            return
+         }
          if (this.note.type === 'NoteTodo') {
             this.note.info.todos = this.content.split(',').map(txt => ({ txt, doneAt: Date.now() }))
          }
          console.log('this.note:', this.note)
          this.$emit('add-note', { ...this.note })
+         this.isOpen = false
       }
    },
    computed: {},

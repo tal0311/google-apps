@@ -29,3 +29,7 @@
 
 @import "cmps/NoteIndex.css";
 @import "cmps/k-SideNav.css";
+@import "cmps/NotePreview.css";
+@import "cmps/NoteList.css";
+@import "cmps/AddNote.css";
+@import "cmps/AddNoteActions.css";

@@ -13,8 +13,8 @@ export default {
     template: `
         <section class="note-index">
            <AddNote @add-note="addNote"/>
-           <NoteList v-if="pinnedNotes" title="pinned" :notes="pinnedNotes"/>
-           <NoteList v-if="notes" title="other" :notes="notes"/>
+           <NoteList v-if="pinnedNotes" title="Pinned" :notes="pinnedNotes"/>
+           <NoteList v-if="notes" title="Other" :notes="notes"/>
            <RouterView/>
            <SideNav/>
         </section>

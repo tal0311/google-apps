@@ -1,0 +1,51 @@
+.add-note {
+ /* background: lightcoral; */
+ position: relative;
+ max-width: 500px;
+ margin: 0 auto;
+ padding: 0 1rem;
+ box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+ border-radius: var(--Kbr);
+}
+.add-note .close-btn {
+ position: absolute;
+ right: 0;
+}
+.add-note h3:focus-visible {
+ outline: none;
+}
+.add-note input[type="text"] {
+ width: 100%;
+ border: none;
+ outline: none;
+ padding: 0.5rem 0;
+ font-size: 1rem;
+}
+.add-note input[type="text"]:focus {
+ background: none;
+}
+
+.add-note.minimize header {
+ grid-auto-flow: column;
+ justify-content: space-between;
+ align-items: center;
+}
+.add-note.minimize .add-note-actions {
+}
+.add-note.expended footer {
+ grid-auto-flow: column;
+ width: 100%;
+ align-items: center;
+ grid-template-columns: 1fr min-content;
+}
+
+.add-note button {
+ background: none;
+ border: none;
+ outline: none;
+ cursor: pointer;
+ padding: 0.5rem 1rem;
+}
+.add-note button:hover {
+ background: var(--Kclr2);
+}
