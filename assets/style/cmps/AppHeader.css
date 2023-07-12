@@ -1,5 +1,4 @@
 .app-header {
-    position: relative;
     display: grid;
     align-items: center;
     justify-content: space-between;
@@ -82,6 +81,8 @@ body[app="gmail"] .app-header {
 }
 body[app="keep"] .app-header {
     background: var(--Mclr5);
+    position: sticky;
+    top: 0;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
 }
 body[app="youtube"] .app-header {

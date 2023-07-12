@@ -9,7 +9,7 @@
 
     --gray1: rgb(240, 240, 240);
     --gray2: rgb(155, 155, 155);
-    --gray3: rgb(44, 44, 44);
+    --gray3: #555;
 
     --rich-black: #031927ff;
     --thistle: #c8adc0ff;
@@ -37,6 +37,7 @@
     --Mbtn: #0b57d0;
     /* for mail font color */
     --Mclr9: #001d35;
+
     /* border radius */
     --Mbr: 0.8rem;
 
@@ -48,6 +49,8 @@
     /* border-radios */
     --Kclr3: #feefc3;
     --Kbr: 0.5rem;
+    /* note preview border-color*/
+    --Kclr4: #e0e0e0;
     /* search gbar BS */
     --K-sreach-bar-box-shadow: 0 0 4px 2px lightgray;
     /* for preview border */

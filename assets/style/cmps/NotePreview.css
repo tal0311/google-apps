@@ -1,2 +1,12 @@
 .note-preview {
+ break-inside: avoid-column;
+ outline: 1px solid var(--Kclr4);
+ border-radius: var(--Kbr);
+ margin-bottom: 1rem;
+ min-height: 100px;
+ height: fit-content;
+}
+
+.note-preview:first-child {
+ margin-top: 0;
 }

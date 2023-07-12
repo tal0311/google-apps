@@ -1,15 +1,16 @@
 .add-note {
- /* background: lightcoral; */
+ z-index: -1;
  position: relative;
- max-width: 500px;
- margin: 0 auto;
+ max-width: 560px;
+ margin: 2rem auto;
  padding: 0 1rem;
- box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+ box-shadow: 0 0 5px 0 var(--gray2);
  border-radius: var(--Kbr);
 }
 .add-note .close-btn {
  position: absolute;
- right: 0;
+ top: 0.5rem;
+ right: 1rem;
 }
 .add-note h3:focus-visible {
  outline: none;
@@ -30,13 +31,21 @@
  justify-content: space-between;
  align-items: center;
 }
+.add-note.minimize i {
+ color: var(--gray2);
+}
 .add-note.minimize .add-note-actions {
+ gap: 0.8rem;
 }
 .add-note.expended footer {
  grid-auto-flow: column;
  width: 100%;
  align-items: center;
  grid-template-columns: 1fr min-content;
+}
+.add-note.expended footer .add-note-actions {
+ /* grid-auto-flow: column; */
+ gap: 0.5rem;
 }
 
 .add-note button {
