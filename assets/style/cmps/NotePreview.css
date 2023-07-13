@@ -6,8 +6,7 @@
  min-height: 100px;
  height: fit-content;
  position: relative;
-
- overflow-y: hidden;
+ /* overflow-y: hidden; */
 }
 .note-preview > *:not(.preview-content) {
  padding: 0.2rem 1rem;

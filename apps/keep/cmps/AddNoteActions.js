@@ -5,7 +5,8 @@ export default {
        template: `  
  <section class="add-note-actions grid">
       
-       <div v-for="action,idx in filteredActions" :key="idx" :title="action.title" @click.stop="onNoteAction(action.actionType)">
+       <div v-for="action,idx in filteredActions" :key="idx" :title="action.title" 
+       @click.stop="onNoteAction(action.actionType)">
               <i class="material-symbols-outlined">
                      {{action.icon}}
               </i>
@@ -23,9 +24,9 @@ export default {
                             { icon: 'edit_note', title: 'Plain text', actionType: 'NoteTxt', visibleStatus: ['1'], isPartial: false, isPreview: false },
                             { icon: 'map', title: 'Map', actionType: 'NoteMap', visibleStatus: ['1'], isPartial: false, isPreview: false },
                             { icon: 'image', title: 'Image', actionType: 'NoteImg', visibleStatus: ['0'], isPartial: true, isPreview: false },
-                            { icon: 'checklist', title: 'Checklist', actionType: 'NoteTodo', visibleStatus: ['0'], isPartial: true, isPreview: false },
+                            { icon: 'check_box', title: 'Checklist', actionType: 'NoteTodo', visibleStatus: ['0'], isPartial: true, isPreview: false },
                             { icon: 'palette', title: 'Note Color', actionType: 'color', visibleStatus: ['1', '3'], isPartial: false, isPreview: true },
-                            { icon: 'draw', title: 'Draw', actionType: 'NoteCanvas', visibleStatus: ['0'], isPartial: true, isPreview: false },
+                            { icon: 'brush', title: 'Draw', actionType: 'NoteCanvas', visibleStatus: ['0'], isPartial: true, isPreview: false },
                             { icon: 'archive', title: 'Archive', actionType: 'archive', visibleStatus: ['1', '3'], isPartial: false, isPreview: true },
                             { icon: 'delete', title: 'Delete', actionType: 'delete', visibleStatus: ['3'], isPartial: false, isPreview: true },
                      ]

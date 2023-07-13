@@ -4,13 +4,15 @@ export default {
       props: [],
       template: `
 
-       <section class="color-list">
-            color -list
-        <div class="color" v-for="color,idx in colors" :key="idx" :style="{backgroundColor:color}" @click.stop="onColorClick(color)">
-        </div>
-         <div class="cover-list">
-          <img v-for="cover,idx in coverList" :key="idx" :src="cover" @click.stop="onCoverClick(cover)" />
-         </div>
+       <section class="style-list ">
+      <section class="color-list grid">
+            <div class="color" v-for="color,idx in colors" :key="idx" :style="{backgroundColor:color}" @click.stop="onColorClick(color)">
+                  </div>
+     </section>
+      <!-- <hr /> -->
+      <section class="cover-list">
+          <img class="cover" v-for="cover,idx in coverList" :key="idx" :src="cover" @click.stop="onCoverClick(cover)" />
+      </section>
         </section>
         `,
       components: {},

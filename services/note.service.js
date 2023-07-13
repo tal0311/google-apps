@@ -81,7 +81,7 @@ function _createNotes() {
                 isPinned: false,
                 title: utilService.makeLorem(10),
                 style: {
-                    backgroundColor: '#00d'
+                    backgroundColor: '#fff475'
                 },
                 info: {
                     content: utilService.makeLorem(40)
@@ -94,7 +94,7 @@ function _createNotes() {
                 isPinned: false,
                 title: utilService.makeLorem(10),
                 style: {
-                    backgroundColor: '#00d'
+                    backgroundColor: '#aecbfa'
                 },
                 info: {
                     content: utilService.makeLorem(40)
@@ -107,7 +107,7 @@ function _createNotes() {
                 isPinned: true,
                 title: 'fullstack both sides',
                 style: {
-                    backgroundColor: '#00d'
+                    backgroundColor: '#fff'
                 },
                 info: {
                     content: 'Fullstack Me Baby!'
@@ -122,7 +122,7 @@ function _createNotes() {
                     content: 'https://images.unsplash.com/photo-1682685797498-3bad2c6e161a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
                 },
                 style: {
-                    backgroundColor: '#00d'
+                    backgroundColor: '#fff'
                 }
             },
             {
@@ -134,7 +134,7 @@ function _createNotes() {
                     content: 'https://www.youtube.com/embed?v=nhBVL41-_Cw',
                 },
                 style: {
-                    backgroundColor: '#00d'
+                    backgroundColor: '#fff'
                 }
             },
             {
@@ -142,6 +142,9 @@ function _createNotes() {
                 type: 'NoteTodo',
                 isPinned: false,
                 title: 'Get my stuff together',
+                style: {
+                    backgroundColor: '#fff'
+                },
                 info: {
                     todos: [
                         { txt: 'Driving license', doneAt: null },

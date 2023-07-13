@@ -13,6 +13,7 @@ import NoteCanvas from "./daynamicCmps/NoteCanvas.js"
 export default {
        name: 'NotePreview',
        props: ['note'],
+       emits: ['updateNote'],
        template: `
         <section :style="setNoteBG" :class="['note-preview grid', isSelected?'selected':'']" @click="navigateTo(note.id)">
           <i :class="['pin-btn material-symbols-outlined', note.isPinned? 'pinned':'']">push_pin</i>
@@ -47,12 +48,14 @@ export default {
                      if (actionType === 'color') this.isPaletteOpen = !this.isPaletteOpen
                      if (actionType === 'color-select') {
                             this.isPaletteOpen = false
-                            console.log('color selected:', payload)
+
                      }
                      if (actionType === 'cover-select') {
                             this.isPaletteOpen = false
                             console.log('cover selected:', payload)
                      }
+
+                     this.$emit('updateNote', { noteId: this.note.id, actionType, payload })
 
               }
        },
