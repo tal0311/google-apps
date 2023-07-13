@@ -7,8 +7,8 @@ export default {
     template: `
         <dialog ref="details-modal" class="note-details" >
             <section v-if="note">
-                <pre>{{note}}</pre>
-                <!-- <NoteActions @note-action="noteAction"/> -->
+                <!-- <pre>{{note}}</pre> -->
+                <NoteActions @note-action="noteAction" />
                   <ColorList v-if="isPaletteOpen" @color-selected="noteAction('color-select', $event)"
           @cover-selected="noteAction('cover-select', $event)" />
             </section>
