@@ -1,0 +1,4 @@
+.add-note-actions {
+ grid-auto-flow: column;
+ width: min-content;
+}

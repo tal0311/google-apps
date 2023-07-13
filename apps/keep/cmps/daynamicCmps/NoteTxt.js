@@ -3,8 +3,8 @@ export default {
   props: ['info'],
   emits: ['updateInfo'],
   template: `
-         <article class="note-txt">
-           <p contenteditable="true" @blur="updateNote">{{info.content}}</p>
+         <article class="note-dynamic note-txt">
+           <p :contenteditable="$attrs.isDetails" @blur="updateNote">{{info.content}}</p>
          </article>
         `,
   components: {},
@@ -14,9 +14,11 @@ export default {
   },
   methods: {
     updateNote({ target: { innerText } }) {
-      console.debug('♠️ ~ file: NoteTxt.js:17 ~ updateNote ~ innerText:', innerText)
-
-      // this.$emit('updateInfo', this.info)
+      ;
+      const infoToUpdate = JSON.parse(JSON.stringify(this.info))
+      infoToUpdate.content = innerText
+      console.debug('♠️ ~ file: NoteTxt.js:20 ~ updateNote ~ infoToUpdate:', infoToUpdate)
+      this.$emit('updateInfo', { type: 'NoteTxt', info: infoToUpdate })
     }
   },
   computed: {},

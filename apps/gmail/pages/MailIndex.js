@@ -17,9 +17,9 @@ export default {
     template: `
         <section class="mail-index grid">
             <button @click="setCompose" class="compose grid">
-                <span class="material-symbols-outlined">
+                <i class="material-symbols-outlined">
                     edit
-                </span>
+                </i>
                 <p>Compose</p>
             </button>
            <SideNav :user="loggedUser"/>

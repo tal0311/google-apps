@@ -7,7 +7,7 @@ export default {
                 <div class="app-name">{{setLogoByApp.appName}}</div>
             </div>
             <AppFilter/>
-            <span @click="isOpen=!isOpen" class="apps-btn material-symbols-outlined">apps</span>
+            <i @click="isOpen=!isOpen" class="apps-btn material-symbols-outlined">apps</i>
             <nav v-if="isOpen" class="grid">
                 <RouterLink to="/">
                     <span>Home</span><div class="link-logo apps"></div>
