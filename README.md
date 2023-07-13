@@ -43,3 +43,5 @@ To run the application locally, follow these steps:
   <img src="screenshots/gmail2.jpeg" alt="Google Keep Clone">
 </details>
 
+## tech Stack
+for this project we used Vue3 no CLI version & vanilla CSS 
