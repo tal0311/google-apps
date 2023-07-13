@@ -14,12 +14,12 @@ export default {
        name: 'NotePreview',
        props: ['note'],
        template: `
-        <section :class="['note-preview grid', isSelected?'selected':'']" @click="navigateTo(note.id)">
+        <section :style="setNoteBG" :class="['note-preview grid', isSelected?'selected':'']" @click="navigateTo(note.id)">
           <i :class="['pin-btn material-symbols-outlined', note.isPinned? 'pinned':'']">push_pin</i>
          
           <h3 v-if="!displayUpperHeader">{{note.title}}</h3>
           <div class="preview-content">
-                 <component :is="note.type" :info="note.info" />
+                 <component :is="note.type" :info="note.info" isDetails="false"/>
           </div>
           <h4 v-if="displayUpperHeader">{{note.title}}</h4>
          <NoteActions @note-action="noteAction" visibleStatus="3"/>
@@ -37,8 +37,8 @@ export default {
               }
        },
        methods: {
+
               navigateTo(noteId) {
-                     // this.isSelected = true
                      this.$router.push('/note/' + noteId)
               },
               noteAction(actionType, payload = null) {
@@ -57,6 +57,15 @@ export default {
               }
        },
        computed: {
+              setNoteBG() {
+                     if (this.note?.style?.backgroundColor) {
+                            return { background: this.note.style.backgroundColor }
+                     }
+                     if (this.note?.style?.cover) {
+                            return { background: `url(${this.note.style.cover}) `, backgroundSize: 'cover' }
+                     }
+                     return { backgroundColor: '#fff' }
+              },
               displayUpperHeader() {
                      const notsOptions = ['NoteImg', 'NoteVideo', 'NoteMap', 'NoteCanvas']
                      return notsOptions.includes(this.note.type)

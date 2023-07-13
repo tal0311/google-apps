@@ -13,8 +13,8 @@ export default {
     template: `
         <section class="note-index">
            <AddNote @add-note="addNote"/>
-           <NoteList v-if="pinnedNotes" title="Pinned" :notes="pinnedNotes"/>
-           <NoteList v-if="notes" title="Other" :notes="notes"/>
+           <NoteList  v-if="pinnedNotes" title="Pinned" :notes="pinnedNotes"/>
+           <NoteList  v-if="notes" title="Other" :notes="notes"/>
            <RouterView/>
            <SideNav/>
         </section>
@@ -33,8 +33,14 @@ export default {
     computed: {
 
     },
+    watch: {
+        $route(val, oldVal) {
+            oldVal.name === 'note-details' && this.loadNots()
+        }
+    },
 
     methods: {
+
         addNote(note) {
             console.debug('♠️ ~ file: KeepIndex.js:39 ~ addNote ~ note:', note)
 

@@ -9,7 +9,7 @@ export default {
         <section class="note-list">
           <small>{{title}} notes</small>
           <section class="note-container">
-            <NotePreview v-for="note in notes" :key="note.id" :note="note"/>
+            <NotePreview  v-for="note in notes" :key="note.id" :note="note"/>
           </section>
          
         </section>
