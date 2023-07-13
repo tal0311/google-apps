@@ -21,16 +21,25 @@ To run the application locally, follow these steps:
 
 <details>
   <summary>Google Keep Clone</summary>
-  <img src="screenshots/google-keep.png" alt="Google Keep Clone">
+  <img src="screenshots/keep1.jpeg" alt="Google Keep Clone">
+  <img src="screenshots/keep2.jpeg" alt="Google Keep Clone">
+  <img src="screenshots/keep3.jpeg" alt="Google Keep Clone">
+  <img src="screenshots/keep4.jpeg" alt="Google Keep Clone">
+ 
+ 
 </details>
 
 <details>
   <summary>YouTube Clone</summary>
-  <img src="screenshots/youtube.png" alt="YouTube Clone">
+  <img src="screenshots/yt1.jpg" alt="YouTube Clone">
+  <img src="screenshots/yt2.jpeg" alt="YouTube Clone">
+  <img src="screenshots/yt3.jpeg" alt="YouTube Clone">
+  <img src="screenshots/yt4.jpeg" alt="YouTube Clone">
 </details>
 
 <details>
   <summary>Gmail Clone</summary>
-  <img src="screenshots/gmail.png" alt="Gmail Clone">
+ <img src="screenshots/gmail1.jpeg" alt="Google Keep Clone">
+  <img src="screenshots/gmail2.jpeg" alt="Google Keep Clone">
 </details>
 
