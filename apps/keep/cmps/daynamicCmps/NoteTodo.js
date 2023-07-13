@@ -2,7 +2,7 @@ export default {
   name: 'NoteTodo',
   props: ['info'],
   template: `
-         <article class="note-todo">
+         <article class="note-dynamic note-todo ">
          <ul>
            <li :class="['todo-item', todo.donAt? 'done':'']" v-for="todo in info.todos" :key="todo.id">
             <p>{{todo.txt}}</p>

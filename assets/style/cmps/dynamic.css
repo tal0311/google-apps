@@ -1,0 +1,3 @@
+.note-dynamic:is(.note-todo, .note-txt) {
+ margin-inline: 1rem;
+}

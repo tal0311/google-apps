@@ -37,6 +37,9 @@
  opacity: 0;
 }
 
+.note-preview:hover {
+ box-shadow: 0 0 3px 0 var(--gray2);
+}
 .note-preview:hover :is(.pin-btn, .add-note-actions) {
  opacity: 1;
 }

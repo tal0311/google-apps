@@ -3,7 +3,7 @@ export default {
   props: ['info'],
   emits: ['updateInfo'],
   template: `
-         <article class="note-txt">
+         <article class="note-dynamic note-txt">
            <p contenteditable="true" @click.stop="" @blur="updateNote">{{info.content}}</p>
          </article>
         `,
