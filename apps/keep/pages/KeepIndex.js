@@ -12,9 +12,9 @@ import AddNote from '../cmps/AddNote.js'
 export default {
     template: `
         <section class="note-index">
-           <AddNote @add-note="addNote"/>
+           <AddNote  @add-note="addNote"/>
            <NoteList @update-note="updateNote" v-if="pinnedNotes" title="Pinned" :notes="pinnedNotes"/>
-           <NoteList  v-if="notes" title="Other" :notes="notes"/>
+           <NoteList  @update-note="updateNote" v-if="notes" title="Other" :notes="notes"/>
            <RouterView/>
            <SideNav/>
         </section>
@@ -54,10 +54,12 @@ export default {
             if (actionType === 'cover-select') {
                 this.updateNoteByKey(noteId, 'style', { cover: payload })
             }
+            if (actionType === 'toggle-pin') {
+                this.updateNoteByKey(noteId, 'isPinned', payload)
+            }
 
         },
         updateNoteByKey(noteId, key, payload) {
-            debugger
             noteService.get(noteId).then(note => {
                 note[key] = payload
                 noteService.save(note).then((note) => {

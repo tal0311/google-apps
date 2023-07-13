@@ -1,3 +1,9 @@
 .note-dynamic:is(.note-todo, .note-txt) {
  margin-inline: 1rem;
 }
+
+.note-img img,
+.note-video iframe {
+ border-top-left-radius: var(--Kbr);
+ border-top-right-radius: var(--Kbr);
+}
