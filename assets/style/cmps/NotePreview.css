@@ -43,3 +43,7 @@
 .note-preview:hover :is(.pin-btn, .add-note-actions) {
  opacity: 1;
 }
+
+.note-preview.selected {
+ opacity: 0;
+}

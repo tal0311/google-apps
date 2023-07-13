@@ -14,7 +14,7 @@ export default {
        name: 'NotePreview',
        props: ['note'],
        template: `
-        <section class="note-preview grid" @click="navigateTo(note.id)">
+        <section :class="['note-preview grid', isSelected?'selected':'']" @click="navigateTo(note.id)">
           <i :class="['pin-btn material-symbols-outlined', note.isPinned? 'pinned':'']">push_pin</i>
          
           <h3 v-if="!displayUpperHeader">{{note.title}}</h3>
@@ -28,14 +28,17 @@ export default {
         </section>
 
         `,
-       created() { },
+       created() {
+       },
        data() {
               return {
-                     isPaletteOpen: false
+                     isPaletteOpen: false,
+                     isSelected: false
               }
        },
        methods: {
               navigateTo(noteId) {
+                     // this.isSelected = true
                      this.$router.push('/note/' + noteId)
               },
               noteAction(actionType, payload = null) {
@@ -57,6 +60,16 @@ export default {
               displayUpperHeader() {
                      const notsOptions = ['NoteImg', 'NoteVideo', 'NoteMap', 'NoteCanvas']
                      return notsOptions.includes(this.note.type)
+              }
+       },
+       watch: {
+              '$route.params.id': {
+                     immediate: true,
+                     handler(val, oldVal) {
+                            val === this.note.id
+                                   ? this.isSelected = true
+                                   : this.isSelected = false
+                     }
               }
        },
        components: {
