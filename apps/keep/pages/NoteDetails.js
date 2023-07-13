@@ -15,7 +15,7 @@ import NoteVideo from "../cmps/daynamicCmps/NoteVideo.js"
 
 export default {
     template: `
-        <dialog ref="details-modal" class="note-details" >
+        <dialog ref="details-modal" class="note-details-modal" >
             <section v-if="note" class="note-details grid">
           <i :class="['pin-btn material-symbols-outlined', note.isPinned? 'pinned':'']">push_pin</i>
          
