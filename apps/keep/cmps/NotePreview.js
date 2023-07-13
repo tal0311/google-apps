@@ -16,7 +16,7 @@ export default {
        emits: ['updateNote'],
        template: `
         <section :style="setNoteBG" :class="['note-preview grid', isSelected?'selected':'']" @click="navigateTo(note.id)">
-          <i :class="['pin-btn material-symbols-outlined', note.isPinned? 'pinned':'']">push_pin</i>
+          <i @click.stop="noteAction('toggle-pin', !note.isPinned)" :class="['pin-btn material-symbols-outlined', note.isPinned? 'pinned':'']">push_pin</i>
          
           <h3 v-if="!displayUpperHeader">{{note.title}}</h3>
           <div class="preview-content">
@@ -55,6 +55,7 @@ export default {
                             console.log('cover selected:', payload)
                      }
 
+                     console.log('{ noteId: this.note.id, actionType, payload }:', { noteId: this.note.id, actionType, payload })
                      this.$emit('updateNote', { noteId: this.note.id, actionType, payload })
 
               }
