@@ -29,7 +29,7 @@ export default {
           </main>
           <footer class="grid">
            <AddNoteActions @note-action="setAction" visibleStatus="1"/>
-           <button @click="addMsg">Close</button>
+           <button class="app-btn" @click="addMsg">Close</button>
           </footer>
         </template>
             

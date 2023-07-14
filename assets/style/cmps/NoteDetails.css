@@ -44,3 +44,11 @@
  width: max-content;
  background: #fff;
 }
+
+.actions-container {
+ grid-auto-flow: column;
+}
+.actions-container button {
+ width: 4rem;
+ margin-inline-start: auto;
+}

@@ -31,8 +31,11 @@ export default {
             </div>
           <h3 class="editable-title" v-if="displayUpperHeader" contenteditable="true" 
           @blur="noteAction('update-title',$event.target.innerText)">{{note.title}}</h3>
-         <NoteActions @note-action="noteAction" visibleStatus="3"/>
-         <ColorList :noteDimensions="noteDimensions" v-if="isPaletteOpen" @color-selected="noteAction('color-select', $event)"
+          <div class="actions-container grid">
+              <NoteActions @note-action="noteAction" visibleStatus="3"/>
+              <button class="app-btn">close</button>
+          </div>
+         <ColorList ref="style-list" :noteDimensions="noteDimensions" v-if="isPaletteOpen" @color-selected="noteAction('color-select', $event)"
           @cover-selected="noteAction('cover-select', $event)" />
         </section>
         </dialog>
@@ -72,6 +75,11 @@ export default {
         },
         openModal() {
             this.$refs['details-modal'].showModal()
+            document.body.classList.toggle('modal-open')
+        },
+        closeModal() {
+            this.$refs['details-modal'].close()
+            document.body.classList.toggle('modal-open')
         },
         noteAction(actionType, payload = null) {
             console.debug('♠️ ~ file: NoteDetails.js:72 ~ noteAction ~ actionType, payload :', actionType, payload)
@@ -83,7 +91,10 @@ export default {
             if (actionType === 'color') {
                 this.isPaletteOpen = !this.isPaletteOpen
                 const { top, height } = this.$refs['note-details'].getBoundingClientRect()
+                // const colorRect = this.$refs['note-details'].getBoundingClientRect()
+
                 this.noteDimensions = { top: top, height }
+                // console.debug('♠️ ~ file: NoteDetails.js:88 ~ noteAction ~ colorRect:', colorRect)
             }
             if (actionType === 'color-select') {
                 this.updateNote('style', { backgroundColor: payload })
@@ -100,6 +111,7 @@ export default {
             }
             if (actionType === 'delete') {
                 noteService.remove(this.note.id).then(() => {
+                    this.closeModal()
                     this.$router.push('/keep#home')
                 })
             }
@@ -107,6 +119,7 @@ export default {
                 noteService.get(this.note.id).then(note => {
                     delete note.id
                     noteService.save(note).then(() => {
+                        this.closeModal()
                         this.$router.push('/keep#home')
                     })
                 })

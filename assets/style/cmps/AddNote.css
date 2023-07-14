@@ -46,14 +46,3 @@
  /* grid-auto-flow: column; */
  gap: 0.5rem;
 }
-
-.add-note button {
- background: none;
- border: none;
- outline: none;
- cursor: pointer;
- padding: 0.5rem 1rem;
-}
-.add-note button:hover {
- background: var(--Kclr2);
-}
