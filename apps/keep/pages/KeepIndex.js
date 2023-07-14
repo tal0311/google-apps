@@ -83,6 +83,7 @@ export default {
         },
         updateNoteByKey(noteId, key, payload) {
             noteService.get(noteId).then(note => {
+                note.updatedAt = Date.now()
                 note[key] = payload
                 noteService.save(note).then((note) => {
                     console.debug('♠️ ~ file: NoteDetails.js:62 ~ noteService.save ~ note:', note)

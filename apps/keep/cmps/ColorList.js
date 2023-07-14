@@ -1,11 +1,11 @@
 export default {
       name: 'ColorList',
       emits: ['cover-selected', 'color-selected'],
-      props: [],
+      props: ['noteDimensions'],
       template: `
 
-       <section class="style-list ">
-      <section class="color-list grid">
+       <section class="style-list " :style="getComputedStyle">
+            <section class="color-list grid">
             <div class="color" v-for="color,idx in colors" :key="idx" :style="{backgroundColor:color}" @click.stop="onColorClick(color)">
                   </div>
      </section>
@@ -45,5 +45,13 @@ export default {
                   this.$emit('cover-selected', cover)
             }
       },
-      computed: {},
+      computed: {
+            getComputedStyle() {
+                  if (!this.noteDimensions) return
+                  return {
+                        top: `${this.noteDimensions.top + this.noteDimensions.height - (132 + 16)}px `,
+
+                  }
+            },
+      }
 }

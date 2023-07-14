@@ -1,8 +1,10 @@
 .note-details-modal {
+ /* position: relative; */
  border: none;
  padding: 0;
  width: 37.5rem;
  height: fit-content;
+ /* overflow-y: visible; */
  border-radius: var(--Kbr);
 }
 .note-details > *:not(.preview-content) {
@@ -31,4 +33,14 @@
 
 .note-details:hover :is(.pin-btn, .add-note-actions) {
  opacity: 1;
+}
+
+.note-details .style-list {
+ position: fixed;
+ /* translate: 0 110%; */
+ box-shadow: 0 0 5px 0 var(--gray2);
+ border-radius: var(--Kbr);
+ z-index: 10;
+ width: max-content;
+ background: #fff;
 }

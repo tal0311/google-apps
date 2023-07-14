@@ -8,6 +8,8 @@ import NoteMap from "../cmps/daynamicCmps/NoteMap.js"
 import NoteTodo from "../cmps/daynamicCmps/NoteTodo.js"
 import NoteTxt from "../cmps/daynamicCmps/NoteTxt.js"
 import NoteVideo from "../cmps/daynamicCmps/NoteVideo.js"
+import { utilService } from "../../../services/util.service.js"
+
 
 
 // import { carService } from '../services/car.service.js'
@@ -16,20 +18,21 @@ import NoteVideo from "../cmps/daynamicCmps/NoteVideo.js"
 export default {
     template: `
         <dialog ref="details-modal" class="note-details-modal" >
-            <section :style="setNoteBG" v-if="note" class="note-details grid">
-          <i :class="['pin-btn material-symbols-outlined', note.isPinned? 'pinned':'']">push_pin</i>
-         
-          <h3 class="editable-title" v-if="!displayUpperHeader" contenteditable="true" 
-             @blur="noteAction('update-title',$event.target.innerText)">{{note.title}}
+            <section ref="note-details" :style="setNoteBG" v-if="note" class="note-details grid">
+            <i :class="['pin-btn material-symbols-outlined', note.isPinned? 'pinned':'']">push_pin</i>
+            
+            <h3 class="editable-title" v-if="!displayUpperHeader" contenteditable="true" 
+                @blur="noteAction('update-title',$event.target.innerText)">{{note.title}}
             </h3>
-          
-          <div class="preview-content">
-                 <component @updateInfo="updateNoteInfo" :is="note.type" :info="note.info" isDetails="true"/>
-          </div>
+            
+            <div class="preview-content">
+                    <component @updateInfo="updateNoteInfo" :is="note.type" :info="note.info" isDetails="true"/>
+                    <small v-if="note.updatedAt">{{utilService.getFormattedTime(note.updatedAt)}}</small>
+            </div>
           <h3 class="editable-title" v-if="displayUpperHeader" contenteditable="true" 
           @blur="noteAction('update-title',$event.target.innerText)">{{note.title}}</h3>
          <NoteActions @note-action="noteAction" visibleStatus="3"/>
-         <ColorList v-if="isPaletteOpen" @color-selected="noteAction('color-select', $event)"
+         <ColorList :noteDimensions="noteDimensions" v-if="isPaletteOpen" @color-selected="noteAction('color-select', $event)"
           @cover-selected="noteAction('cover-select', $event)" />
         </section>
         </dialog>
@@ -40,7 +43,8 @@ export default {
     data() {
         return {
             note: null,
-            isPaletteOpen: false
+            isPaletteOpen: false,
+            noteDimensions: null
         }
     },
     mounted() {
@@ -61,7 +65,6 @@ export default {
                 note.info = info
                 noteService.save(note).then((note) => {
                     console.debug('♠️ ~ file: NoteDetails.js:62 ~ noteService.save ~ note:', note)
-
                     this.loadNote()
                 })
             })
@@ -77,7 +80,11 @@ export default {
                 this.updateNote('title', payload)
             }
 
-            if (actionType === 'color') this.isPaletteOpen = !this.isPaletteOpen
+            if (actionType === 'color') {
+                this.isPaletteOpen = !this.isPaletteOpen
+                const { top, height } = this.$refs['note-details'].getBoundingClientRect()
+                this.noteDimensions = { top: top, height }
+            }
             if (actionType === 'color-select') {
                 this.updateNote('style', { backgroundColor: payload })
 

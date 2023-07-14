@@ -66,7 +66,8 @@ function getEmptyNote(type, title, isPinned = false, style = { backgroundColor: 
         type,
         isPinned,
         style,
-        info: _getInfoByType(type)
+        info: _getInfoByType(type),
+        updatedAt: Date.now()
     }
 }
 
