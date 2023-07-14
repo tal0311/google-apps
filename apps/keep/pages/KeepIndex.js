@@ -2,7 +2,7 @@ import NoteList from '../cmps/NoteList.js'
 import SideNav from '../cmps/SideNav.js'
 import { noteService } from './../../../services/note.service.js'
 import { utilService } from '../../../services/util.service.js'
-import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
+import { showSuccessMsg, showErrorMsg, eventBus } from '../../../services/event-bus.service.js'
 import AddNote from '../cmps/AddNote.js'
 
 
@@ -27,7 +27,9 @@ export default {
         }
     },
     created() {
+        // this.reminderInterval = setInterval(this.checkReminder, 5000)
         utilService.setAppConfig('keep')
+        eventBus.on('add-note-alarm', this.addNoteAlarm)
         this.loadNots()
     },
     computed: {
@@ -57,6 +59,26 @@ export default {
             if (actionType === 'toggle-pin') {
                 this.updateNoteByKey(noteId, 'isPinned', payload)
             }
+            if (actionType === 'delete') {
+                noteService.remove(noteId).then(() => {
+                    showSuccessMsg('Note removed')
+                    this.loadNots()
+                })
+            }
+            if (actionType === 'duplicate') {
+                noteService.get(noteId).then(note => {
+                    delete note.id
+                    noteService.save(note).then(() => {
+                        showSuccessMsg('Note duplicated')
+                        this.loadNots()
+                    })
+                })
+            }
+            if (actionType === 'alert') {
+
+                eventBus.emit('show-modal', { modalType: 'AlertModal', data: noteId })
+            }
+
 
         },
         updateNoteByKey(noteId, key, payload) {
@@ -67,6 +89,17 @@ export default {
                     this.loadNots()
                 })
             })
+        },
+        addNoteAlarm({ noteId, time }) {
+            console.log('addNoteAlarm', noteId, time)
+            noteService.get(noteId).then(note => {
+                note.reminder = time
+                noteService.save(note).then((note) => {
+                    console.debug('♠️ ~ file: NoteDetails.js:62 ~ noteService.save ~ note:', note)
+                    this.loadNots()
+                })
+            })
+
         },
         addNote(note) {
             console.debug('♠️ ~ file: KeepIndex.js:39 ~ addNote ~ note:', note)
@@ -83,10 +116,31 @@ export default {
         },
         loadNots() {
             noteService.query().then(notes => {
-                console.log(notes);
                 this.pinnedNotes = notes.filter(note => note.isPinned)
                 this.notes = notes.filter(note => !note.isPinned)
             })
+        },
+        checkReminder() {
+            console.log('ok:')
+            noteService.query().then(notes => {
+                notes.filter(note => note.reminder).forEach(note => {
+                    console.debug('♠️ ~ file: KeepIndex.js:135 ~ this.notes.filter ~ note:', note.reminder)
+
+                    if (Date.now() > new Date(note.reminder)) {
+                        note.reminder = null
+                        noteService.save(note).then(() => {
+
+                            this.$router.push(`/note/${note.id}`)
+                            showSuccessMsg('Reminder!')
+                        })
+                    }
+
+
+
+                })
+
+            })
+
         }
 
         // removeCar(carId) {

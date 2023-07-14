@@ -1,18 +1,28 @@
 .note-details-modal {
  border: none;
  padding: 0;
- max-width: 90vw;
+ width: 37.5rem;
+ height: fit-content;
  border-radius: var(--Kbr);
+}
+.note-details > *:not(.preview-content) {
+ padding: 0.2rem 1rem;
 }
 
 .note-details {
  position: relative;
 }
+
 .note-details .pin-btn {
  opacity: 0;
  position: absolute;
- inset-inline-end: 0;
- inset-block-start: 0.5rem;
+ inset-inline-end: 0rem;
+ inset-block-start: 1rem;
+}
+.editable-title {
+ font-size: 1.5rem;
+ font-weight: 500;
+ margin-inline-end: 1rem;
 }
 .note-details .add-note-actions {
  transition: all 0.2s ease-in-out;

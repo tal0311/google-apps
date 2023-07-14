@@ -16,16 +16,18 @@ import NoteVideo from "../cmps/daynamicCmps/NoteVideo.js"
 export default {
     template: `
         <dialog ref="details-modal" class="note-details-modal" >
-            <section v-if="note" class="note-details grid">
+            <section :style="setNoteBG" v-if="note" class="note-details grid">
           <i :class="['pin-btn material-symbols-outlined', note.isPinned? 'pinned':'']">push_pin</i>
          
-          <h3 v-if="!displayUpperHeader" contenteditable="true" 
-          @blur="noteAction('update-title',$event.target.innerText)">{{note.title}}</h3>
+          <h3 class="editable-title" v-if="!displayUpperHeader" contenteditable="true" 
+             @blur="noteAction('update-title',$event.target.innerText)">{{note.title}}
+            </h3>
+          
           <div class="preview-content">
                  <component @updateInfo="updateNoteInfo" :is="note.type" :info="note.info" isDetails="true"/>
           </div>
-          <h4 v-if="displayUpperHeader" contenteditable="true" 
-          @blur="noteAction('update-title',$event.target.innerText)">{{note.title}}</h4>
+          <h3 class="editable-title" v-if="displayUpperHeader" contenteditable="true" 
+          @blur="noteAction('update-title',$event.target.innerText)">{{note.title}}</h3>
          <NoteActions @note-action="noteAction" visibleStatus="3"/>
          <ColorList v-if="isPaletteOpen" @color-selected="noteAction('color-select', $event)"
           @cover-selected="noteAction('cover-select', $event)" />
@@ -86,6 +88,22 @@ export default {
                 console.log('cover selected:', payload)
                 this.updateNote('style', { cover: payload })
             }
+            if (actionType === 'toggle-pin') {
+                this.updateNote('isPinned', payload)
+            }
+            if (actionType === 'delete') {
+                noteService.remove(this.note.id).then(() => {
+                    this.$router.push('/keep#home')
+                })
+            }
+            if (actionType === 'duplicate') {
+                noteService.get(this.note.id).then(note => {
+                    delete note.id
+                    noteService.save(note).then(() => {
+                        this.$router.push('/keep#home')
+                    })
+                })
+            }
 
         },
         updateNote(key, payload) {
@@ -99,6 +117,15 @@ export default {
         }
     },
     computed: {
+        setNoteBG() {
+            if (this.note?.style?.backgroundColor) {
+                return { background: this.note.style.backgroundColor }
+            }
+            if (this.note?.style?.cover) {
+                return { background: `url(${this.note.style.cover}) `, backgroundSize: 'cover' }
+            }
+            return { backgroundColor: '#fff' }
+        },
         displayUpperHeader() {
             const notsOptions = ['NoteImg', 'NoteVideo', 'NoteMap', 'NoteCanvas']
             return notsOptions.includes(this.note.type)

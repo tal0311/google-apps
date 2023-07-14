@@ -7,9 +7,7 @@ export default {
       
        <div v-for="action,idx in filteredActions" :key="idx" :title="action.title" 
        @click.stop="onNoteAction(action.actionType)">
-              <i class="material-symbols-outlined">
-                     {{action.icon}}
-              </i>
+              <i class="material-symbols-outlined">{{action.icon}}</i>
        </div>
  </section>
         `,
@@ -20,15 +18,17 @@ export default {
        data() {
               return {
                      actions: [
-                            { icon: 'smart_display', title: 'Video', actionType: 'NoteVideo', visibleStatus: ['1'], isPartial: false, isPreview: false },
-                            { icon: 'edit_note', title: 'Plain text', actionType: 'NoteTxt', visibleStatus: ['1'], isPartial: false, isPreview: false },
-                            { icon: 'map', title: 'Map', actionType: 'NoteMap', visibleStatus: ['1'], isPartial: false, isPreview: false },
-                            { icon: 'image', title: 'Image', actionType: 'NoteImg', visibleStatus: ['0'], isPartial: true, isPreview: false },
-                            { icon: 'check_box', title: 'Checklist', actionType: 'NoteTodo', visibleStatus: ['0'], isPartial: true, isPreview: false },
-                            { icon: 'palette', title: 'Note Color', actionType: 'color', visibleStatus: ['1', '3'], isPartial: false, isPreview: true },
-                            { icon: 'brush', title: 'Draw', actionType: 'NoteCanvas', visibleStatus: ['0'], isPartial: true, isPreview: false },
-                            { icon: 'archive', title: 'Archive', actionType: 'archive', visibleStatus: ['1', '3'], isPartial: false, isPreview: true },
-                            { icon: 'delete', title: 'Delete', actionType: 'delete', visibleStatus: ['3'], isPartial: false, isPreview: true },
+                            { icon: 'smart_display', title: 'Video', actionType: 'NoteVideo', visibleStatus: ['1'] },
+                            { icon: 'edit_note', title: 'Plain text', actionType: 'NoteTxt', visibleStatus: ['1'] },
+                            { icon: 'map', title: 'Map', actionType: 'NoteMap', visibleStatus: ['1'] },
+                            { icon: 'image', title: 'Image', actionType: 'NoteImg', visibleStatus: ['0'] },
+                            { icon: 'check_box', title: 'Checklist', actionType: 'NoteTodo', visibleStatus: ['0'] },
+                            { icon: 'palette', title: 'Note Color', actionType: 'color', visibleStatus: ['1', '3'] },
+                            { icon: 'brush', title: 'Draw', actionType: 'NoteCanvas', visibleStatus: ['0'] },
+                            { icon: 'archive', title: 'Archive', actionType: 'archive', visibleStatus: ['1', '3'] },
+                            { icon: 'delete', title: 'Delete', actionType: 'delete', visibleStatus: ['3'] },
+                            { icon: 'content_copy', title: 'Duplicate', actionType: 'duplicate', visibleStatus: ['3'] },
+                            { icon: 'add_alert', title: 'add-alert', actionType: 'alert', visibleStatus: ['1', '3'] },
                      ]
               }
        },
@@ -41,14 +41,6 @@ export default {
               filteredActions() {
                      const visibleStatus = this.$attrs.visibleStatus;
                      return this.actions.filter(action => action.visibleStatus.includes(visibleStatus))
-                     // console.log('this.$attrs.partials:', this.$attrs.partial);
-                     // if (this.$attrs.partial) {
-                     //        return this.actions.filter(action => action.isPartial)
-                     // }
-                     // if (this.$attrs.preview) {
-                     //        return this.actions.filter(action => action.isPreview)
-                     // }
-                     // return this.actions.filter(action => !action.isPartial && !action.isPreview)
               }
        },
 }
