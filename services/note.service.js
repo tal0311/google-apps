@@ -82,6 +82,7 @@ function _createNotes() {
                 type: 'NoteTxt',
                 isPinned: false,
                 title: utilService.makeLorem(10),
+                reminder: '07/15/2023 12:13',
                 style: {
                     backgroundColor: '#fff475'
                 },

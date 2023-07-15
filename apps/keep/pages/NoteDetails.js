@@ -33,7 +33,7 @@ export default {
           @blur="noteAction('update-title',$event.target.innerText)">{{note.title}}</h3>
           <div class="actions-container grid">
               <NoteActions @note-action="noteAction" visibleStatus="3"/>
-              <button class="app-btn">close</button>
+              <button @click=$router.go(-1) class="app-btn">close</button>
           </div>
          <ColorList ref="style-list" :noteDimensions="noteDimensions" v-if="isPaletteOpen" @color-selected="noteAction('color-select', $event)"
           @cover-selected="noteAction('cover-select', $event)" />

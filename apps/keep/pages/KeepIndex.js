@@ -23,14 +23,15 @@ export default {
         return {
             notes: [],
             pinnedNotes: [],
+            totalNotes: [],
             filterBy: null,
         }
     },
     created() {
-        // this.reminderInterval = setInterval(this.checkReminder, 5000)
         utilService.setAppConfig('keep')
         eventBus.on('add-note-alarm', this.addNoteAlarm)
         this.loadNots()
+        this.reminderInterval = setInterval(this.checkReminder, 5000)
     },
     computed: {
 
@@ -117,30 +118,32 @@ export default {
         },
         loadNots() {
             noteService.query().then(notes => {
+                this.totalNotes = notes
                 this.pinnedNotes = notes.filter(note => note.isPinned)
                 this.notes = notes.filter(note => !note.isPinned)
             })
         },
         checkReminder() {
-            console.log('ok:')
-            noteService.query().then(notes => {
-                notes.filter(note => note.reminder).forEach(note => {
-                    console.debug('♠️ ~ file: KeepIndex.js:135 ~ this.notes.filter ~ note:', note.reminder)
-
-                    if (Date.now() > new Date(note.reminder)) {
-                        note.reminder = null
-                        noteService.save(note).then(() => {
-
-                            this.$router.push(`/note/${note.id}`)
-                            showSuccessMsg('Reminder!')
-                        })
-                    }
 
 
 
-                })
+            this.totalNotes.filter(note => note.reminder).forEach(note => {
+                console.debug('♠️ ~ file: KeepIndex.js:135 ~ this.notes.filter ~ note:', note.reminder)
 
+                if (Date.now() > new Date(note.reminder)) {
+                    note.reminder = null
+                    noteService.save(note).then(() => {
+                        this.$router.push(`/note/${note.id}`)
+                        showSuccessMsg('Reminder!')
+                    })
+                }
             })
+
+
+
+
+
+
 
         }
 
