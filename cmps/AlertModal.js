@@ -4,10 +4,11 @@ export default {
  name: '',
  props: ['extraData'],
  template: `
-        <section class="alert-modal">
-        <h1>AlertModal</h1>
-         <input type="time" name="" id="" @change="setAlarm" v-model="time" />
-        <button @click="$emit('close-modal')">close</button>
+        <section class="reminder-modal grid">
+        <h3>Remind me later</h1>
+        <form @submit.prevent=""></form>
+         <input type="time" name="note-reminder" id="" @change="setAlarm" v-model="time" />
+        <button class="app-btn" @click="$emit('close-modal')">close</button>
         </section>
         `,
  components: {},
@@ -22,12 +23,12 @@ export default {
   setAlarm() {
    console.log('setAlarm')
    if (!this.time) return
-   // new Date('7/4/2023 13:45')
-   console.log('this.time:', `${new Date().toLocaleDateString()} ${this.time}`)
-   // eventBus.emit('add-note-alarm', { noteId: this.extraData, time: this.time })
+   const reminder = `${new Date().toLocaleDateString()} ${this.time}`
+   eventBus.emit('add-note-alarm', { noteId: this.extraData, reminder })
+
 
   }
 
  },
- computed: {},
+
 }

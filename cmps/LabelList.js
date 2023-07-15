@@ -13,7 +13,7 @@ export default {
           <input v-model="labelName" type="text" name="label-name"/>
           <div class="action-container grid">
            <button @click="$emit('close-modal')">Cancel</button>
-           <button @click="createLabel" class="create">Create</button>
+           <button @click="createLabel" class="app-btn">Create</button>
           </div>
          </form>
         `,

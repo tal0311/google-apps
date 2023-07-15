@@ -92,11 +92,12 @@ export default {
                 })
             })
         },
-        addNoteAlarm({ noteId, time }) {
-            console.log('addNoteAlarm', noteId, time)
+        addNoteAlarm({ noteId, reminder }) {
+            console.log('addNoteAlarm', noteId, reminder)
             noteService.get(noteId).then(note => {
-                note.reminder = time
+                note.reminder = reminder
                 noteService.save(note).then((note) => {
+                    console.log('note:', note)
                     console.debug('♠️ ~ file: NoteDetails.js:62 ~ noteService.save ~ note:', note)
                     this.loadNots()
                 })
@@ -124,12 +125,7 @@ export default {
             })
         },
         checkReminder() {
-
-
-
             this.totalNotes.filter(note => note.reminder).forEach(note => {
-                console.debug('♠️ ~ file: KeepIndex.js:135 ~ this.notes.filter ~ note:', note.reminder)
-
                 if (Date.now() > new Date(note.reminder)) {
                     note.reminder = null
                     noteService.save(note).then(() => {
@@ -169,5 +165,8 @@ export default {
         AddNote
         // CarFilter,
         // CarList,
+    },
+    unmounted() {
+        clearInterval(this.reminderInterval)
     }
 }

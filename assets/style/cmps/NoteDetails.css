@@ -45,10 +45,10 @@
  background: #fff;
 }
 
-.actions-container {
+.note-details .actions-container {
  grid-auto-flow: column;
 }
-.actions-container button {
+.note-details .actions-container button {
  width: 4rem;
  margin-inline-start: auto;
 }

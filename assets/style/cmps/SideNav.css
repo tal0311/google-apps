@@ -1,6 +1,6 @@
 .side-nav {
  grid-area: sideNav;
- /* background: lightblue; */
+ background: red;
  /* display: grid; */
  grid-template-rows: min-content min-content;
  gap: 1rem;
