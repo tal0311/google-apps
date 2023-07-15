@@ -1,0 +1,4 @@
+body[app="keep"] .reminder-modal {
+ background: var(--Mlr5);
+ border-radius: var(--Kbr);
+}

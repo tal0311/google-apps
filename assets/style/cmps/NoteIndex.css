@@ -6,7 +6,7 @@
  color: var(--gray3);
 }
 
-.note-index .app-btn {
+/* .note-index .app-btn {
  background: none;
  border: none;
  outline: none;
@@ -15,4 +15,4 @@
 }
 .note-index .app-btn:hover {
  background-color: #f1f3f47a;
-}
+} */

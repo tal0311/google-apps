@@ -8,3 +8,20 @@ body[app="keep"] .main-route {
     padding: 0px 1em 0 5rem;
     /* background: red; */
 }
+
+body[app="keep"] .app-btn {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+}
+body[app="keep"] .app-btn:hover {
+    background-color: #f1f3f47a;
+}
+body[app="gmail"] .app-btn {
+    border-radius: 100vh;
+    padding: 0.5rem 1rem;
+    background: var(--Mbtn);
+    color: var(--Mclr5);
+}
