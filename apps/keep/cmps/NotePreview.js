@@ -43,18 +43,15 @@ export default {
                      this.$router.push('/note/' + noteId)
               },
               noteAction(actionType, payload = null) {
-
-                     console.log('actionType:', actionType)
+                     console.debug('♠️ ~ file: NotePreview.js:46 ~ noteAction ~ actionType:', actionType)
                      if (actionType === 'color') this.isPaletteOpen = !this.isPaletteOpen
                      if (actionType === 'color-select') {
                             this.isPaletteOpen = false
-
                      }
                      if (actionType === 'cover-select') {
                             this.isPaletteOpen = false
                             console.log('cover selected:', payload)
                      }
-
 
                      console.log('{ noteId: this.note.id, actionType, payload }:', { noteId: this.note.id, actionType, payload })
                      this.$emit('updateNote', { noteId: this.note.id, actionType, payload })

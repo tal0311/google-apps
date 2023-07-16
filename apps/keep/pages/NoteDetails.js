@@ -9,6 +9,7 @@ import NoteTodo from "../cmps/daynamicCmps/NoteTodo.js"
 import NoteTxt from "../cmps/daynamicCmps/NoteTxt.js"
 import NoteVideo from "../cmps/daynamicCmps/NoteVideo.js"
 import { utilService } from "../../../services/util.service.js"
+import { eventBus, showErrorMsg } from "../../../services/event-bus.service.js"
 
 
 
@@ -16,6 +17,8 @@ import { utilService } from "../../../services/util.service.js"
 
 
 export default {
+    name: 'NoteDetails',
+    inject: ['defaultErrorMsg'],
     template: `
         <dialog ref="details-modal" class="note-details-modal" >
             <section ref="note-details" :style="setNoteBG" v-if="note" class="note-details grid">
@@ -66,15 +69,24 @@ export default {
             noteService.get(noteId)
                 .then(note => {
                     this.note = note
+                }).catch(err => {
+                    console.error('♠️ ~ file: NoteDetails.js:73 ~ loadNote ~ err:', err)
+                    showErrorMsg(this.defaultErrorMsg)
+
                 })
         },
-        updateNoteInfo({ type, info }) {
+        updateNoteInfo({ info }) {
             noteService.get(this.note.id).then(note => {
                 note.info = info
                 noteService.save(note).then((note) => {
-                    console.debug('♠️ ~ file: NoteDetails.js:62 ~ noteService.save ~ note:', note)
                     this.loadNote()
+                }).catch(err => {
+                    console.error('♠️ ~ file: NoteDetails.js:84 ~ noteService.save ~ err:', err)
+                    showErrorMsg(this.defaultErrorMsg)
                 })
+            }).catch(err => {
+                console.error('♠️ ~ file: NoteDetails.js:88 ~ noteService.get ~ err:', err)
+                showErrorMsg(this.defaultErrorMsg)
             })
 
         },
@@ -113,6 +125,9 @@ export default {
                     this.$router.push('/note#home')
                 })
             }
+            if (actionType === 'alert') {
+                eventBus.emit('show-modal', { modalType: 'AlertModal', data: this.note.id })
+            }
 
             if (actionType === 'duplicate') {
                 noteService.get(this.note.id).then(note => {
@@ -120,7 +135,13 @@ export default {
                     noteService.save(note).then(() => {
                         this.closeModal()
                         this.$router.push('/note#home')
+                    }).catch(err => {
+                        console.error('♠️ ~ file: NoteDetails.js:139 ~ noteAction noteService.save ~ err:', err)
+                        showErrorMsg(this.defaultErrorMsg)
                     })
+                }).catch(err => {
+                    console.debug('♠️ ~ file: NoteDetails.js:143 ~ noteAction noteService.get ~ err:', err)
+                    showErrorMsg(this.defaultErrorMsg)
                 })
             }
 
@@ -129,7 +150,8 @@ export default {
             noteService.get(this.note.id).then(note => {
                 note[key] = payload
                 noteService.save(note).then((note) => {
-                    console.debug('♠️ ~ file: NoteDetails.js:62 ~ noteService.save ~ note:', note)
+                    console.debug('♠️ ~ file: NoteDetails.js:156 ~ updateNote noteService.save ~ then:', then)
+
                     this.loadNote()
                 })
             })

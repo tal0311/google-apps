@@ -19,7 +19,7 @@ export default {
     },
     methods: {
         setFilter() {
-            const { name, hash } = this.$route
+            const { name } = this.$route
             if (name === 'mail') {
                 eventBus.emit('mail-filter', { ...this.filterBy })
             }
@@ -55,12 +55,6 @@ export default {
             },
             deep: true,
         }
-        // filterBy: {
-        //     handler() {
-        //         this.$emit('filter', this.filterBy)
-        //     },
-        //     deep: true,
-        // }
     }
 }
 

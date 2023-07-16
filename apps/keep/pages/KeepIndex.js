@@ -10,6 +10,8 @@ import AddNote from '../cmps/AddNote.js'
 
 
 export default {
+    name: 'KeepIndex',
+    inject: ['defaultErrorMsg'],
     template: `
         <section class="note-index">
            <AddNote  @add-note="addNote"/>
@@ -26,9 +28,11 @@ export default {
             totalNotes: [],
             filterBy: {},
 
+
         }
     },
     created() {
+        // console.log('this.defaultErrorMsg:', this.defaultErrorMsg)
         utilService.setAppConfig('keep')
         eventBus.on('add-note-alarm', this.addNoteAlarm)
         eventBus.on('note-filter', this.setFilter)
@@ -46,7 +50,6 @@ export default {
             deep: true,
             immediate: true,
             handler: function (val, oldVal) {
-                console.debug('♠️ ~ file: KeepIndex.js:49 ~ val, oldVal:', val)
                 this.filterBy.hash = val || '#home'
                 this.loadNots()
 
@@ -56,7 +59,6 @@ export default {
 
     methods: {
         setFilter(filter) {
-            console.debug('♠️ ~ file: KeepIndex.js:49 ~ setFilter ~ filter:', filter)
             this.filterBy = filter
             this.loadNots()
         },
@@ -82,8 +84,11 @@ export default {
             }
             if (actionType === 'delete') {
                 noteService.remove(noteId).then(() => {
-                    showSuccessMsg('Note removed')
+                    showSuccessMsg('Note has been removed')
                     this.loadNots()
+                }).catch(err => {
+                    console.error('♠️ ~ file: KeepIndex.js:89 ~ noteService.remove ~ err:', err)
+                    showSuccessMsg(this.defaultErrorMsg)
                 })
             }
             if (actionType === 'duplicate') {
@@ -92,7 +97,13 @@ export default {
                     noteService.save(note).then(() => {
                         showSuccessMsg('Note duplicated')
                         this.loadNots()
+                    }).catch(err => {
+                        console.error('♠️ ~ file: KeepIndex.js:97 ~ noteService.save ~ err:', err)
+                        showSuccessMsg(this.defaultErrorMsg)
                     })
+                }).catch(err => {
+                    console.error('♠️ ~ file: KeepIndex.js:101 ~ noteService.get ~ err:', err)
+                    showSuccessMsg(this.defaultErrorMsg)
                 })
             }
             if (actionType === 'alert') {
@@ -109,10 +120,13 @@ export default {
             noteService.get(noteId).then(note => {
                 note.updatedAt = Date.now()
                 note[key] = payload
-                noteService.save(note).then((note) => {
-                    console.debug('♠️ ~ file: NoteDetails.js:62 ~ noteService.save ~ note:', note)
-                    this.loadNots()
-                })
+                noteService.save(note)
+                    .then((note) => {
+                        this.loadNots()
+                    }).catch(err => {
+                        console.error('♠️ ~ file: KeepIndex.js:119 ~ updateNoteByKey noteService.save ~ err:', err)
+                        showSuccessMsg(this.defaultErrorMsg)
+                    })
             })
         },
         addNoteAlarm({ noteId, reminder }) {
@@ -128,14 +142,12 @@ export default {
 
         },
         addNote(note) {
-            console.debug('♠️ ~ file: KeepIndex.js:39 ~ addNote ~ note:', note)
-
             noteService.save(note)
                 .then((note) => {
                     showSuccessMsg('Note added')
                 }).catch(err => {
-                    console.debug('♠️ ~ file: KeepIndex.js:43 ~ .then ~ err:', err)
-                    showErrorMsg('Cannot add note')
+                    console.error('♠️ ~ file: KeepIndex.js:148 ~ addNote ~ err:', err)
+                    showErrorMsg(this.defaultErrorMsg)
                 }).finally(() => {
                     this.loadNots()
                 })
@@ -145,6 +157,9 @@ export default {
                 this.totalNotes = notes
                 this.pinnedNotes = notes.filter(note => note.isPinned)
                 this.notes = notes.filter(note => !note.isPinned)
+            }).catch(err => {
+                console.debug('♠️ ~ file: KeepIndex.js:162 ~loadNots noteService.query ~ err:', err)
+                showSuccessMsg(this.defaultErrorMsg)
             })
         },
         checkReminder() {
@@ -157,30 +172,7 @@ export default {
                     })
                 }
             })
-
-
-
-
-
-
-
         }
-
-        // removeCar(carId) {
-        //     carService.remove(carId)
-        //         .then(() => {
-        //             const idx = this.cars.findIndex(car => car.id === carId)
-        //             this.cars.splice(idx, 1)
-        //             showSuccessMsg('Car removed')
-        //         })
-        //         .catch(err => {
-        //             showErrorMsg('Cannot remove car')
-        //         })
-        // },
-
-        // setFilterBy(filterBy) {
-        //     this.filterBy = filterBy
-        // }
     },
     components: {
         NoteList,

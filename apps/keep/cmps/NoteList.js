@@ -9,18 +9,12 @@ export default {
         <section class="note-list">
           <small>{{title}} notes</small>
           <section class="note-container">
-            <NotePreview @updateNote="logger"  v-for="note in notes" :key="note.id" :note="note"/>
+            <NotePreview @updateNote="$emit('update-note', $event)"
+              v-for="note in notes" :key="note.id" :note="note"/>
           </section>
          
         </section>
     `,
-  methods: {
-    logger({ noteId, actionType, payload }) {
-      console.log('noteId, actionType, payload:', noteId, actionType, payload);
-      this.$emit('update-note', { noteId, actionType, payload })
-    }
-
-  },
   components: {
     NotePreview
   },
