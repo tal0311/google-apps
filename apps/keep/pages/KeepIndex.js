@@ -79,6 +79,9 @@ export default {
 
                 eventBus.emit('show-modal', { modalType: 'AlertModal', data: noteId })
             }
+            if (actionType === 'archive') {
+                this.updateNoteByKey(noteId, 'archivedAt', Date.now())
+            }
 
 
         },

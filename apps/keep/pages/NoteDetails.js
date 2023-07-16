@@ -25,9 +25,9 @@ export default {
                 @blur="noteAction('update-title',$event.target.innerText)">{{note.title}}
             </h3>
             
-            <div class="preview-content">
+            <div class="preview-content grid">
                     <component @updateInfo="updateNoteInfo" :is="note.type" :info="note.info" isDetails="true"/>
-                    <small v-if="note.updatedAt">{{utilService.getFormattedTime(note.updatedAt)}}</small>
+                    <small class="update-at" v-if="note.updatedAt">{{getTime(note.updatedAt).date}} {{getTime(note.updatedAt).time}}</small>
             </div>
           <h3 class="editable-title" v-if="displayUpperHeader" contenteditable="true" 
           @blur="noteAction('update-title',$event.target.innerText)">{{note.title}}</h3>
@@ -55,7 +55,9 @@ export default {
     },
 
     methods: {
-
+        getTime(ts) {
+            return utilService.getFormattedTime(ts)
+        },
         loadNote() {
             const noteId = this.$route.params.id
             noteService.get(noteId)
