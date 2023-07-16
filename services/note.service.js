@@ -14,30 +14,23 @@ export const noteService = {
 }
 window.noteService = noteService
 
-function query() {
-    return storageService.query(NOTE_KEY).then(note => {
-        // if (gFilterBy.txt) {
-        //     const regex = new RegExp(gFilterBy.txt, 'i')
-        //     note = note.filter(note => regex.test(note.vendor))
-        // }
-        // if (gFilterBy.minSpeed) {
-        //     note = note.filter(note => note.maxSpeed >= gFilterBy.minSpeed)
-        // }
-        // if (gPageIdx !== undefined) {
-        //     const startIdx = gPageIdx * PAGE_SIZE
-        //     note = note.slice(startIdx, startIdx + PAGE_SIZE)
-        // }
-        // if (gSortBy.maxSpeed !== undefined) {
-        //     note.sort(
-        //         (c1, c2) => (c1.maxSpeed - c2.maxSpeed) * gSortBy.maxSpeed
-        //     )
-        // } else if (gSortBy.vendor !== undefined) {
-        //     note.sort(
-        //         (c1, c2) => c1.vendor.localeCompare(c2.vendor) * gSortBy.vendor
-        //     )
-        // }
+function query(filterBy = { txt: '', hash: '#home' }) {
+    return storageService.query(NOTE_KEY).then(notes => {
 
-        return note
+        if (filterBy.txt) {
+            const regex = new RegExp(filterBy.txt, 'i')
+            notes = notes.filter(note => regex.test(note.title) || regex.test(note.info.content))
+        }
+        if (filterBy.hash === '#reminder') {
+            notes = notes.filter(note => note.reminder)
+        }
+        if (filterBy.hash === '#archive') {
+            notes = notes.filter(note => note.archivedAt)
+        }
+        if (filterBy.hash === '#trash') {
+            notes = notes.filter(note => note.removedAt)
+        }
+        return notes
     })
 }
 

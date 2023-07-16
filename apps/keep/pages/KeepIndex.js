@@ -24,12 +24,14 @@ export default {
             notes: [],
             pinnedNotes: [],
             totalNotes: [],
-            filterBy: null,
+            filterBy: {},
+
         }
     },
     created() {
         utilService.setAppConfig('keep')
         eventBus.on('add-note-alarm', this.addNoteAlarm)
+        eventBus.on('note-filter', this.setFilter)
         this.loadNots()
         this.reminderInterval = setInterval(this.checkReminder, 5000)
     },
@@ -39,10 +41,25 @@ export default {
     watch: {
         $route(val, oldVal) {
             oldVal.name === 'note-details' && this.loadNots()
-        }
+        },
+        '$route.hash': {
+            deep: true,
+            immediate: true,
+            handler: function (val, oldVal) {
+                console.debug('♠️ ~ file: KeepIndex.js:49 ~ val, oldVal:', val)
+                this.filterBy.hash = val || '#home'
+                this.loadNots()
+
+            }
+        },
     },
 
     methods: {
+        setFilter(filter) {
+            console.debug('♠️ ~ file: KeepIndex.js:49 ~ setFilter ~ filter:', filter)
+            this.filterBy = filter
+            this.loadNots()
+        },
         updateNote({ noteId, actionType, payload }) {
             console.log('keep index update:', noteId, actionType, payload)
             if (actionType === 'update-title') {
@@ -59,6 +76,9 @@ export default {
             }
             if (actionType === 'toggle-pin') {
                 this.updateNoteByKey(noteId, 'isPinned', payload)
+            }
+            if (actionType === 'archive') {
+                this.updateNoteByKey(noteId, 'archivedAt', Date.now())
             }
             if (actionType === 'delete') {
                 noteService.remove(noteId).then(() => {
@@ -121,7 +141,7 @@ export default {
                 })
         },
         loadNots() {
-            noteService.query().then(notes => {
+            noteService.query({ ...this.filterBy }).then(notes => {
                 this.totalNotes = notes
                 this.pinnedNotes = notes.filter(note => note.isPinned)
                 this.notes = notes.filter(note => !note.isPinned)

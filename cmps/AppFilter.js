@@ -19,18 +19,21 @@ export default {
     },
     methods: {
         setFilter() {
-            const { name } = this.$route
+            const { name, hash } = this.$route
             if (name === 'mail') {
                 eventBus.emit('mail-filter', { ...this.filterBy })
-
             }
-
+            if (name === 'note') {
+                eventBus.emit('note-filter', { ...this.filterBy })
+            }
+            this.filterBy.txt = ''
         }
 
     },
     computed: {
         setPlaceHolder() {
             const { name } = this.$route
+            console.debug('♠️ ~ file: AppFilter.js:34 ~ setPlaceHolder ~ name:', this.$route)
             if (name.includes('mail')) {
                 return 'Search mail'
             } else {

@@ -23,12 +23,12 @@ export default {
                             { icon: 'map', title: 'Map', actionType: 'NoteMap', visibleStatus: ['1'] },
                             { icon: 'image', title: 'Image', actionType: 'NoteImg', visibleStatus: ['0'] },
                             { icon: 'check_box', title: 'Checklist', actionType: 'NoteTodo', visibleStatus: ['0'] },
-                            { icon: 'palette', title: 'Note Color', actionType: 'color', visibleStatus: ['1', '3'] },
+                            { icon: 'palette', title: 'Color & Cover', actionType: 'color', visibleStatus: ['1', '3'] },
                             { icon: 'brush', title: 'Draw', actionType: 'NoteCanvas', visibleStatus: ['0'] },
                             { icon: 'archive', title: 'Archive', actionType: 'archive', visibleStatus: ['1', '3'] },
                             { icon: 'delete', title: 'Delete', actionType: 'delete', visibleStatus: ['3'] },
                             { icon: 'content_copy', title: 'Duplicate', actionType: 'duplicate', visibleStatus: ['3'] },
-                            { icon: 'add_alert', title: 'add-alert', actionType: 'alert', visibleStatus: ['1', '3'] },
+                            { icon: 'add_alert', title: 'Add Alert', actionType: 'alert', visibleStatus: ['1', '3'] },
                      ]
               }
        },
