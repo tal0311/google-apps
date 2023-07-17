@@ -1,6 +1,7 @@
-.app-loader {
+body[app="apps"] .app-loader {
+ opacity: 0 !important;
 }
-.app-loader:before {
+.loader:before {
  content: "";
  display: block;
  height: 20px;
