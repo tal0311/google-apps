@@ -1,0 +1,18 @@
+.video-preview {
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    cursor: pointer;
+}
+
+.video-preview img {
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--BR);
+}
+   
+.video-info {
+    grid-auto-flow: column;
+    font-size: 12px;
+}
+   
