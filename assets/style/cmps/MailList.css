@@ -1,5 +1,4 @@
 .list-container {
- /* padding: 2rem 0; */
  border-radius: 0.8rem;
  background: var(--Mclr5);
  height: 95%;
@@ -13,12 +12,8 @@
 
 .mail-list::-webkit-scrollbar {
  width: 10px;
- /* height: 1px; */
- /* height: 1px; */
  margin-top: 10px;
 }
 .mail-list::-webkit-scrollbar-thumb {
  background: var(--sb-thumb-color);
- /* border-radius: 10px; */
- /* padding-top: 10px; */
 }

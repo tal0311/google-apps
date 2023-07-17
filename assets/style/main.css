@@ -29,3 +29,9 @@
 
 @import "cmps/NoteIndex.css";
 @import "cmps/k-SideNav.css";
+
+@import "cmps/YouTubeIndex.css";
+@import "cmps/VideoList.css";
+@import "cmps/VideoPreview.css";
+@import "cmps/MainVideo.css";
+@import "cmps/WikiList.css";

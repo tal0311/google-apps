@@ -1,54 +1,42 @@
-// import { carService } from '../services/car.service.js'
 import { utilService } from "./../../../services/util.service.js"
+import { YoutubeService } from '../../../services/youtube.service.js'
 
 
-// import CarFilter from '../cmps/CarFilter.js'
-// import CarList from '../cmps/CarList.js'
+import VideoList from '../cmps/VideoList.js'
+import WikiList from '../cmps/WikiList.js'
+import MainVideo from '../cmps/MainVideo.js'
 
 
 export default {
     template: `
         <section class="youtube-index">
-           <h1>youtube index</h1>
-           
+            <VideoList v-if="videos" :videos="videos"/>
+            <MainVideo v-if="selectedVideo" :selectedVideo="selectedVideo"/>
+            <WikiList v-if="items" :items="items"/>
         </section>
     `,
     data() {
         return {
-            mails: [],
-            filterBy: null,
+            videos: null,
+            selectedVideo: null,
+            items: null
         }
     },
     computed: {
-
     },
-    created() {
-
+    async created() {
         utilService.setAppConfig('youtube')
-        // carService.query()
-        //     .then(cars => this.cars = cars)
+
+        const data = await YoutubeService.query('vue')
+        this.videos = data.videosData
+        this.selectedVideo = this.videos[0]
+        this.items = data.wikiData
     },
     methods: {
-
-
-        // removeCar(carId) {
-        //     carService.remove(carId)
-        //         .then(() => {
-        //             const idx = this.cars.findIndex(car => car.id === carId)
-        //             this.cars.splice(idx, 1)
-        //             showSuccessMsg('Car removed')
-        //         })
-        //         .catch(err => {
-        //             showErrorMsg('Cannot remove car')
-        //         })
-        // },
-
-        // setFilterBy(filterBy) {
-        //     this.filterBy = filterBy
-        // }
     },
     components: {
-        // CarFilter,
-        // CarList,
+        VideoList,
+        WikiList,
+        MainVideo
     }
 }

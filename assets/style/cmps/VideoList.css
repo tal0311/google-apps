@@ -1,0 +1,6 @@
+.video-list {
+    grid-area: video-list;
+    grid-template-rows: max-content;
+    gap: 0.8rem;
+    min-width: 300px;
+}

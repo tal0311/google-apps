@@ -1,0 +1,23 @@
+.wiki {
+    grid-area: wiki;
+    max-height: 300px;
+}   
+
+.wiki-list {
+    overflow-y: auto;
+    height: 90%;
+    padding: 0.5rem;
+    border-radius: var(--BR);
+    background: var(--ClrHover);
+    gap: 0.8rem;
+}
+   
+.wiki-list::-webkit-scrollbar {
+    width: var(--sb-size);
+}
+   
+.wiki-list::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 10px;
+}
+   
