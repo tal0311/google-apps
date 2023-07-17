@@ -71,7 +71,7 @@ function searchLocations() {
 }
 
 export const locationService = {
-  getPosition,
-  getAddressCoords,
-  searchLocations
+  // getPosition,
+  // getAddressCoords,
+  // searchLocations
 }

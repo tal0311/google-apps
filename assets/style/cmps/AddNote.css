@@ -1,0 +1,48 @@
+.add-note {
+ position: relative;
+ max-width: 560px;
+ margin: 2rem auto;
+ padding: 0 1rem;
+ box-shadow: 0 0 5px 0 var(--gray2);
+ border-radius: var(--Kbr);
+}
+.add-note .close-btn {
+ position: absolute;
+ top: 0.5rem;
+ right: 1rem;
+}
+.add-note h3:focus-visible {
+ outline: none;
+}
+.add-note input[type="text"] {
+ width: 100%;
+ border: none;
+ outline: none;
+ padding: 0.5rem 0;
+ font-size: 1rem;
+}
+.add-note input[type="text"]:focus {
+ background: none;
+}
+
+.add-note.minimize header {
+ grid-auto-flow: column;
+ justify-content: space-between;
+ align-items: center;
+}
+.add-note.minimize i {
+ color: var(--gray2);
+}
+.add-note.minimize .add-note-actions {
+ gap: 0.8rem;
+}
+.add-note.expended footer {
+ grid-auto-flow: column;
+ width: 100%;
+ align-items: center;
+ grid-template-columns: 1fr min-content;
+}
+.add-note.expended footer .add-note-actions {
+ /* grid-auto-flow: column; */
+ gap: 0.5rem;
+}

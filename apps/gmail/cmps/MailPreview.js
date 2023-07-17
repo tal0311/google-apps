@@ -8,9 +8,9 @@ export default {
         ?'is-read':'']">
          <div className="actions-start grid">
          <input type="checkbox" name="" id="" /> 
-         <span @click.stop="updateMail('star' ,mail.id)" :class="[ mail.isStared? 'starred':'' ,'star material-symbols-outlined']">
+         <i @click.stop="updateMail('star' ,mail.id)" :class="[ mail.isStared? 'starred':'' ,'star material-symbols-outlined']">
            star
-          </span>
+          </i>
          </div>
 
          <p>
@@ -23,11 +23,11 @@ export default {
          </div>
         
          <div class="actions-end">
-          <span v-for="action,idx in actionsEnd" :key="idx"
+          <i v-for="action,idx in actionsEnd" :key="idx"
           @click.stop="updateMail(action.actionType,mail.id)"
           :title="action.title" class="material-symbols-outlined">
             {{action.iconName}}
-          </span>
+          </i>
          </div>
 
          <div class="mail-date">

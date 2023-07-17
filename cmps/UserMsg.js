@@ -24,7 +24,7 @@ export default {
             this.msg = msg
             setTimeout(() => {
                 this.msg = null
-            }, 1500)
+            }, 5000)
         })
     },
     unmounted() {

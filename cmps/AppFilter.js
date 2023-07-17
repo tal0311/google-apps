@@ -22,9 +22,11 @@ export default {
             const { name } = this.$route
             if (name === 'mail') {
                 eventBus.emit('mail-filter', { ...this.filterBy })
-
             }
-
+            if (name === 'note') {
+                eventBus.emit('note-filter', { ...this.filterBy })
+            }
+            this.filterBy.txt = ''
         }
 
     },
@@ -52,12 +54,6 @@ export default {
             },
             deep: true,
         }
-        // filterBy: {
-        //     handler() {
-        //         this.$emit('filter', this.filterBy)
-        //     },
-        //     deep: true,
-        // }
     }
 }
 

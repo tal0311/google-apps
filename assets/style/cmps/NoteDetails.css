@@ -1,0 +1,60 @@
+.note-details-modal {
+ /* position: relative; */
+ border: none;
+ padding: 0;
+ width: 37.5rem;
+ height: fit-content;
+ /* overflow-y: visible; */
+ border-radius: var(--Kbr);
+}
+.note-details > *:not(.preview-content) {
+ padding: 0.2rem 1rem;
+}
+
+.note-details .update-at {
+ text-align: end;
+ margin-inline-end: 2rem;
+ font-size: 0.75rem;
+ letter-spacing: 0.015em;
+}
+.note-details {
+ position: relative;
+}
+
+.note-details .pin-btn {
+ opacity: 0;
+ position: absolute;
+ inset-inline-end: 0rem;
+ inset-block-start: 1rem;
+}
+.editable-title {
+ font-size: 1.5rem;
+ font-weight: 500;
+ margin-inline-end: 1rem;
+}
+.note-details .add-note-actions {
+ transition: all 0.2s ease-in-out;
+ opacity: 0;
+}
+
+.note-details:hover :is(.pin-btn, .add-note-actions) {
+ opacity: 1;
+}
+
+.note-details .style-list {
+ position: fixed;
+ /* translate: 0 110%; */
+ box-shadow: 0 0 5px 0 var(--gray2);
+ border-radius: var(--Kbr);
+ z-index: 10;
+ width: max-content;
+ background: #fff;
+}
+
+.note-details .actions-container {
+ grid-auto-flow: column;
+}
+.note-details .actions-container button {
+ width: 4rem;
+ margin-inline-start: auto;
+}

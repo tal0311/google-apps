@@ -20,8 +20,6 @@ export const mailService = {
 window.mailService = mailService
 
 function query(filterBy = { tab: 'inbox', txt: '' }) {
-    console.debug('♠️ ~ file: mail.service.js:23 ~ query ~ filterBy:', filterBy)
-
     return storageService.query(MAIL_KEY).then(mails => {
         if (filterBy.txt) {
             const regex = new RegExp(filterBy.txt, 'i')

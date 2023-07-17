@@ -1,5 +1,6 @@
 import { eventBus } from "../services/event-bus.service.js"
 import LabelList from './LabelList.js'
+import AlertModal from './AlertModal.js'
 
 
 export default {
@@ -44,6 +45,7 @@ export default {
    },
    computed: {},
    components: {
-      LabelList
+      LabelList,
+      AlertModal
    }
 }

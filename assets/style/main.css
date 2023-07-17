@@ -19,19 +19,30 @@
 @import "cmps/AppFilter.css";
 @import "cmps/AppModal.css";
 @import "cmps/LabelList.css";
+@import "cmps/ReminderModal.css";
 
 @import "cmps/MailIndex.css";
 @import "cmps/MailCompose.css";
 @import "cmps/MailList.css";
 @import "cmps/MailPreview.css";
 @import "cmps/MailDetails.css";
-@import "cmps/sideNav.css";
-
-@import "cmps/NoteIndex.css";
-@import "cmps/k-SideNav.css";
+@import "cmps/m-sideNav.css";
+/* @import "cmps/"; */
 
 @import "cmps/YouTubeIndex.css";
 @import "cmps/VideoList.css";
 @import "cmps/VideoPreview.css";
 @import "cmps/MainVideo.css";
 @import "cmps/WikiList.css";
+
+@import "cmps/NoteIndex.css";
+@import "cmps/k-SideNav.css";
+@import "cmps/NotePreview.css";
+@import "cmps/NoteList.css";
+@import "cmps/AddNote.css";
+@import "cmps/AddNoteActions.css";
+@import "cmps/dynamic.css";
+@import "cmps/ColorList.css";
+@import "cmps/NoteDetails.css";
+@import "cmps/EmptyNotes.css";
+@import "cmps/AppLoader.css";
