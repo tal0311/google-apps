@@ -34,10 +34,12 @@ export default {
   },
   methods: {
     loadMails() {
+      eventBus.emit('loading', true)
       mailService.query({ ...this.filterBy }).then(mails => {
         // debugger
         this.setAppTitle(mails)
         this.mails = mails
+        eventBus.emit('loading', false)
       })
     },
     setFilter(filterBy) {

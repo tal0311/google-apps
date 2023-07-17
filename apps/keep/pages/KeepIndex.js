@@ -1,10 +1,11 @@
 import NoteList from '../cmps/NoteList.js'
 import SideNav from '../cmps/SideNav.js'
+import EmptyNotes from '../cmps/EmptyNotes.js'
 import { noteService } from './../../../services/note.service.js'
 import { utilService } from '../../../services/util.service.js'
 import { showSuccessMsg, showErrorMsg, eventBus } from '../../../services/event-bus.service.js'
 import AddNote from '../cmps/AddNote.js'
-
+import NotesLoader from '../../../cmps/AppLoader.js'
 
 
 
@@ -15,8 +16,13 @@ export default {
     template: `
         <section class="note-index">
            <AddNote  @add-note="addNote"/>
-           <NoteList @update-note="updateNote" v-if="pinnedNotes" title="Pinned" :notes="pinnedNotes"/>
-           <NoteList  @update-note="updateNote" v-if="notes" title="Other" :notes="notes"/>
+           <EmptyNotes v-if="!totalNotes.length&&!isLoading" :hash="filterBy.hash"/>
+           <NoteList @update-note="updateNote"
+            v-if="pinnedNotes.length&&!isLoading" 
+            title="Pinned" :notes="pinnedNotes"/>
+           <NoteList  @update-note="updateNote" 
+           v-if="notes.length&&!isLoading" 
+           title="Other" :notes="notes"/>
            <RouterView/>
            <SideNav/>
         </section>
@@ -27,12 +33,10 @@ export default {
             pinnedNotes: [],
             totalNotes: [],
             filterBy: {},
-
-
+            isLoading: true
         }
     },
     created() {
-        // console.log('this.defaultErrorMsg:', this.defaultErrorMsg)
         utilService.setAppConfig('keep')
         eventBus.on('add-note-alarm', this.addNoteAlarm)
         eventBus.on('note-filter', this.setFilter)
@@ -153,10 +157,14 @@ export default {
                 })
         },
         loadNots() {
+            eventBus.emit('loading', true)
             noteService.query({ ...this.filterBy }).then(notes => {
                 this.totalNotes = notes
                 this.pinnedNotes = notes.filter(note => note.isPinned)
                 this.notes = notes.filter(note => !note.isPinned)
+                this.isLoading = false
+                eventBus.emit('loading', false)
+
             }).catch(err => {
                 console.debug('♠️ ~ file: KeepIndex.js:162 ~loadNots noteService.query ~ err:', err)
                 showSuccessMsg(this.defaultErrorMsg)
@@ -177,9 +185,9 @@ export default {
     components: {
         NoteList,
         SideNav,
-        AddNote
-        // CarFilter,
-        // CarList,
+        AddNote,
+        EmptyNotes,
+        NotesLoader
     },
     unmounted() {
         clearInterval(this.reminderInterval)

@@ -11,11 +11,6 @@ import NoteVideo from "../cmps/daynamicCmps/NoteVideo.js"
 import { utilService } from "../../../services/util.service.js"
 import { eventBus, showErrorMsg } from "../../../services/event-bus.service.js"
 
-
-
-// import { carService } from '../services/car.service.js'
-
-
 export default {
     name: 'NoteDetails',
     inject: ['defaultErrorMsg'],
@@ -67,12 +62,10 @@ export default {
         loadNote() {
             const noteId = this.$route.params.id
             noteService.get(noteId)
-                .then(note => {
-                    this.note = note
-                }).catch(err => {
-                    console.error('♠️ ~ file: NoteDetails.js:73 ~ loadNote ~ err:', err)
+                .then(note => this.note = note)
+                .catch(err => {
+                    console.error('♠️ ~ file: NoteDetails.js:67 ~ loadNote ~ err:', err)
                     showErrorMsg(this.defaultErrorMsg)
-
                 })
         },
         updateNoteInfo({ info }) {
@@ -81,18 +74,18 @@ export default {
                 noteService.save(note).then((note) => {
                     this.loadNote()
                 }).catch(err => {
-                    console.error('♠️ ~ file: NoteDetails.js:84 ~ noteService.save ~ err:', err)
+                    console.error('♠️ ~ file: NoteDetails.js:77 ~ updateNoteInfo noteService.save ~ err:', err)
                     showErrorMsg(this.defaultErrorMsg)
                 })
             }).catch(err => {
-                console.error('♠️ ~ file: NoteDetails.js:88 ~ noteService.get ~ err:', err)
+                console.error('♠️ ~ file: NoteDetails.js:81 ~ updateNoteInfo noteService.get ~ err:', err)
                 showErrorMsg(this.defaultErrorMsg)
             })
 
         },
 
         noteAction(actionType, payload = null) {
-            console.debug('♠️ ~ file: NoteDetails.js:72 ~ noteAction ~ actionType, payload :', actionType, payload)
+            console.debug('♠️ ~ file: NoteDetails.js:88 ~ noteAction ~ actionType, payload :', actionType, payload)
 
             if (actionType === 'update-title') {
                 this.updateNote('title', payload)
@@ -109,7 +102,6 @@ export default {
             }
 
             if (actionType === 'cover-select') {
-                debugger
                 this.isPaletteOpen = false
                 console.log('cover selected:', payload)
                 this.updateNote('style', { cover: payload })
@@ -136,11 +128,11 @@ export default {
                         this.closeModal()
                         this.$router.push('/note#home')
                     }).catch(err => {
-                        console.error('♠️ ~ file: NoteDetails.js:139 ~ noteAction noteService.save ~ err:', err)
+                        console.error('♠️ ~ file: NoteDetails.js:132 ~ noteAction noteService.save ~ err:', err)
                         showErrorMsg(this.defaultErrorMsg)
                     })
                 }).catch(err => {
-                    console.debug('♠️ ~ file: NoteDetails.js:143 ~ noteAction noteService.get ~ err:', err)
+                    console.debug('♠️ ~ file: NoteDetails.js:136 ~ noteAction noteService.get ~ err:', err)
                     showErrorMsg(this.defaultErrorMsg)
                 })
             }
@@ -150,8 +142,6 @@ export default {
             noteService.get(this.note.id).then(note => {
                 note[key] = payload
                 noteService.save(note).then((note) => {
-                    console.debug('♠️ ~ file: NoteDetails.js:156 ~ updateNote noteService.save ~ then:', then)
-
                     this.loadNote()
                 })
             })
@@ -193,3 +183,5 @@ export default {
     }
 
 }
+
+

@@ -38,3 +38,5 @@
 @import "cmps/dynamic.css";
 @import "cmps/ColorList.css";
 @import "cmps/NoteDetails.css";
+@import "cmps/EmptyNotes.css";
+@import "cmps/AppLoader.css";

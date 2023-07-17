@@ -1,4 +1,7 @@
 import AppFilter from "./AppFilter.js"
+import AppLoader from "./AppLoader.js"
+import { eventBus } from "../services/event-bus.service.js"
+
 export default {
     template: `
         <header class="app-header">
@@ -7,9 +10,11 @@ export default {
                 <div class="app-name">{{setLogoByApp.appName}}</div>
             </div>
             <AppFilter/>
-            <i @click="isOpen=!isOpen" class="apps-btn material-symbols-outlined">apps</i>
-            <nav v-if="isOpen" class="grid">
-                <RouterLink to="/">
+            <div class="actions-container grid">
+                <AppLoader :isLoading="isLoading"/>
+                <i @click="isOpen=!isOpen" class="apps-btn material-symbols-outlined">apps</i>
+                <nav v-if="isOpen" class="grid">
+                    <RouterLink to="/">
                     <span>Home</span><div class="link-logo apps"></div>
                 </RouterLink>
                 <RouterLink to="/gmail">
@@ -21,12 +26,22 @@ export default {
                 <RouterLink to="/youtube">
                     <span>YouTube</span><div class="link-logo yt"></div>
                 </RouterLink>
-              </nav>
+            </nav>
+        </div>
         </header>
     `,
+    created() {
+        eventBus.on('loading', this.setLoading)
+    },
     data() {
         return {
-            isOpen: false
+            isOpen: false,
+            isLoading: false
+        }
+    },
+    methods: {
+        setLoading(val) {
+            this.isLoading = val
         }
     },
     computed: {
@@ -61,6 +76,7 @@ export default {
         }
     },
     components: {
-        AppFilter
+        AppFilter,
+        AppLoader
     }
 }

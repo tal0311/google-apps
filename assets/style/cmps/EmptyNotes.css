@@ -1,0 +1,17 @@
+.empty-notes {
+ position: fixed;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+}
+.empty-notes-container {
+ place-items: center;
+}
+.empty-notes-container p {
+ font-size: 1.5rem;
+ color: var(--gray2);
+}
+.placeholder-icon.material-symbols-outlined {
+ font-size: 8rem;
+ color: var(--gray2);
+}

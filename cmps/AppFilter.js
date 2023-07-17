@@ -33,7 +33,6 @@ export default {
     computed: {
         setPlaceHolder() {
             const { name } = this.$route
-            console.debug('♠️ ~ file: AppFilter.js:34 ~ setPlaceHolder ~ name:', this.$route)
             if (name.includes('mail')) {
                 return 'Search mail'
             } else {
