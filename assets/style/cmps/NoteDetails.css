@@ -11,6 +11,12 @@
  padding: 0.2rem 1rem;
 }
 
+.note-details .update-at {
+ text-align: end;
+ margin-inline-end: 2rem;
+ font-size: 0.75rem;
+ letter-spacing: 0.015em;
+}
 .note-details {
  position: relative;
 }

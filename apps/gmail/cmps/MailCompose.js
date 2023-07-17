@@ -93,7 +93,6 @@ export default {
                 saveToDraft() {
                         // this.isDirty = true
                         mailService.save({ ...this.mail }).then(mail => {
-                                debugger
                                 this.title = 'Saved Draft'
                                 this.setTitle()
                                 this.$router.push(`/mail?tab=${this.$route.query.tab}&compose=${mail.id}`)

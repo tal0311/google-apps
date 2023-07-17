@@ -47,9 +47,10 @@ function getFormattedDate(ts) {
     return { month: date[1], day: date[2] }
 }
 function getFormattedTime(ts) {
-    const date = new Date(ts).toDateString().split(' ')
+    const time = new Date(ts).toLocaleTimeString()
+    const date = new Date(ts).toDateString()
     console.debug('♠️ ~ file: util.service.js:51 ~ getFormattedTime ~ date:', date)
-    return { month: date[1], day: date[2] }
+    return { date, time }
 }
 
 function getMonthName(date) {
