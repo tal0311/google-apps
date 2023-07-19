@@ -9,12 +9,4 @@ export default {
             </div>
           </div>
                 `,
-  components: {},
-  created() { },
-  data() {
-    return {}
-  },
-  methods: {},
-  computed: {},
-
 }
