@@ -2,7 +2,7 @@ import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
 const YT_KEY = 'youtube_db'
-const YT_API_KEY = 'AIzaSyCQ3VQLxhDknZgctC7gsaB2tpWsMuYSN8A'
+const YT_API_KEY = 'AIzaSyBlraKlFpF_bqQQopUoLpyPuy2Bv57kgyo'
 
 export const YoutubeService = {
     query,

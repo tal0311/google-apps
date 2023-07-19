@@ -10,6 +10,7 @@
 .empty-notes-container p {
  font-size: 1.5rem;
  color: var(--gray2);
+ text-align: center;
 }
 .placeholder-icon.material-symbols-outlined {
  font-size: 8rem;

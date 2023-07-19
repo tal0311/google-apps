@@ -15,7 +15,7 @@ export default {
     inject: ['defaultErrorMsg'],
     template: `
         <section class="note-index">
-           <AddNote  @add-note="addNote"/>
+          <AddNote  @add-note="addNote"/>
            <EmptyNotes v-if="!totalNotes.length&&!isLoading" :hash="filterBy.hash"/>
            <NoteList @update-note="updateNote"
             v-if="pinnedNotes.length&&!isLoading" 

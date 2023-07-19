@@ -2,17 +2,14 @@ export default {
        name: 'EmptyNotes',
        props: ['hash'],
        template: `
-                     <section class="empty-notes ">
-                            <div class="empty-notes-container grid">
+                     <section :class="['empty-notes', setData]">
+                           <div class="empty-notes-container grid">
                                  <i class="placeholder-icon material-symbols-outlined">{{dataForMsg.icon}}</i>
                                  <p>{{dataForMsg.msg}}</p>
                             </div>
                      </section>
         `,
-       components: {},
-       created() {
-              this.setMsg()
-       },
+
        data() {
               return {
                      opts: {
@@ -32,11 +29,11 @@ export default {
                      dataForMsg: {}
               }
        },
-       methods: {
-              setMsg() {
+       computed: {
+              setData() {
                      this.dataForMsg = this.opts[this.hash]
               }
        },
-       computed: {},
+       watch: {},
 
 }

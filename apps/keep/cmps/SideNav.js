@@ -14,11 +14,13 @@ export default {
           </section>
         `,
    components: {},
-   created() { },
+   created() {
+
+   },
    data() {
       return {
          actions: [
-            { icon: 'lightbulb', title: 'Home', link: '/note#home', isSelected: false, },
+            { icon: 'lightbulb', title: 'Home', link: '/note#home', isSelected: true, },
             { icon: 'notifications', title: 'reminder', link: '/note#reminder', isSelected: false, },
             { icon: 'archive', title: 'home', link: '/note#archive', isSelected: false, },
             { icon: 'delete', title: 'Trash', link: '/note#trash', isSelected: false, },
