@@ -6,21 +6,12 @@
     gap: 1rem;
     height: 60px;
     grid-template-columns: 140px minmax(100px, 1.4fr) min-content;
-    grid-template-columns: minmax(140px, 0.5fr) minmax(200px, 1.5fr) minmax(min-content, 0.5fr);
+
+    grid-template-columns: min-content minmax(200px, 1.5fr) minmax(min-content, 0.5fr);
     padding: 0 10px;
     background-color: transparent;
 }
-.app-header {
-    position: relative;
-    display: grid;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    height: 60px;
-    /* grid-template-columns: minmax(140px, 0.6fr) minmax(200px, 1.4fr) 1fr; */
-    padding: 0 10px;
-    background-color: transparent;
-}
+
 .app-header .actions-container {
     grid-auto-flow: column;
     place-content: end;
@@ -56,9 +47,7 @@
 }
 
 .logo .app-name {
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: var(--Mclr6);
+    display: none;
 }
 .logo .app-logo {
     width: 50px;
@@ -110,4 +99,16 @@ body[app="youtube"] .app-header {
 body[app="apps"] .app-header {
     background: var(--Mclr5);
     box-shadow: none;
+}
+
+@media (width> 500px) {
+    .app-header {
+        grid-template-columns: minmax(140px, 0.5fr) minmax(200px, 1.5fr) minmax(min-content, 0.5fr);
+    }
+    .logo .app-name {
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: var(--Mclr6);
+        display: revert;
+    }
 }
