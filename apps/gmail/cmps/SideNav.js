@@ -26,8 +26,8 @@ export default {
 
   <div class="label-container grid">
     <div class="header-container grid">
-      <h3>labels</h3>
-      <i @click="openMOdal('LabelList')" class="material-symbols-outlined">
+      <h3 >Labels</h3>
+      <i @click="openMOdal('LabelList')" class="plus-label material-symbols-outlined">
       add
       </i>
     </div>
@@ -61,11 +61,10 @@ export default {
   methods: {
     updateLabel(actionType) {
       this.actions = this.actions.map(action => {
-        if (action.actionType === actionType) {
-          action.isSelected = true
-        } else {
-          action.isSelected = false
-        }
+        action.actionType === actionType
+          ? action.isSelected = true
+          : action.isSelected = false
+
         return action
       })
 
