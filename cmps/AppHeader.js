@@ -18,7 +18,7 @@ export default {
                     <RouterLink to="/">
                     <span>Home</span><div class="link-logo apps"></div>
                 </RouterLink>
-                <RouterLink to="/gmail">
+                <RouterLink to="/mail?tab=inbox">
                     <span>Gmail</span><div class="link-logo gmail"></div>
                 </RouterLink> 
                 <RouterLink to="/note#home">
