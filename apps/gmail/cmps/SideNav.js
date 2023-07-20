@@ -49,7 +49,7 @@ export default {
   data() {
     return {
       actions: [
-        { iconName: 'inbox', actionType: 'inbox', title: 'Inbox', isSelected: false, count: 0 },
+        { iconName: 'inbox', actionType: 'inbox', title: 'Inbox', isSelected: true, count: 0 },
         { iconName: 'star', actionType: 'starred', title: 'Starred', isSelected: false, count: 0 },
         { iconName: 'schedule', actionType: 'Snoozed', title: 'Snoozed', isSelected: false, count: 0 },
         { iconName: 'send', actionType: 'sent', title: 'Sent', isSelected: false, count: 0 },

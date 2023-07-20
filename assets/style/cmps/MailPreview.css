@@ -1,6 +1,6 @@
 .mail-preview {
     grid-auto-flow: column;
-    grid-template-columns: 5% min-content 1fr;
+    /* grid-template-columns: 5% min-content 1fr; */
     padding: 0.5rem 0.5rem;
     gap: 5px;
     align-items: center;

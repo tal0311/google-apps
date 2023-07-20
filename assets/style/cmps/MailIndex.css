@@ -1,6 +1,6 @@
 .mail-index {
   color: var(--Mclr7);
-  grid-template-columns: 0.6fr 1.4fr 1fr;
+  grid-template-columns: 40px 1.4fr 1fr;
   grid-template-rows: 0.3fr 2.3fr;
   gap: 10px 10px;
   grid-template-areas:
@@ -20,23 +20,26 @@
   grid-area: compose;
   grid-auto-flow: column;
   align-items: center;
-  margin-inline-start: -0.5rem;
+  margin-inline-start: -0.1rem;
   max-width: 140px;
+  width: fit-content;
 }
 
 .compose:hover {
-  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302), 0 4px 8px 3px rgba(60, 64, 67, 0.149);
+  box-shadow:
+    0 1px 3px 0 rgba(60, 64, 67, 0.302),
+    0 4px 8px 3px rgba(60, 64, 67, 0.149);
 }
 .compose p {
-  margin: 0;
-  font-size: 1rem;
-  color: #001d35;
-  min-width: 100px;
-  font-weight: 500;
+  display: none;
 }
 
 .mail-index .material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
   color: var(--Mclr6);
 }
 
@@ -47,4 +50,25 @@
 .mail-index .label .material-symbols-outlined {
   font-variation-settings: "FILL" 1;
   color: var(--Mclr6);
+}
+
+@media (width>500px) {
+  .mail-index {
+    color: var(--Mclr7);
+    grid-template-columns: 0.6fr 1.4fr 1fr;
+    grid-template-rows: 0.3fr 2.3fr;
+    gap: 10px 10px;
+    grid-template-areas:
+      "compose mail-router mail-router"
+      "sideNav mail-router mail-router";
+    height: 90vh;
+  }
+  .compose p {
+    margin: 0;
+    font-size: 1rem;
+    color: #001d35;
+    min-width: 100px;
+    font-weight: 500;
+    display: inline;
+  }
 }

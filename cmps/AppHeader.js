@@ -5,6 +5,7 @@ import { eventBus } from "../services/event-bus.service.js"
 export default {
     template: `
         <header class="app-header">
+            <!-- <i class="material-symbols-outlined">menu</i> -->
             <div class="logo grid" v-if="setLogoByApp" >
                 <div :class="['app-logo', setLogoByApp.logoClass ]"></div>
                 <div class="app-name">{{setLogoByApp.appName}}</div>
