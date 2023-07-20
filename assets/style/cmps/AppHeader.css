@@ -5,7 +5,19 @@
     justify-content: space-between;
     gap: 1rem;
     height: 60px;
-    grid-template-columns: minmax(140px, 0.6fr) minmax(200px, 1.4fr) 1fr;
+    grid-template-columns: 140px minmax(100px, 1.4fr) min-content;
+    grid-template-columns: minmax(140px, 0.5fr) minmax(200px, 1.5fr) minmax(min-content, 0.5fr);
+    padding: 0 10px;
+    background-color: transparent;
+}
+.app-header {
+    position: relative;
+    display: grid;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    height: 60px;
+    /* grid-template-columns: minmax(140px, 0.6fr) minmax(200px, 1.4fr) 1fr; */
     padding: 0 10px;
     background-color: transparent;
 }
