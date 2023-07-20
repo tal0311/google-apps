@@ -21,10 +21,6 @@
     cursor: pointer;
 }
 
-.app-filter .actions-container {
-    place-content: end;
-}
-
 body[app="gmail"] .app-filter form input[type="search"]:focus {
     background: #fff;
     outline: transparent;

@@ -23,6 +23,7 @@
 }
 .app-header .actions-container {
     grid-auto-flow: column;
+    place-content: end;
 }
 
 .app-header nav {
