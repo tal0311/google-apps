@@ -9,8 +9,6 @@ import MailCompose from '../cmps/MailCompose.js'
 import UserMsg from '../../../cmps/UserMsg.js'
 import { userService } from '../../../services/user.service.js'
 import { eventBus } from '../../../services/event-bus.service.js'
-// import CarFilter from '../cmps/CarFilter.js'
-// import CarList from '../cmps/CarList.js'
 
 
 export default {
