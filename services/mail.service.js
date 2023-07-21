@@ -16,6 +16,7 @@ export const mailService = {
     remove,
     save,
     getEmptyMail,
+    updateMany
 }
 window.mailService = mailService
 
@@ -66,6 +67,14 @@ function _setNextPrevMailId(mail) {
                 : mails[cars.length - 1].id
             return mail
         })
+}
+
+async function updateMany(selectedItems, action) {
+    let mails = await storageService.query(MAIL_KEY)
+    if (action === 'remove') {
+        mails = mails.filter(mail => !selectedItems.includes(mail.id))
+        return Promise.resolve(utilService.saveToStorage(MAIL_KEY, mails))
+    }
 }
 
 function remove(mailId) {
