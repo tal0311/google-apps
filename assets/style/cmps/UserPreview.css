@@ -6,3 +6,12 @@
  place-items: center;
  color: var(--Mclr5);
 }
+.user-preview.header {
+ background: var(--Mclr6);
+ height: 30px;
+ width: 30px;
+ border-radius: 50%;
+ place-items: center;
+ color: var(--Mclr5);
+ font-size: 0.7rem;
+}

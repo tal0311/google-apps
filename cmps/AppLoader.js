@@ -2,11 +2,9 @@ export default {
   name: 'NotesLoader',
   props: ['isLoading'],
   template: `
-          <div  class="app-loader">
+          <div  class="app-loader grid">
             <div v-if="isLoading" class="loader"></div>
-            <div v-else>
-              <i class="material-symbols-outlined">cloud_done</i>
-            </div>
+            <i v-else class="material-symbols-outlined">cloud_done</i>
           </div>
                 `,
 }

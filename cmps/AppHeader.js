@@ -1,8 +1,11 @@
 import AppFilter from "./AppFilter.js"
 import AppLoader from "./AppLoader.js"
+import UserPreview from "./UserPreview.js"
 import { eventBus } from "../services/event-bus.service.js"
 
 export default {
+    name: 'AppHeader',
+    props: ['user'],
     template: `
         <header class="app-header">
             <!-- <i class="material-symbols-outlined">menu</i> -->
@@ -14,6 +17,10 @@ export default {
             <div class="actions-container grid">
                 <AppLoader :isLoading="isLoading"/>
                 <i @click="isOpen=!isOpen" class="apps-btn material-symbols-outlined">apps</i>
+                <div className="user-preview-container">
+                    <UserPreview v-if="user" :user="user" is="header"/>
+                    <i v-else class="material-symbols-outlined">account_circle</i>
+                </div>
                 <nav v-if="isOpen" class="grid">
                     <RouterLink to="/">
                     <span>Home</span><div class="link-logo apps"></div>
@@ -78,6 +85,7 @@ export default {
     },
     components: {
         AppFilter,
-        AppLoader
+        AppLoader,
+        UserPreview
     }
 }

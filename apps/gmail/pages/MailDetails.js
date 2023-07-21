@@ -30,7 +30,7 @@ export default {
           <h3>{{mail.subject}}</h3>
         </section>
 
-        <UserPreview :user="mail.from"/>
+        <UserPreview :userFrom="mail.from"/>
         <h4 class="mail-from">{{mail.from}}</h4>
             <section v-if="mail" class="mail-details grid">
               <p>{{mail.body}}</p>
