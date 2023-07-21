@@ -1,0 +1,5 @@
+.mail-actions {
+ grid-auto-flow: column;
+ align-items: center;
+ max-width: 50%;
+}

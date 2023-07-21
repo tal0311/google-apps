@@ -1,10 +1,7 @@
 body[app="keep"] .app-modal {
- /* background: var(--Mlr5); */
  border-radius: var(--Kbr);
 }
 body[app="gmail"] .app-modal {
- /* background: var(--Mlr5); */
- /* border-radius: var(--Kbr); */
 }
 
 .app-modal {

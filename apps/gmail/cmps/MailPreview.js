@@ -1,13 +1,16 @@
 import { utilService } from "./../../../services/util.service.js"
 export default {
   name: 'MailPreview',
-  emits: ['update-mail'],
+  emits: ['update-mail', 'select-mail'],
   props: ['mail'],
   template: `
         <section @click="navigateTo(mail.id)" :class="['mail-preview grid', mail.isRead
         ?'is-read':'']">
+
+        <!-- mail actions goes here -->
+        <!-- <pre>{{isMailSelected}}</pre> -->
          <div className="actions-start grid">
-         <input type="checkbox" name="" id="" /> 
+         <input type="checkbox" name="select-mail" v-model="mail.isSelected" @input="select" @click.stop="" /> 
          <i @click.stop="updateMail('star' ,mail.id)" :class="[ mail.isStared? 'starred':'' ,'star material-symbols-outlined']">
            star
           </i>
@@ -39,6 +42,7 @@ export default {
   created() { },
   data() {
     return {
+      isMailSelected: false,
       actionsEnd: [
         { iconName: 'mail', actionType: 'toggleRead', title: 'Mark read' },
         { iconName: this.mail.removedAt ? 'delete' : 'archive', actionType: 'toggleArchive', title: this.mail.removedAt ? 'Permanently delete' : 'Archive' },
@@ -47,13 +51,14 @@ export default {
     }
   },
   methods: {
+    select() {
+      this.$emit('select-mail', { mailId: this.mail.id, val: this.mail.isSelected })
+    },
     getMailDate(mail) {
       const ts = mail.sentAt ? mail.sentAt : mail.createdAt
       return utilService.getFormattedDate(ts)
     },
-    // mailAction(mailId, actionType) {
-    //   console.info(mailId, actionType);
-    // },
+
     navigateTo(mailId) {
       this.$router.push(`/mail/${mailId}`)
     },
@@ -64,6 +69,15 @@ export default {
   computed: {
 
   },
+  watch: {
+    // 'mail.isSelected': {
+    //   immediate: false,
+    //   handler(val) {
+    //     console.log('val:', val)
+    //     this.$emit('select-mail', { mailId: this.mail.id, val })
+    //   }
+    // }
+  }
 }
 
 // subject,
