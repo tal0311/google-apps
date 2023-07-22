@@ -6,6 +6,7 @@ import MailList from './apps/gmail/cmps/MailList.js'
 import MailDetails from './apps/gmail/pages/MailDetails.js'
 import NoteDetails from './apps/keep/pages/NoteDetails.js'
 import YouTubeIndex from './apps/youtube/pages/YouTubeIndex.js'
+import CanvasEditor from './apps/keep/cmps/CanvasEditor.js'
 
 
 const { createRouter, createWebHashHistory } = VueRouter
@@ -47,13 +48,20 @@ const options = {
             component: KeepIndex,
             name: 'note',
             children: [
+
                 {
                     path: '/note/:id',
                     component: NoteDetails,
                     name: 'note-details',
                 },
+                {
+                    path: '/note/canvas',
+                    component: CanvasEditor,
+                    name: 'note-canvas',
+                },
             ]
         },
+
         {
             path: '/youtube',
             component: YouTubeIndex,

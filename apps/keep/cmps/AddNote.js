@@ -71,6 +71,11 @@ export default {
       },
       setAction(actionType) {
          console.debug('♠️ ~ file: AddNote.js:60 ~ setAction ~ actionType:', actionType)
+         if (actionType === 'NoteCanvas') {
+            this.$router.push('/note/canvas')
+            return
+         }
+
          if (actionType === 'NoteImg' && !this.isOpen) {
             this.$refs.fileRef.click()
          }

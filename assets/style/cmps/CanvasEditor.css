@@ -1,0 +1,31 @@
+.canvas-container {
+ background: red;
+ height: 80%;
+}
+
+.canvas-container canvas {
+ width: 100%;
+ height: 100%;
+ background: var(--Kclr2);
+ /* overflow: hidden; */
+ cursor: crosshair;
+}
+
+.canvas-dialog {
+ width: 65vw;
+ height: 80vh;
+ max-width: 800px;
+ border: none;
+ border-radius: var(--Kbr);
+ grid-template-rows: 40px auto 40px;
+}
+
+.canvas-dialog .app-btn {
+ max-width: min-content;
+ margin-inline-start: auto;
+}
+.canvas-dialog .actions-container {
+ grid-auto-flow: column;
+ place-content: center;
+ gap: 1rem;
+}
