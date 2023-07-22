@@ -2,8 +2,21 @@
  margin-inline: 1rem;
 }
 
+/* note-img & note-video */
 .note-img img,
 .note-video iframe {
  border-top-left-radius: var(--Kbr);
  border-top-right-radius: var(--Kbr);
+}
+
+/* note-todo */
+.note-todo .todo-item {
+ grid-auto-flow: column;
+ gap: 1rem;
+ grid-template-columns: min-content 1fr;
+ place-content: center;
+}
+
+.todo-item p {
+ margin: 0;
 }
