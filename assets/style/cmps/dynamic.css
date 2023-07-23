@@ -1,4 +1,4 @@
-.note-dynamic:is(.note-todo, .note-txt) {
+.note-dynamic:is(.note-todo, .note-txt, .note-mail) {
  margin-inline: 1rem;
 }
 

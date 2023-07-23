@@ -56,12 +56,29 @@ export default {
             immediate: true,
             handler: function (val, oldVal) {
                 this.filterBy.hash = val || '#home'
+                if (val === '#add') {
+                    this.addMailAsNote(this.$route.query)
+                    return
+                }
                 this.loadNots()
             }
         },
     },
 
     methods: {
+        async addMailAsNote(noteInfo) {
+            const note = noteService.getEmptyNote('NoteMail')
+            note.title = noteInfo.subject
+            note.info.content = noteInfo.body
+            await noteService.save({ ...note }).catch(err => {
+                console.error('♠️ ~ file: KeepIndex.js:67 ~ addMailAsNote ~ err:', err)
+                showSuccessMsg(this.defaultErrorMsg)
+            })
+            this.$router.push('/note#home')
+
+            console.debug('♠️ ~ file: KeepIndex.js:67 ~ addMailAsNote ~ noteInfo:', noteInfo)
+
+        },
         setFilter(filter) {
             this.filterBy = filter
             this.loadNots()

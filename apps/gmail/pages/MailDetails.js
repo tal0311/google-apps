@@ -68,7 +68,10 @@ export default {
       }
       if (action === 'addTask') {
         msg = 'Conversation added to Keep app'
-        eventBus.emit('add-task', { ...this.mail })
+        // eventBus.emit('add-task', { ...this.mail })
+        this.$router.push({ path: '/note', hash: '#add', query: { title: this.mail.subject, body: this.mail.body } })
+
+
       }
       if (action === 'moveTo') {
         console.log('moving conversation')

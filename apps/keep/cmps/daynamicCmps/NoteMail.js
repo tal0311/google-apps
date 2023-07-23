@@ -1,8 +1,10 @@
 export default {
        name: 'NoteMail',
-       props: [],
+       props: ['info'],
        template: `
-              <article class="note-dynamic note-mail"></article>
+              <article class="note-dynamic note-mail">
+                     <h3>{{info.content}}</h3>
+              </article>
         `,
        components: {},
        created() { },

@@ -8,6 +8,7 @@ import NoteMap from "../cmps/daynamicCmps/NoteMap.js"
 import NoteTodo from "../cmps/daynamicCmps/NoteTodo.js"
 import NoteTxt from "../cmps/daynamicCmps/NoteTxt.js"
 import NoteVideo from "../cmps/daynamicCmps/NoteVideo.js"
+import NoteMail from "../cmps/daynamicCmps/NoteMail.js"
 import { utilService } from "../../../services/util.service.js"
 import { eventBus, showErrorMsg } from "../../../services/event-bus.service.js"
 
@@ -180,6 +181,7 @@ export default {
         NoteTodo,
         NoteTxt,
         NoteVideo,
+        NoteMail
     }
 
 }

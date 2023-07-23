@@ -7,6 +7,7 @@ import NoteVideo from "./daynamicCmps/NoteVideo.js"
 import NoteAudio from "./daynamicCmps/NoteAudio.js"
 import NoteMap from "./daynamicCmps/NoteMap.js"
 import NoteCanvas from "./daynamicCmps/NoteCanvas.js"
+import NoteMail from "./daynamicCmps/NoteMail.js"
 
 
 
@@ -93,6 +94,7 @@ export default {
               NoteAudio,
               NoteMap,
               NoteCanvas,
+              NoteMail
 
        },
 }
