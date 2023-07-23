@@ -1,18 +1,17 @@
 .canvas-container {
- background: red;
  height: 80%;
 }
 
 .canvas-container canvas {
- width: 100%;
- height: 100%;
+ /* width: 100%;
+ height: 100%; */
  background: var(--Kclr2);
  /* overflow: hidden; */
  cursor: crosshair;
 }
 
 .canvas-dialog {
- width: 65vw;
+ width: fit-content;
  height: 80vh;
  max-width: 800px;
  border: none;

@@ -44,6 +44,7 @@ function remove(noteId) {
 }
 
 function save(note) {
+    debugger
     if (note.id) {
         return storageService.put(NOTE_KEY, note)
     } else {
@@ -51,7 +52,7 @@ function save(note) {
     }
 }
 
-function getEmptyNote(type, title, isPinned = false, style = { backgroundColor: '#00d' }) {
+function getEmptyNote(type, title, isPinned = false, style = { backgroundColor: '#fff' }) {
     return {
 
         createdAt: Date.now(),
