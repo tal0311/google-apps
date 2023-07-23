@@ -134,6 +134,11 @@ export default {
             if (actionType === 'archive') {
                 this.updateNoteByKey(noteId, 'archivedAt', Date.now())
             }
+            if (actionType === 'share') {
+                noteService.get(noteId).then(note => {
+                    this.$router.push(`/mail?tab=inbox&compose=new&subject=${note.title}&body=${note.info.content}`)
+                })
+            }
 
 
         },

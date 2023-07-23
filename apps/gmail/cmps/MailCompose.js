@@ -107,7 +107,7 @@ export default {
                         deep: true,
                         immediate: true,
                         handler: function (val, oldVal) {
-                                const { compose } = val.query
+                                const { compose, subject, body } = val.query
                                 if (compose === 'new') {
                                         this.mail = mailService.getEmptyMail()
                                 }
@@ -115,6 +115,10 @@ export default {
                                         this.mail = mailService.get(compose).then(mail => {
                                                 this.mail = mail
                                         })
+                                }
+                                if (subject && body) {
+                                        this.mail.subject = subject
+                                        this.mail.body = body
                                 }
                         }
                 },
