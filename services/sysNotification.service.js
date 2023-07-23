@@ -36,7 +36,7 @@ function getIcon(appName) {
  const iconsUrls = {
   apps: {
    url: '',
-   title: 'Google-Apps',
+   title: 'Google Apps',
    bgc: 'var(--Mclr5)'
   },
   keep: {
