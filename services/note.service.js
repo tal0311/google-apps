@@ -51,7 +51,7 @@ function save(note) {
     }
 }
 
-function getEmptyNote(type, title, isPinned = false, style = { backgroundColor: '#00d' }) {
+function getEmptyNote(type, title, isPinned = false, style = { backgroundColor: '#fff' }) {
     return {
 
         createdAt: Date.now(),
