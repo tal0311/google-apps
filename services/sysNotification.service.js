@@ -40,12 +40,12 @@ function getIcon(appName) {
    bgc: 'var(--Mclr5)'
   },
   gmail: {
-   url: 'https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico',
+   url: '/assets/img/gmail.ico',
    title: 'Gmail',
    bgc: 'var(--Mclr1)'
   },
   youtube: {
-   url: 'https://www.youtube.com/s/desktop/afaf5292/img/favicon.ico',
+   url: '/assets/img/yt.ico',
    title: 'YouTube',
    bgc: 'var(--Mclr5)'
   }
