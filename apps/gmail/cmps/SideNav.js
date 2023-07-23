@@ -15,10 +15,10 @@ export default {
         {{action.iconName}}
       </i>
 
-      <span>
+      <span class="title">
         {{action.title}}
       </span>
-      <span v-if="getType(action.actionType)">
+      <span class="counter" v-if="getType(action.actionType)">
         {{action.count}}
       </span>
     </div>
