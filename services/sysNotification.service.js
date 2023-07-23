@@ -7,9 +7,14 @@ export const notificationService = {
 async function notifyUser(txt = 'Reminder', appName = 'apps') {
  if (!("Notification" in window)) {
   alert("This browser does not support desktop notification");
- } else if (Notification.permission === "granted") {
-  const notification = new Notification(txt);
- } else if (Notification.permission !== "denied") {
+  return
+
+ }
+ if (Notification.permission === "denied") {
+  alert("Notification permission denied");
+  return
+ }
+ if (Notification.permission !== "denied" || Notification.permission === "granted") {
   const permission = await Notification.requestPermission()
   if (permission === "granted") {
    const app = getIcon(appName)
@@ -31,7 +36,7 @@ function getIcon(appName) {
  const iconsUrls = {
   apps: {
    url: '',
-   title: 'Google-Apps',
+   title: 'Google Apps',
    bgc: 'var(--Mclr5)'
   },
   keep: {
