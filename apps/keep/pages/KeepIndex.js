@@ -6,6 +6,7 @@ import { utilService } from '../../../services/util.service.js'
 import { showSuccessMsg, showErrorMsg, eventBus } from '../../../services/event-bus.service.js'
 import AddNote from '../cmps/AddNote.js'
 import NotesLoader from '../../../cmps/AppLoader.js'
+import { notificationService } from '../../../services/sysNotification.service.js'
 
 
 
@@ -56,7 +57,6 @@ export default {
             handler: function (val, oldVal) {
                 this.filterBy.hash = val || '#home'
                 this.loadNots()
-
             }
         },
     },
@@ -175,8 +175,9 @@ export default {
                 if (Date.now() > new Date(note.reminder)) {
                     note.reminder = null
                     noteService.save(note).then(() => {
+                        notificationService.notifyUser(`Reminder: ${note.title}`, 'keep')
                         this.$router.push(`/note/${note.id}`)
-                        showSuccessMsg('Reminder!')
+
                     })
                 }
             })
