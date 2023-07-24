@@ -82,9 +82,6 @@ export default {
                         })
                 }
         },
-        computed: {
-
-        },
         watch: {
                 $route: {
                         deep: true,

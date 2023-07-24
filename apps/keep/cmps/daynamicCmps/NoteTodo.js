@@ -13,10 +13,6 @@ export default {
          </ul>
          </article>
         `,
-  components: {},
-  created() {
-
-  },
   data() {
     return {
       newInfo: { ...this.info }
@@ -39,8 +35,5 @@ export default {
       const infoToUpdate = JSON.parse(JSON.stringify(this.newInfo))
       this.$emit('updateInfo', { type: 'NoteTxt', info: infoToUpdate })
     }
-  },
-  computed: {
-
   },
 }

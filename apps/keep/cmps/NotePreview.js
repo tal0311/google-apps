@@ -30,8 +30,6 @@ export default {
         </section>
 
         `,
-       created() {
-       },
        data() {
               return {
                      isPaletteOpen: false,

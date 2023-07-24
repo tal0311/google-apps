@@ -38,9 +38,6 @@ export default {
             loggedUser: null
         }
     },
-    computed: {
-
-    },
     created() {
         this.loadUser()
         utilService.setAppConfig('gmail')

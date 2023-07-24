@@ -8,11 +8,4 @@ export default {
               </iframe>
        </article>
         `,
-       components: {},
-       created() { },
-       data() {
-              return {}
-       },
-       methods: {},
-       computed: {},
 }

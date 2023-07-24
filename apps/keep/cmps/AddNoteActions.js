@@ -11,10 +11,6 @@ export default {
        </div>
  </section>
         `,
-       components: {},
-       created() {
-
-       },
        data() {
               return {
                      actions: [

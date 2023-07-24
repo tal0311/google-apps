@@ -7,11 +7,6 @@ export default {
            <p :contenteditable="$attrs.isDetails" @blur="updateNote">{{info.content}}</p>
          </article>
         `,
-  components: {},
-  created() { },
-  data() {
-    return {}
-  },
   methods: {
     updateNote({ target: { innerText } }) {
       ;
@@ -21,5 +16,4 @@ export default {
       this.$emit('updateInfo', { type: 'NoteTxt', info: infoToUpdate })
     }
   },
-  computed: {},
 }

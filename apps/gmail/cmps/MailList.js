@@ -119,67 +119,55 @@ export default {
 
     },
     async updateMail({ action, mailId }) {
+      console.debug('♠️ ~ file: MailList.js:122 ~ updateMail ~ action, mailId:', action, mailId)
 
       let mail = this.mails.find(m => m.id === mailId)
-      // console.debug('♠️ ~ file: MailList.js:77 ~ updateMail ~ mail:', mail)
+
       let msg = ''
       if (action === 'star') {
         mail.isStared = !mail.isStared
         msg = mail.isStared ? 'Mail was awarded a star' : 'Mail was un starred'
       }
-
       if (action === 'toggleArchive') {
         if (mail.removedAt) {
           this.removeMail(mailId)
-          // return Promise.resolve()
+          return
         }
         mail.removedAt = Date.now()
         msg = 'Conversation was moved to archive'
-
       }
-
       if (action === 'schedule') {
-        console.log('action:', action)
         mail.snoozedAt = mail.snoozedAt ? null : Date.now()
         msg = 'Conversation was scheduled a reminder'
       }
-
-
       if (mail.isSelected) {
         delete mail.isSelected
       }
+
       try {
         await mailService.save({ ...mail })
         showSuccessMsg(msg)
-
         if (!msg) return
       } catch (error) {
         showSuccessMsg(this.defaultErrorMsg)
-      }
-      finally {
+      } finally {
         this.loadMails()
-
       }
 
 
     },
     async removeMail(mailId) {
       try {
-        mailService.remove(mailId)
+        await mailService.remove(mailId)
         showSuccessMsg('conversation was permanently deleted')
-
       } catch (error) {
-        console.debug('♠️ ~ file: MailList.js:172 ~ removeMail ~ error:', error)
+        console.debug('♠️ ~ file: MailList.js:167 ~ removeMail ~ error:', error)
         showSuccessMsg(this.defaultErrorMsg)
-      }
-      finally {
+      } finally {
         this.loadMails()
 
       }
     }
-  },
-  computed: {
-
   },
   watch: {
     '$route.query': {

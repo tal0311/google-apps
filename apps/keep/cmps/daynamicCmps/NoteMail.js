@@ -6,11 +6,4 @@ export default {
                      <h3>{{info.content}}</h3>
               </article>
         `,
-       components: {},
-       created() { },
-       data() {
-              return {}
-       },
-       methods: {},
-       computed: {},
 }

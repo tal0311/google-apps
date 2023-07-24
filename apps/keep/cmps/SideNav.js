@@ -1,6 +1,5 @@
 export default {
    name: '',
-   props: [],
    template: `
           <section className="k-side-nav">
              <div class="actions-list ">
@@ -47,5 +46,4 @@ export default {
          this.$router.push(link)
       }
    },
-   computed: {},
 }
