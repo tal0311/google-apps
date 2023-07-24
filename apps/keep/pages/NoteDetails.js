@@ -60,32 +60,29 @@ export default {
         getTime(ts) {
             return utilService.getFormattedTime(ts)
         },
-        loadNote() {
+        async loadNote() {
             const noteId = this.$route.params.id
-            noteService.get(noteId)
-                .then(note => this.note = note)
-                .catch(err => {
-                    console.error('♠️ ~ file: NoteDetails.js:67 ~ loadNote ~ err:', err)
-                    showErrorMsg(this.defaultErrorMsg)
-                })
-        },
-        updateNoteInfo({ info }) {
-            noteService.get(this.note.id).then(note => {
-                note.info = info
-                noteService.save(note).then((note) => {
-                    this.loadNote()
-                }).catch(err => {
-                    console.error('♠️ ~ file: NoteDetails.js:77 ~ updateNoteInfo noteService.save ~ err:', err)
-                    showErrorMsg(this.defaultErrorMsg)
-                })
-            }).catch(err => {
-                console.error('♠️ ~ file: NoteDetails.js:81 ~ updateNoteInfo noteService.get ~ err:', err)
+            const note = await noteService.get(noteId).catch(err => {
+                console.debug('♠️ ~ file: NoteDetails.js:66 ~ note ~ err:', err)
                 showErrorMsg(this.defaultErrorMsg)
             })
+            this.note = note
 
         },
+        async updateNoteInfo({ info }) {
+            const note = await noteService.get(this.note.id).catch(err => {
+                console.debug('♠️ ~ file: NoteDetails.js:74 ~ note ~ err:', err)
+                showErrorMsg(this.defaultErrorMsg)
+            })
+            note.info = info
+            await noteService.save(note).catch(err => {
+                console.debug('♠️ ~ file: NoteDetails.js:79 ~ await noteService.save ~ err:', err)
+                showErrorMsg(this.defaultErrorMsg)
+            })
+            this.loadNote()
+        },
 
-        noteAction(actionType, payload = null) {
+        async noteAction(actionType, payload = null) {
             console.debug('♠️ ~ file: NoteDetails.js:88 ~ noteAction ~ actionType, payload :', actionType, payload)
 
             if (actionType === 'update-title') {
@@ -123,29 +120,32 @@ export default {
             }
 
             if (actionType === 'duplicate') {
-                noteService.get(this.note.id).then(note => {
-                    delete note.id
-                    noteService.save(note).then(() => {
-                        this.closeModal()
-                        this.$router.push('/note#home')
-                    }).catch(err => {
-                        console.error('♠️ ~ file: NoteDetails.js:132 ~ noteAction noteService.save ~ err:', err)
-                        showErrorMsg(this.defaultErrorMsg)
-                    })
-                }).catch(err => {
+                const note = await noteService.get(this.note.id).catch(err => {
+                    console.error('♠️ ~ file: NoteDetails.js:132 ~ noteAction noteService.save ~ err:', err)
+                    showErrorMsg(this.defaultErrorMsg)
+                })
+                delete note.id
+                await noteService.save(note).catch(err => {
                     console.debug('♠️ ~ file: NoteDetails.js:136 ~ noteAction noteService.get ~ err:', err)
                     showErrorMsg(this.defaultErrorMsg)
                 })
+                this.closeModal()
+                this.$router.push('/note#home')
+
+
             }
 
         },
-        updateNote(key, payload) {
-            noteService.get(this.note.id).then(note => {
-                note[key] = payload
-                noteService.save(note).then((note) => {
-                    this.loadNote()
-                })
+        async updateNote(key, payload) {
+            const note = await noteService.get(this.note.id)
+            note[key] = payload
+            await noteService.save(note).catch(err => {
+                console.debug('♠️ ~ file: NoteDetails.js:143 ~ await noteService.save ~ err:', err)
+                showErrorMsg(this.defaultErrorMsg)
             })
+            this.loadNote()
+
+
         },
         openModal() {
             this.$refs['details-modal'].showModal()

@@ -26,8 +26,6 @@ export default {
     this.openCanvasDialog()
     this.elCanvas = this.$refs.elCanvas;
     this.ctx = this.elCanvas.getContext("2d");
-    // document.querySelector('canvas').addEventListener('mousemove', this.draw)
-
   },
   data() {
     return {

@@ -24,8 +24,7 @@ export default {
                 <input type="text" placeholder="To" name="to" v-model="mail.to"/>
                 <input type="text" placeholder="Subject" name="subject" v-model="mail.subject" />
                 <textarea name="" v-model="mail.body" @input="saveToDraft" @blur="isDirty=false" id="" cols="30" rows="10"></textarea>
-           <!-- <div ref="quill" id="quill-container"></div> -->
-            </form>
+           </form>
             <footer>
                 <div class="compose-actions">
                         <button class="send-btn" @click="composeAction('send')">send</button>
@@ -34,7 +33,6 @@ export default {
   
          </section>
         `,
-        components: {},
         created() {
                 this.saveToDraft = utilService.debounce(this.saveToDraft, 3000)
         },
@@ -46,22 +44,7 @@ export default {
                         title: 'New Message'
                 }
         },
-        mounted() {
 
-                // new Quill('#quill-container', {
-                //         modules: {
-                //                 toolbar: [
-                //                         [{ header: [1, 2, false] }],
-                //                         ['bold', 'italic', 'underline'],
-                //                         ['image', 'code-block'],
-                //                 ],
-                //         },
-                //         placeholder: 'Compose an epic...',
-                //         theme: 'snow', // or 'bubble'
-                // })
-                // const editor = document.querySelector('.ql-editor')
-                // editor.innerText = this.mail.body
-        },
         methods: {
                 composeAction(actionTYpe) {
                         if (actionTYpe === 'minimize') {
@@ -91,7 +74,6 @@ export default {
                         }, 3000)
                 },
                 saveToDraft() {
-                        // this.isDirty = true
                         mailService.save({ ...this.mail }).then(mail => {
                                 this.title = 'Saved Draft'
                                 this.setTitle()
