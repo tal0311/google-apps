@@ -17,7 +17,7 @@ async function notifyUser(txt = 'Reminder', appName = 'apps') {
  if (Notification.permission !== "denied" || Notification.permission === "granted") {
   const permission = await Notification.requestPermission()
   if (permission === "granted") {
-   const app = getIcon(appName)
+   const app = getAppProps(appName)
    const title = app.title
    const options = {
     body: txt,
@@ -27,12 +27,12 @@ async function notifyUser(txt = 'Reminder', appName = 'apps') {
 
    setTimeout(() => {
     notification.close()
-   }, 3000)
+   }, 8000)
   }
  }
 }
 
-function getIcon(appName) {
+function getAppProps(appName) {
  const iconsUrls = {
   apps: {
    url: '',

@@ -1,5 +1,6 @@
 import { mailService } from "../../../services/mail.service.js"
 import { utilService } from "../../../services/util.service.js"
+import { notificationService } from "../../../services/sysNotification.service.js"
 
 export default {
         name: 'MailCompose',
@@ -101,6 +102,7 @@ export default {
                                 if (subject && body) {
                                         this.mail.subject = subject
                                         this.mail.body = body
+                                        notificationService.notifyUser(`Note with title ${subject} was added as mail`, 'gmail')
                                 }
                         }
                 },
