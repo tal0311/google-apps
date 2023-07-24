@@ -6,11 +6,4 @@ export default {
            <img :src="info.content" alt="note-url" />
         </article>
         `,
-  components: {},
-  created() { },
-  data() {
-    return {}
-  },
-  methods: {},
-  computed: {},
 }

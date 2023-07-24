@@ -38,8 +38,6 @@ export default {
          </div>
         </section>
         `,
-  components: {},
-  created() { },
   data() {
     return {
       isMailSelected: false,
@@ -66,24 +64,7 @@ export default {
       this.$emit('update-mail', { action, mailId })
     }
   },
-  computed: {
 
-  },
-  watch: {
-    // 'mail.isSelected': {
-    //   immediate: false,
-    //   handler(val) {
-    //     console.log('val:', val)
-    //     this.$emit('select-mail', { mailId: this.mail.id, val })
-    //   }
-    // }
-  }
 }
 
-// subject,
-//  body,
-//  isRead: false,
-//   sentAt: Date.now(),
-//    removedAt: null,
-//     from,
-//     to
+

@@ -20,8 +20,6 @@ export default {
             <pre>{{isDrawing}}</pre>
      </dialog>
         `,
-  components: {},
-  created() { },
   mounted() {
     this.openCanvasDialog()
     this.elCanvas = this.$refs.elCanvas;
@@ -65,11 +63,8 @@ export default {
         y: ev.offsetY - ev.target.clientTop,
       }
       if (this.TOUCH_EVS.includes(ev.type)) {
-        // Prevent triggering the mouse ev
         ev.preventDefault()
-        // Gets the first touch point
         ev = ev.changedTouches[0]
-        // Calc the right pos according to the touch screen
         pos = {
           x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
           y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,

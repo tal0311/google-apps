@@ -15,8 +15,6 @@ export default {
       </section>
         </section>
         `,
-      components: {},
-      created() { },
       data() {
             return {
                   colors: [

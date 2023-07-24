@@ -41,6 +41,7 @@ export default {
       this.mail = mail
     },
     async updateMail(action) {
+      console.debug('♠️ ~ file: MailDetails.js:44 ~ updateMail ~ action:', action)
       let msg = ''
       if (action === 'toggleArchive') {
         msg = 'Conversation archived'
@@ -64,10 +65,7 @@ export default {
       }
       if (action === 'addTask') {
         msg = 'Conversation added to Keep app'
-        // eventBus.emit('add-task', { ...this.mail })
         this.$router.push({ path: '/note', hash: '#add', query: { title: this.mail.subject, body: this.mail.body } })
-
-
       }
       if (action === 'moveTo') {
         console.log('moving conversation')

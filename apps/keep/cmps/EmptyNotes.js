@@ -34,6 +34,5 @@ export default {
                      this.dataForMsg = this.opts[this.hash]
               }
        },
-       watch: {},
 
 }

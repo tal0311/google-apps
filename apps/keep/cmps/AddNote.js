@@ -111,7 +111,6 @@ export default {
          this.isOpen = false
       }
    },
-   computed: {},
    components: {
       AddNoteActions,
       ColorList
