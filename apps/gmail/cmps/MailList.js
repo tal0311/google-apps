@@ -62,16 +62,15 @@ export default {
       } else {
         this.selectedMails = []
       }
-      console.log('this.selectedMails:', this.selectedMails)
+
     },
-    loadMails() {
+    async loadMails() {
       eventBus.emit('loading', true)
-      mailService.query({ ...this.filterBy }).then(mails => {
-        // debugger
-        this.setAppTitle(mails)
-        this.mails = mails
-        eventBus.emit('loading', false)
-      })
+      const mails = await mailService.query({ ...this.filterBy })
+      this.setAppTitle(mails)
+      this.mails = mails
+      eventBus.emit('loading', false)
+
     },
     setFilter(filterBy) {
       this.filterBy = { ...this.filterBy, ...filterBy }
@@ -111,7 +110,6 @@ export default {
       eventBus.emit('get-count', { count: draftCount, tab: 'draft' })
     },
     async selectedMailsUpdate(action) {
-      console.log('this.selectedMails:', this.selectedMails)
       await mailService.updateMany([...this.selectedMails], action).catch(() => showSuccessMsg(defaultErrorMsg))
 
       showSuccessMsg('Action completed')
@@ -120,7 +118,7 @@ export default {
       this.loadMails()
 
     },
-    updateMail({ action, mailId }) {
+    async updateMail({ action, mailId }) {
 
       let mail = this.mails.find(m => m.id === mailId)
       // console.debug('♠️ ~ file: MailList.js:77 ~ updateMail ~ mail:', mail)
@@ -150,22 +148,34 @@ export default {
       if (mail.isSelected) {
         delete mail.isSelected
       }
-      return mailService.save({ ...mail }).then(() => {
-        if (!msg) return
+      try {
+        await mailService.save({ ...mail })
         showSuccessMsg(msg)
-      }).catch(() => showSuccessMsg('we are having problem completing your request'))
-        .finally(() => {
-          this.loadMails()
-        })
+
+        if (!msg) return
+      } catch (error) {
+        showSuccessMsg(this.defaultErrorMsg)
+      }
+      finally {
+        this.loadMails()
+
+      }
+
 
     },
-    removeMail(mailId) {
-      mailService.remove(mailId).then(() => {
+    async removeMail(mailId) {
+      try {
+        mailService.remove(mailId)
         showSuccessMsg('conversation was permanently deleted')
-      }).catch(() => showSuccessMsg('we are having problem completing your request'))
-        .finally(() => {
-          this.loadMails()
-        })
+
+      } catch (error) {
+        console.debug('♠️ ~ file: MailList.js:172 ~ removeMail ~ error:', error)
+        showSuccessMsg(this.defaultErrorMsg)
+      }
+      finally {
+        this.loadMails()
+
+      }
     }
   },
   computed: {

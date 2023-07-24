@@ -31,20 +31,16 @@ export default {
     this.loadMail()
   },
   methods: {
-    loadMail() {
+    async loadMail() {
       const { id } = this.$route.params
-      mailService
-        .get(id)
-        .then(mail => {
-          mail.isRead = true
-          this.mail = mail
-        })
-        .catch(err => {
-          alert('Cannot find mail')
-          this.$router.push('/mail')
-        })
+      const mail = await mailService.get(id).catch(err => {
+        alert('Cannot find mail')
+        this.$router.push('/mail')
+      })
+      mail.isRead = true
+      this.mail = mail
     },
-    updateMail(action) {
+    async updateMail(action) {
       let msg = ''
       if (action === 'toggleArchive') {
         msg = 'Conversation archived'
@@ -83,20 +79,18 @@ export default {
         this.mail.label = label
       }
 
-      mailService.save({ ...this.mail })
-        .then((updatedMail) => {
-          if (!msg) return
-          showSuccessMsg(msg)
-        }).catch(err => {
-          console.debug('♠️ ~ file: MailDetails.js:86 ~ .then ~ err:', err)
-          showSuccessMsg('We are sorry, could not save mail')
-        })
-    },
-    back() {
-      mailService.save({ ...this.mail }).then(() => {
-        this.$router.go(-1)
+      await mailService.save({ ...this.mail }).catch(err => {
+        console.debug('♠️ ~ file: MailDetails.js:87 ~ await mailService.save ~ err:', err)
+        showSuccessMsg('We are sorry, could not save mail')
       })
 
+      if (!msg) return
+      showSuccessMsg(msg)
+
+    },
+    async back() {
+      await mailService.save({ ...this.mail })
+      this.$router.go(-1)
     }
   },
   components: {
