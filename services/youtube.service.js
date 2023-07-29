@@ -11,7 +11,6 @@ export const YoutubeService = {
 window.YoutubeService = YoutubeService
 
 async function query(searchTerm) {
-    debugger
     const cache = utilService.loadFromStorage(YT_KEY) || {}
 
     if (cache[searchTerm]) return cache[searchTerm]
