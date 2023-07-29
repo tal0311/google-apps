@@ -1,0 +1,15 @@
+.speech-controllers {
+ position: fixed;
+ bottom: 2rem;
+ left: 50%;
+ transform: translateX(-50%);
+ background: #fff;
+ padding: 0.5rem 0.5rem;
+ box-shadow: 0 0 14px 4px lightgray;
+ border-radius: var(--Mbr);
+}
+
+.speech-controllers .actions-container {
+ grid-auto-flow: column;
+ gap: 1rem;
+}

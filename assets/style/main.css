@@ -20,6 +20,7 @@
 @import "cmps/AppModal.css";
 @import "cmps/LabelList.css";
 @import "cmps/ReminderModal.css";
+@import "cmps/SpeechControllers.css";
 
 @import "cmps/MailIndex.css";
 @import "cmps/MailCompose.css";

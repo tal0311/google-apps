@@ -2,6 +2,7 @@ import { mailService } from "../../../services/mail.service.js"
 import UserPreview from "../../../cmps/UserPreview.js"
 import MailActions from "../cmps/MailActions.js"
 import { eventBus, showSuccessMsg } from '../../../services/event-bus.service.js'
+import { speechService } from "../../../services/textToSpeech.service.js"
 
 export default {
   template: `
@@ -75,6 +76,17 @@ export default {
         const label = prompt('Add label to conversation')
         msg = 'Conversation added label'
         this.mail.label = label
+      }
+      if (action === 'speech') {
+        console.log('this.mail:', this.mail)
+        console.log('speechService:', speechService)
+
+        speechService.speak(this.mail.subject)
+        const confirmation = confirm('Do you like me to read the mail body as well?')
+        if (confirmation) {
+          speechService.speak(this.mail.body)
+        }
+        return
       }
 
       await mailService.save({ ...this.mail }).catch(err => {

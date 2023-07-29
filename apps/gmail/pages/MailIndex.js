@@ -7,6 +7,7 @@ import { utilService } from '../../../services/util.service.js'
 import SideNav from '../cmps/SideNav.js'
 import MailCompose from '../cmps/MailCompose.js'
 import UserMsg from '../../../cmps/UserMsg.js'
+import SpeechControllers from '../../../cmps/SpeechControllers.js'
 import { userService } from '../../../services/user.service.js'
 import { eventBus } from '../../../services/event-bus.service.js'
 
@@ -26,24 +27,29 @@ export default {
            </section>
           <MailCompose v-if="isOpen"/>
           <UserMsg/>
-          
+          <SpeechControllers v-if="isSpeechOn" />
+                        
         </section>
         
     `,
     data() {
         return {
-
             filterBy: null,
             isOpen: false,
-            loggedUser: null
+            loggedUser: null,
+            isSpeechOn: false
         }
     },
     created() {
         this.loadUser()
         utilService.setAppConfig('gmail')
         eventBus.on('update-user', this.loadUser)
+        eventBus.on('speech', this.setSpeechStatus)
     },
     methods: {
+        setSpeechStatus(val) {
+            this.isSpeechOn = val
+        },
         setCompose() {
             console.log(this.$route);
             this.$router.push(`/mail?tab=${this.$route.query.tab}&compose=new`)
@@ -65,6 +71,7 @@ export default {
     components: {
         SideNav,
         MailCompose,
-        UserMsg
+        UserMsg,
+        SpeechControllers
     }
 }

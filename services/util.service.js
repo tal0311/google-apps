@@ -125,6 +125,8 @@ const debounce = (func, wait) => {
     }
 }
 
+
+
 export const utilService = {
     makeId,
     makeLorem,
@@ -137,5 +139,6 @@ export const utilService = {
     setAppConfig,
     getFormattedDate,
     debounce,
-    getFormattedTime
+    getFormattedTime,
+
 }

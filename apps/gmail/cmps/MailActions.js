@@ -35,6 +35,8 @@ export default {
       actions3: [
         { iconName: 'drive_file_move', actionType: 'moveTo', title: 'Move to' },
         { iconName: 'label', actionType: 'addLabel', title: 'Label' },
+        { iconName: 'speech_to_text', actionType: 'speech', title: 'Text speech to' },
+
         { iconName: 'more_vert', actionType: 'more', title: 'More' }
       ]
     }
