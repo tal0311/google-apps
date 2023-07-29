@@ -2,7 +2,7 @@ import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
 const YT_KEY = 'youtube_db'
-const YT_API_KEY = 'AIzaSyBlraKlFpF_bqQQopUoLpyPuy2Bv57kgyo'
+const YT_API_KEY = 'AIzaSyCQ3VQLxhDknZgctC7gsaB2tpWsMuYSN8A'
 
 export const YoutubeService = {
     query,
@@ -11,6 +11,7 @@ export const YoutubeService = {
 window.YoutubeService = YoutubeService
 
 async function query(searchTerm) {
+
     const cache = utilService.loadFromStorage(YT_KEY) || {}
 
     if (cache[searchTerm]) return cache[searchTerm]
@@ -19,8 +20,6 @@ async function query(searchTerm) {
     const WIKI_URL = `https://en.wikipedia.org/w/api.php?&origin=*&action=query&list=search&srsearch=${searchTerm}&format=json`
 
     const res = await axios.all([axios.get(YT_URL), axios.get(WIKI_URL)])
-    console.debug('♠️ ~ file: youtube.service.js:23 ~ query ~ res:', res)
-
     const [res1, res2] = res
 
     const videosData = _prepVideosData(res1.data)
