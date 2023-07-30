@@ -10,11 +10,7 @@
 .mail-compose {
  border-top-left-radius: var(--Mbr);
  border-top-right-radius: var(--Mbr);
-
  padding-bottom: 0.5rem;
- /* border-radius: var(--Mbr); */
-
- /* grid-template-columns: 0.2rem 1fr 0.2rem; */
  grid-template-rows: 2rem 1fr 2rem;
  align-items: center;
  background: var(--Mclr5);
@@ -29,7 +25,8 @@
 }
 .mail-compose.small {
  height: 60%;
- width: 50%;
+ width: 90%;
+ max-width: 600px;
 }
 .mail-compose.collapsed {
  height: 40px;
@@ -45,7 +42,11 @@
 }
 
 .mail-compose .material-symbols-outlined {
- font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+ font-variation-settings:
+  "FILL" 0,
+  "wght" 400,
+  "GRAD" 0,
+  "opsz" 24;
  color: var(--Mclr6);
  font-size: 1em;
 }
