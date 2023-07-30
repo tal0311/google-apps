@@ -87,7 +87,7 @@ export default {
                         deep: true,
                         immediate: true,
                         handler: function (val, oldVal) {
-                                const { compose, subject, body } = val.query
+                                let { compose, subject, body } = val.query
                                 if (compose === 'new') {
                                         this.mail = mailService.getEmptyMail()
                                 }
@@ -97,6 +97,8 @@ export default {
                                         })
                                 }
                                 if (subject && body) {
+                                        if (subject === 'undefined') subject = '(No subject)'
+                                        if (body === 'undefined') body = '(No body)'
                                         this.mail.subject = subject
                                         this.mail.body = body
                                         notificationService.notifyUser(`Note with title ${subject} was added as mail`, 'gmail')
