@@ -13,8 +13,10 @@ export default {
           <section class="list-container">
             <section class="list-actions">
              <MailActions @mail-action="selectedMailsUpdate" v-if="isSelected ||selectedMails.length "/>
-             <input type="checkbox" name="select-all" v-model="isSelected" id="" />
-            <button>unread</button>
+             <div class="header-actions grid">
+               <input type="checkbox" name="select-all" v-model="isSelected" id="" />
+               <button @click="filterUnread">unread</button>
+              </div>
            </section>
             <section v-if="mails" class="mail-list grid">
               
@@ -40,7 +42,6 @@ export default {
   },
   methods: {
     selectMail({ mailId }) {
-      console.log('mailId:', mailId)
       const mail = this.mails.find(m => m.id === mailId)
       if (this.selectedMails.includes(mailId)) {
         this.selectedMails.splice(this.selectedMails.indexOf(mail.id), 1)
@@ -71,6 +72,9 @@ export default {
       this.mails = mails
       eventBus.emit('loading', false)
 
+    },
+    filterUnread() {
+      console.log('filter unread')
     },
     setFilter(filterBy) {
       this.filterBy = { ...this.filterBy, ...filterBy }
