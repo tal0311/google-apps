@@ -26,6 +26,7 @@ export default {
                             { icon: 'content_copy', title: 'Duplicate', actionType: 'duplicate', visibleStatus: ['3'] },
                             { icon: 'add_alert', title: 'Add Alert', actionType: 'alert', visibleStatus: ['1', '3'] },
                             { icon: 'send', title: 'Send via mail', actionType: 'share', visibleStatus: ['3'] },
+                            { icon: 'speech_to_text', actionType: 'speech', title: 'Text speech to', visibleStatus: ['1', '3'] },
                      ]
               }
        },
