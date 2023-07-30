@@ -9,7 +9,7 @@ import { noteService } from './../../../services/note.service.js'
 import { utilService } from '../../../services/util.service.js'
 import { showSuccessMsg, showErrorMsg, eventBus } from '../../../services/event-bus.service.js'
 import { notificationService } from '../../../services/sysNotification.service.js'
-import { speechToTxtService } from './../../../services/speechToText.js'
+
 
 
 
