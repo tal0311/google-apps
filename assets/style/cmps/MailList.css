@@ -9,9 +9,15 @@
  max-height: 90%;
  scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
 }
-
 .list-container .mail-actions {
  padding: 0.5rem;
+ max-width: 100%;
+}
+
+.list-container .list-actions .header-actions {
+ grid-auto-flow: column;
+ justify-content: start;
+ margin-inline-start: 0.5rem;
 }
 
 .mail-list::-webkit-scrollbar {
@@ -20,4 +26,11 @@
 }
 .mail-list::-webkit-scrollbar-thumb {
  background: var(--sb-thumb-color);
+}
+
+@media (width>500px) {
+ .list-container .mail-actions {
+  padding: 0.5rem;
+  max-width: 50%;
+ }
 }
