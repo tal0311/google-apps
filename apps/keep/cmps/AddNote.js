@@ -1,6 +1,8 @@
 import { noteService } from "../../../services/note.service.js"
 import AddNoteActions from "./AddNoteActions.js"
 import ColorList from "./ColorList.js"
+import { speechToTxtService } from "../../../services/speechToText.js"
+import { eventBus } from "../../../services/event-bus.service.js"
 
 export default {
    name: 'AddNote',
@@ -38,6 +40,7 @@ export default {
         `,
    created() {
       this.note = noteService.getEmptyNote('NoteTxt')
+      eventBus.on('record-results', this.setTranscript)
 
    },
    data() {
@@ -52,6 +55,13 @@ export default {
       }
    },
    methods: {
+      setTranscript(transcript) {
+         this.content = transcript
+
+      },
+      startRecording() {
+         speechToTxtService.start()
+      },
       previewImg(ev) {
          const file = ev.type === 'change' ?
             ev.target.files[0] :
@@ -83,6 +93,13 @@ export default {
          if (actionType === 'color') {
             this.isPaletteOpen = !this.isPaletteOpen
             return
+         }
+         if (actionType === 'speech-to-text') {
+            this.startRecording()
+            this.placeHolder = 'Listening...'
+            this.note = noteService.getEmptyNote('NoteTxt')
+            return
+
          }
          const placeHolderOpts = {
             NoteTxt: 'What\'s on your mind...',
