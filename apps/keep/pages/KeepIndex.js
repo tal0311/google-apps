@@ -1,11 +1,13 @@
 import NoteList from '../cmps/NoteList.js'
 import SideNav from '../cmps/SideNav.js'
 import EmptyNotes from '../cmps/EmptyNotes.js'
+import AddNote from '../cmps/AddNote.js'
+import NotesLoader from '../../../cmps/AppLoader.js'
+import { speechService } from '../../../services/textToSpeech.service.js'
+import SpeechControllers from '../../../cmps/SpeechControllers.js'
 import { noteService } from './../../../services/note.service.js'
 import { utilService } from '../../../services/util.service.js'
 import { showSuccessMsg, showErrorMsg, eventBus } from '../../../services/event-bus.service.js'
-import AddNote from '../cmps/AddNote.js'
-import NotesLoader from '../../../cmps/AppLoader.js'
 import { notificationService } from '../../../services/sysNotification.service.js'
 
 
@@ -26,6 +28,7 @@ export default {
            title="Other" :notes="notes"/>
            <RouterView/>
            <SideNav/>
+           <SpeechControllers v-if="isSpeechOn" />
         </section>
     `,
     data() {
@@ -34,13 +37,15 @@ export default {
             pinnedNotes: [],
             totalNotes: [],
             filterBy: {},
-            isLoading: true
+            isLoading: true,
+            isSpeechOn: false,
         }
     },
     created() {
         utilService.setAppConfig('keep')
         eventBus.on('add-note-alarm', this.addNoteAlarm)
         eventBus.on('note-filter', this.setFilter)
+        eventBus.on('speech', this.setSpeechStatus)
         this.loadNots()
         this.reminderInterval = setInterval(this.checkReminder, 5000)
     },
@@ -64,6 +69,9 @@ export default {
     },
 
     methods: {
+        setSpeechStatus(val) {
+            this.isSpeechOn = val
+        },
         async addMailAsNote(noteInfo) {
             const note = noteService.getEmptyNote('NoteMail')
             note.title = noteInfo.subject
@@ -141,6 +149,17 @@ export default {
 
 
             }
+            if (actionType === 'speech') {
+                var notesToSpeech = ['NoteMail', 'NoteTxt']
+                const note = await noteService.get(noteId).catch(err => {
+                    console.debug('♠️ ~ file: KeepIndex.js:137 ~ note ~ err:', err)
+                    showSuccessMsg(this.defaultErrorMsg)
+                })
+                note.title && speechService.speak(note.title)
+                if (notesToSpeech.includes(note.type)) {
+                    speechService.speak(note.info.content)
+                }
+            }
 
 
         },
@@ -215,7 +234,8 @@ export default {
         SideNav,
         AddNote,
         EmptyNotes,
-        NotesLoader
+        NotesLoader,
+        SpeechControllers
     },
     unmounted() {
         clearInterval(this.reminderInterval)

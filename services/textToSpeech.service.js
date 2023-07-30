@@ -17,7 +17,6 @@ const setUp = {
 
  },
  speak(txt) {
-  console.log('this.msg:', this.msg)
   this.addListeners()
   this.msg.text = txt
   this.msg.lang = 'en'

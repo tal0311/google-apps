@@ -9,8 +9,10 @@ import NoteTodo from "../cmps/daynamicCmps/NoteTodo.js"
 import NoteTxt from "../cmps/daynamicCmps/NoteTxt.js"
 import NoteVideo from "../cmps/daynamicCmps/NoteVideo.js"
 import NoteMail from "../cmps/daynamicCmps/NoteMail.js"
+
 import { utilService } from "../../../services/util.service.js"
 import { eventBus, showErrorMsg } from "../../../services/event-bus.service.js"
+import { speechService } from "../../../services/textToSpeech.service.js"
 
 export default {
     name: 'NoteDetails',
@@ -132,6 +134,16 @@ export default {
                 this.closeModal()
                 this.$router.push('/note#home')
 
+
+            }
+            if (actionType === 'speech') {
+                var notesToSpeech = ['NoteMail', 'NoteTxt']
+
+                console.log('notesToSpeech.includes(this.note.type):', notesToSpeech.includes(this.note.type))
+                this.note.title && speechService.speak(this.note.title)
+                if (notesToSpeech.includes(this.note.type)) {
+                    speechService.speak(this.note.info.content)
+                }
 
             }
 
