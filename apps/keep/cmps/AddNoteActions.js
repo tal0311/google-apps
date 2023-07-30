@@ -1,15 +1,13 @@
 export default {
        name: 'AddNoteActions',
        emits: ['note-action'],
-       props: [],
        template: `  
- <section class="add-note-actions grid">
-      
-       <div v-for="action,idx in filteredActions" :key="idx" :title="action.title" 
-       @click.stop="onNoteAction(action.actionType)">
-              <i class="material-symbols-outlined">{{action.icon}}</i>
-       </div>
- </section>
+            <section class="add-note-actions grid">
+              <div v-for="action,idx in filteredActions" :key="idx" :title="action.title" 
+               @click.stop="onNoteAction(action.actionType)">
+                <i class="material-symbols-outlined">{{action.icon}}</i>
+              </div>
+           </section>
         `,
        data() {
               return {
@@ -26,7 +24,7 @@ export default {
                             { icon: 'content_copy', title: 'Duplicate', actionType: 'duplicate', visibleStatus: ['3'] },
                             { icon: 'add_alert', title: 'Add Alert', actionType: 'alert', visibleStatus: ['1', '3'] },
                             { icon: 'send', title: 'Send via mail', actionType: 'share', visibleStatus: ['3'] },
-                            { icon: 'speech_to_text', actionType: 'speech', title: 'Text speech to', visibleStatus: ['1', '3'] },
+                            { icon: 'speech_to_text', actionType: 'speech', title: 'Text speech to', visibleStatus: ['3'] },
                             { icon: 'mic', actionType: 'speech-to-text', title: 'Speech to Text', visibleStatus: ['1'] },
                      ]
               }
