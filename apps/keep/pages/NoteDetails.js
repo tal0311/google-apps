@@ -138,15 +138,11 @@ export default {
             }
             if (actionType === 'speech') {
                 var notesToSpeech = ['NoteMail', 'NoteTxt']
-
-                console.log('notesToSpeech.includes(this.note.type):', notesToSpeech.includes(this.note.type))
                 this.note.title && speechService.speak(this.note.title)
                 if (notesToSpeech.includes(this.note.type)) {
                     speechService.speak(this.note.info.content)
                 }
-
             }
-
         },
         async updateNote(key, payload) {
             const note = await noteService.get(this.note.id)

@@ -1,6 +1,5 @@
 .add-note-actions {
  grid-auto-flow: column;
- width: min-content;
- gap: 0.5rem;
+ justify-content: space-around;
  align-items: center;
 }

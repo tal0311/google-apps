@@ -6,16 +6,11 @@
  min-height: 100px;
  height: fit-content;
  position: relative;
- /* overflow-y: hidden; */
+ word-wrap: break-word;
 }
 .note-preview > *:not(.preview-content) {
- padding: 0.2rem 1rem;
+ margin: 0.2rem 1rem;
 }
-
-/* .preview-content {
- width: 100%;
- padding: 0.2rem 1rem;
-} */
 
 .note-preview:first-child {
  margin-top: 0;
