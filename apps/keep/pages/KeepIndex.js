@@ -3,12 +3,13 @@ import SideNav from '../cmps/SideNav.js'
 import EmptyNotes from '../cmps/EmptyNotes.js'
 import AddNote from '../cmps/AddNote.js'
 import NotesLoader from '../../../cmps/AppLoader.js'
-import { speechService } from '../../../services/textToSpeech.service.js'
 import SpeechControllers from '../../../cmps/SpeechControllers.js'
+import { speechService } from '../../../services/textToSpeech.service.js'
 import { noteService } from './../../../services/note.service.js'
 import { utilService } from '../../../services/util.service.js'
 import { showSuccessMsg, showErrorMsg, eventBus } from '../../../services/event-bus.service.js'
 import { notificationService } from '../../../services/sysNotification.service.js'
+import { speechToTxtService } from './../../../services/speechToText.js'
 
 
 
@@ -29,6 +30,7 @@ export default {
            <RouterView/>
            <SideNav/>
            <SpeechControllers v-if="isSpeechOn" />
+          
         </section>
     `,
     data() {
@@ -46,6 +48,7 @@ export default {
         eventBus.on('add-note-alarm', this.addNoteAlarm)
         eventBus.on('note-filter', this.setFilter)
         eventBus.on('speech', this.setSpeechStatus)
+
         this.loadNots()
         this.reminderInterval = setInterval(this.checkReminder, 5000)
     },
@@ -69,6 +72,7 @@ export default {
     },
 
     methods: {
+
         setSpeechStatus(val) {
             this.isSpeechOn = val
         },

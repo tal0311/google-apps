@@ -1,5 +1,11 @@
 .mail-actions {
  grid-auto-flow: column;
  align-items: center;
- max-width: 50%;
+ /* gap: 0.5rem; */
+}
+
+@media (width>500px) {
+ .mail-actions {
+  gap: 0.5rem;
+ }
 }
