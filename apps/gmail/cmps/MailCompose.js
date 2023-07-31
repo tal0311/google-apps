@@ -1,6 +1,8 @@
 import { mailService } from "../../../services/mail.service.js"
 import { utilService } from "../../../services/util.service.js"
 import { notificationService } from "../../../services/sysNotification.service.js"
+import { speechToTxtService } from "../../../services/speechToText.js"
+import { eventBus } from "../../../services/event-bus.service.js"
 
 export default {
         name: 'MailCompose',
@@ -27,8 +29,9 @@ export default {
                 <textarea name="" v-model="mail.body" @input="saveToDraft" @blur="isDirty=false" id="" cols="30" rows="10"></textarea>
            </form>
             <footer>
-                <div class="compose-actions">
-                        <button class="send-btn" @click="composeAction('send')">send</button>
+                <div class="compose-actions grid">
+                        <button  class="send-btn" @click="composeAction('send')">send</button>
+                        <i title="Speech to text" @click="composeAction('record')" class="record material-symbols-outlined">mic</i>
                 </div>
             </footer>
   
@@ -36,6 +39,7 @@ export default {
         `,
         created() {
                 this.saveToDraft = utilService.debounce(this.saveToDraft, 3000)
+                eventBus.on('record-results', this.setTranscript)
         },
         data() {
                 return {
@@ -47,6 +51,9 @@ export default {
         },
 
         methods: {
+                setTranscript(transcript) {
+                        this.mail.body = transcript
+                },
                 composeAction(actionTYpe) {
                         if (actionTYpe === 'minimize') {
                                 this.composeStatus = 'collapsed'
@@ -67,6 +74,10 @@ export default {
                                 mailService.save({ ...this.mail }).then(() => {
                                         this.$router.push('/mail?tab=sent')
                                 })
+                        }
+                        if (actionTYpe === 'record') {
+                                console.log('record:',)
+                                speechToTxtService.start()
                         }
                 },
                 setTitle() {

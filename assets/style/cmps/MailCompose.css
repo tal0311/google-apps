@@ -50,6 +50,9 @@
  color: var(--Mclr6);
  font-size: 1em;
 }
+.mail-compose .record {
+ font-size: 1.5em;
+}
 
 .compose-header {
  border-top-left-radius: var(--Mbr);
@@ -95,4 +98,10 @@
  background: var(--Mbtn);
  color: var(--Mclr1);
  font-weight: 600;
+}
+
+.mail-compose .compose-actions {
+ grid-auto-flow: column;
+ grid-template-columns: min-content min-content;
+ place-items: center;
 }
