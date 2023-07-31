@@ -47,7 +47,9 @@ export default {
             getComputedStyle() {
                   if (!this.noteDimensions) return
                   return {
-                        top: `${this.noteDimensions.top + this.noteDimensions.height - (132 + 16)}px `,
+                        top: `${this.noteDimensions.top + this.noteDimensions.height}px `,
+                        left: 50 + '%',
+                        transform: 'translateX(-50%)'
 
                   }
             },

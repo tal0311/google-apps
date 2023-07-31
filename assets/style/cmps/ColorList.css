@@ -1,11 +1,15 @@
 .style-list {
  position: absolute;
- translate: 0 110%;
  box-shadow: 0 0 5px 0 var(--gray2);
  border-radius: var(--Kbr);
  z-index: 10;
  width: max-content;
  background: #fff;
+ bottom: -6.875rem;
+ left: -1rem;
+}
+.note-details .style-list {
+ bottom: revert;
 }
 .style-list > * {
  padding: 0.5rem 1rem;
@@ -31,14 +35,13 @@
  width: 2.5rem;
  height: 2.5rem;
  border-radius: 50%;
- /* border-radius: var(--Kbr); */
  margin: 0 0.2rem;
  cursor: pointer;
 }
 @media (width<500px) {
  .style-list {
   width: 100%;
-  translate: 0 75%;
+  bottom: -10.75rem;
  }
  .style-list > * {
   padding: 0.5rem 0.5rem;
