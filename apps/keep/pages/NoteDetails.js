@@ -85,8 +85,6 @@ export default {
         },
 
         async noteAction(actionType, payload = null) {
-            console.debug('♠️ ~ file: NoteDetails.js:88 ~ noteAction ~ actionType, payload :', actionType, payload)
-
             if (actionType === 'update-title') {
                 this.updateNote('title', payload)
             }
