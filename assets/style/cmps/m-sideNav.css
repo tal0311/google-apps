@@ -77,6 +77,9 @@
  .action .label-container h3 {
   display: revert;
  }
+ .label-container h3 {
+  display: revert;
+ }
  .action .counter {
   margin-inline-start: auto;
  }
