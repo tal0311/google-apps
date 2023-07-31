@@ -22,18 +22,20 @@ export default {
                     <i v-else class="material-symbols-outlined">account_circle</i>
                 </div>
                 <nav v-if="isOpen" class="grid">
-                    <RouterLink to="/">
-                    <span>Home</span><div class="link-logo apps"></div>
-                </RouterLink>
-                <RouterLink to="/mail?tab=inbox">
-                    <span>Gmail</span><div class="link-logo gmail"></div>
-                </RouterLink> 
-                <RouterLink to="/note#home">
-                    <span>Keep</span><div class="link-logo keep"></div>
-                </RouterLink>
-                <RouterLink to="/youtube">
-                    <span>YouTube</span><div class="link-logo yt"></div>
-                </RouterLink>
+                
+                        <RouterLink to="/">
+                            <span>Home</span><div class="link-logo apps"></div>
+                        </RouterLink>
+                        <RouterLink to="/mail?tab=inbox">
+                            <span>Gmail</span><div class="link-logo gmail"></div>
+                        </RouterLink> 
+                        <RouterLink to="/note#home">
+                            <span>Keep</span><div class="link-logo keep"></div>
+                        </RouterLink>
+                        <RouterLink to="/youtube">
+                            <span>YouTube</span><div class="link-logo yt"></div>
+                        </RouterLink>
+                   
             </nav>
         </div>
         </header>

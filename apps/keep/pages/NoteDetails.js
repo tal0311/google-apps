@@ -19,7 +19,7 @@ export default {
     inject: ['defaultErrorMsg'],
     template: `
         <dialog ref="details-modal" class="note-details-modal" >
-            <section ref="note-details" :style="setNoteBG" v-if="note" class="note-details grid">
+            <section v-if="note" ref="note-details" :style="setNoteBG" class="note-details grid">
             <i @click="noteAction('toggle-pin', !note.isPinned)" :class="['pin-btn material-symbols-outlined', note.isPinned? 'pinned':'']">push_pin</i>
             
             <h3 class="editable-title" v-if="!displayUpperHeader" contenteditable="true" 
@@ -39,7 +39,7 @@ export default {
               <NoteActions @note-action="noteAction" visibleStatus="3"/>
               <button @click=$router.go(-1) class="app-btn">close</button>
           </div>
-         <ColorList ref="style-list" :noteDimensions="noteDimensions" v-if="isPaletteOpen" @color-selected="noteAction('color-select', $event)"
+         <ColorList v-if="isPaletteOpen" ref="style-list" :noteDimensions="noteDimensions" @color-selected="noteAction('color-select', $event)"
           @cover-selected="noteAction('cover-select', $event)" />
         </section>
         </dialog>
