@@ -10,8 +10,8 @@ var setUp = {
    eventBus.emit('record', false)
   }
   this.recognition.onerror = (ev) => {
-   console.debug('♠️ ~ file: textToSpeech.service.js:14 ~ addListeners ~ err:', ev.error)
-   eventBus.emit('speech', false)
+   console.debug('♠️ ~ file: textToSpeech.service.js:13 ~ addListeners ~ err:', ev.error)
+   eventBus.emit('record', false)
   }
   this.recognition.onresult = (ev) => {
    var transcript = ev.results[0][0].transcript;

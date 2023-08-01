@@ -4,13 +4,13 @@ import { storageService } from './async-storage.service.js'
 const YT_KEY = 'youtube_db'
 const YT_API_KEY = 'AIzaSyBlraKlFpF_bqQQopUoLpyPuy2Bv57kgyo'
 
-export const YoutubeService = {
+export const youtubeService = {
     query,
 }
 
-window.YoutubeService = YoutubeService
+window.youtubeService = youtubeService
 
-async function query(searchTerm) {
+async function query({ searchTerm }) {
 
     const cache = utilService.loadFromStorage(YT_KEY) || {}
 

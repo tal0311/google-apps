@@ -1,19 +1,28 @@
 .main-video {
     grid-area: main-video;
     grid-template-rows: auto min-content;
-    width: 100%;
-    height: 100%;
     gap: 10px;
 }
+/* .info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: min-content;
+} */
+.main-video iframe {
+    width: 100%;
+    height: 100%;
+}
 
-iframe {
+/* iframe {
     transition: all 0.3s ease-in-out;
     transform-origin: bottom right;
     height: 100%;
     width: 100%;
-}
+} */
 
-body.scrolled iframe {
+/* body.scrolled iframe {
     transform-origin: bottom right;
     position: fixed;
     bottom: 0;
@@ -21,9 +30,12 @@ body.scrolled iframe {
     height: 250px;
     width: 320px;
     z-index: 1000;
-}
+} */
 
 .main-video .video-desc {
     /* font-weight: 600; */
-    font-family: Roboto500 Arial, Helvetica, sans-serif;
+    font-family:
+        Roboto500 Arial,
+        Helvetica,
+        sans-serif;
 }

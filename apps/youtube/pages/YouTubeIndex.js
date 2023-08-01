@@ -1,5 +1,6 @@
 import { utilService } from "./../../../services/util.service.js"
-import { YoutubeService } from '../../../services/youtube.service.js'
+import { youtubeService } from '../../../services/youtube.service.js'
+import { eventBus } from "../../../services/event-bus.service.js"
 
 
 import VideoList from '../cmps/VideoList.js'
@@ -9,7 +10,7 @@ import MainVideo from '../cmps/MainVideo.js'
 
 export default {
     template: `
-        <section class="youtube-index">
+        <section class="youtube-index grid">
             <VideoList v-if="videos" :videos="videos"/>
             <MainVideo v-if="selectedVideo" :selectedVideo="selectedVideo"/>
             <WikiList v-if="items" :items="items"/>
@@ -19,20 +20,26 @@ export default {
         return {
             videos: null,
             selectedVideo: null,
-            items: null
+            items: null,
+            filter: { searchTerm: 'vue' }
         }
     },
     computed: {
     },
-    async created() {
+    created() {
         utilService.setAppConfig('youtube')
-
-        const data = await YoutubeService.query('vue')
-        this.videos = data.videosData
-        this.selectedVideo = this.videos[0]
-        this.items = data.wikiData
+        this.loadData()
     },
     methods: {
+        async loadData() {
+            eventBus.emit('loading', true)
+            const data = await youtubeService.query({ ...this.filter })
+            this.videos = data.videosData
+            this.selectedVideo = this.videos[0]
+            this.items = data.wikiData
+            eventBus.emit('loading', false)
+
+        }
     },
     components: {
         VideoList,

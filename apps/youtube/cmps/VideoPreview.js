@@ -5,7 +5,7 @@ export default {
   props: ['video'],
   template: `
       <section class="video-preview grid">
-          <div class="info-container grid">
+          <div :title="video.title" class="info-container grid">
               <p>{{video.title}}</p>
               <small>{{video.channel}}</small>
               <div class="video-info grid">

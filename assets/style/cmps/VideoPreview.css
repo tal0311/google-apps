@@ -3,16 +3,25 @@
     grid-template-columns: 1fr 1fr;
     gap: 0.8rem;
     cursor: pointer;
+    /* max-height: 50px; */
 }
 
 .video-preview img {
     height: 100%;
     object-fit: cover;
-    border-radius: var(--BR);
+    border-radius: var(--Ybr);
 }
-   
+
 .video-info {
     grid-auto-flow: column;
     font-size: 12px;
 }
-   
+
+.video-preview p {
+    margin: 0;
+    width: 100%;
+    /* word-wrap: break-word; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -56,9 +56,16 @@
     /* for preview border */
     --K-preview-border: 1px solid #dedede;
 
+    /* youtube vars */
+    --Ybr: 0.6rem;
+
     /* scroll bar */
     --sb-track-color: #232e33;
     --sb-thumb-color: #e5e5e5;
     --ClrHover: #e5e5e5;
     --ClrScroll: #606060;
+    --sb-size: 10px;
+
+    /* youtube scroll */
+    --yt-sb-thumb-color: #6d6d6d;
 }

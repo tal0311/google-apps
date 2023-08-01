@@ -25,3 +25,13 @@ body[app="gmail"] .app-btn {
     background: var(--Mbtn);
     color: var(--Mclr5);
 }
+body[app="youtube"] {
+}
+
+body[app="youtube"]::-webkit-scrollbar {
+    width: var(--sb-size);
+}
+body[app="youtube"]::-webkit-scrollbar-thumb {
+    background: var(--yt-sb-thumb-color);
+    border-radius: 10px;
+}

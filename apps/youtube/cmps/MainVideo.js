@@ -7,7 +7,7 @@ export default {
   name: 'MainVideo',
   props: ['selectedVideo'],
   template: `
-      <section class="main-video">
+      <section class="main-video grid">
           <iframe src="https://www.youtube.com/embed/3dHNOWTI7H8?" frameborder="0"></iframe>
           <div class="info-container">
               <p class="video-desc" data-title="Video description">{{selectedVideo.desc}}</p>
