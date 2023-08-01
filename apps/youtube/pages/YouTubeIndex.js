@@ -17,7 +17,7 @@ export default {
         </section>
     `,
     created() {
-        eventBus.on('yt-filter', this.setFilter)
+        window.addEventListener('scroll', this.handleScroll);
         utilService.setAppConfig('youtube')
         this.loadData()
     },
@@ -30,6 +30,14 @@ export default {
         }
     },
     methods: {
+        handleScroll(ev) {
+            console.log('ev:', ev);
+            if (window.scrollY > 250) {
+                window.document.body.classList.add('scrolled')
+            } else {
+                window.document.body.classList.remove('scrolled')
+            }
+        },
         setFilter({ txt: searchTerm }) {
             this.filter = { ...this.filter, searchTerm }
             this.loadData()

@@ -97,6 +97,9 @@ body[app="keep"] .app-header {
 }
 body[app="youtube"] .app-header {
     background: var(--Mclr5);
+    position: sticky;
+    top: 0;
+    z-index: 20;
 }
 body[app="apps"] .app-header {
     background: var(--Mclr5);

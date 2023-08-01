@@ -15,6 +15,18 @@
     height: 100%;
 }
 
+@media (width<500px) {
+    body.scrolled iframe {
+        transform-origin: bottom right;
+        position: fixed;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        height: 50vh;
+        z-index: 1000;
+    }
+}
+
 /* iframe {
     transition: all 0.3s ease-in-out;
     transform-origin: bottom right;

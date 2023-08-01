@@ -11,17 +11,18 @@ import { userService } from './services/user.service.js'
 
 const options = {
     template: `
-    <section class="main-app">
+    <section  class="main-app">
         <AppHeader :user="user"/>
         <div class="main-route">
             <RouterView  />
         </div>
-        <AppFooter />
+        <!-- <AppFooter /> -->
         <UserMsg />
         <AppModal/>
     </section>
     `,
     created() {
+
 
     },
     data() {
