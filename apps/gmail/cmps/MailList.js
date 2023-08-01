@@ -74,7 +74,7 @@ export default {
 
     },
     filterUnread() {
-      console.log('filter unread')
+      console.info('filter unread')
     },
     setFilter(filterBy) {
       this.filterBy = { ...this.filterBy, ...filterBy }
@@ -188,8 +188,6 @@ export default {
       deep: false,
       immediate: false,
       handler: function (val, oldVal) {
-        console.log('val, oldVal:', val, oldVal)
-        console.log('val:', val)
         if (val) {
           this.selectMails(true)
         } else {

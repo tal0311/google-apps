@@ -39,7 +39,6 @@ export default {
                   this.$emit('color-selected', color)
             },
             onCoverClick(cover) {
-                  console.log('cover:', cover)
                   this.$emit('cover-selected', cover)
             }
       },

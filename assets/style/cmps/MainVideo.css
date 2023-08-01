@@ -27,23 +27,6 @@
     }
 }
 
-/* iframe {
-    transition: all 0.3s ease-in-out;
-    transform-origin: bottom right;
-    height: 100%;
-    width: 100%;
-} */
-
-/* body.scrolled iframe {
-    transform-origin: bottom right;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    height: 250px;
-    width: 320px;
-    z-index: 1000;
-} */
-
 .main-video .video-desc {
     /* font-weight: 600; */
     font-family:

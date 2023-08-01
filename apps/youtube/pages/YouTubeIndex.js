@@ -31,7 +31,6 @@ export default {
     },
     methods: {
         handleScroll(ev) {
-            console.log('ev:', ev);
             if (window.scrollY > 250) {
                 window.document.body.classList.add('scrolled')
             } else {

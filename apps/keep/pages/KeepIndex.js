@@ -94,7 +94,6 @@ export default {
             this.loadNots()
         },
         async updateNote({ noteId, actionType, payload }) {
-            console.log('keep index update:', noteId, actionType, payload)
             if (actionType === 'update-title') {
                 this.updateNoteByKey(noteId, 'title', payload)
             }

@@ -31,7 +31,6 @@ export default {
    },
    methods: {
       setModal({ modalType, data = null }) {
-         console.log('data:', data)
          if (data) this.extraData = data
          this.modalType = modalType
          this.openModal()

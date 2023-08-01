@@ -25,7 +25,6 @@ export default {
     },
     updateDone(idx) {
       this.newInfo.todos[idx].doneAt = this.newInfo.todos[idx].doneAt ? null : Date.now()
-      console.log('this.newInfo.todos:', this.newInfo.todos)
       this.updateNote()
     },
     isChecked(idx) {

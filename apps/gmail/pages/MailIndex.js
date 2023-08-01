@@ -51,7 +51,6 @@ export default {
             this.isSpeechOn = val
         },
         setCompose() {
-            console.log(this.$route);
             this.$router.push(`/mail?tab=${this.$route.query.tab}&compose=new`)
         },
         loadUser() {

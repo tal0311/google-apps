@@ -17,10 +17,7 @@ export default {
           </div>
          </form>
         `,
-        components: {},
-        created() {
-                console.log(this.extraData);
-        },
+
         data() {
                 return {
                         labelName: this.extraData ? this.extraData.name : ''
@@ -36,5 +33,5 @@ export default {
                         this.$emit('close-modal')
                 }
         },
-        computed: {},
+
 }

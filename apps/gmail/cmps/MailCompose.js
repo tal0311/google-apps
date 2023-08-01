@@ -76,7 +76,6 @@ export default {
                                 })
                         }
                         if (actionTYpe === 'record') {
-                                console.log('record:',)
                                 speechToTxtService.start()
                         }
                 },

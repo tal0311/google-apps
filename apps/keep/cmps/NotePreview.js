@@ -49,10 +49,8 @@ export default {
                      }
                      if (actionType === 'cover-select') {
                             this.isPaletteOpen = false
-                            console.log('cover selected:', payload)
                      }
 
-                     console.log('{ noteId: this.note.id, actionType, payload }:', { noteId: this.note.id, actionType, payload })
                      this.$emit('updateNote', { noteId: this.note.id, actionType, payload })
 
               }

@@ -69,7 +69,6 @@ export default {
         this.$router.push({ path: '/note', hash: '#add', query: { title: this.mail.subject, body: this.mail.body } })
       }
       if (action === 'moveTo') {
-        console.log('moving conversation')
         msg = 'Conversation added label'
       }
       if (action === 'addLabel') {
@@ -78,9 +77,6 @@ export default {
         this.mail.label = label
       }
       if (action === 'speech') {
-        console.log('this.mail:', this.mail)
-        console.log('speechService:', speechService)
-
         speechService.speak(this.mail.subject)
         const confirmation = confirm('Do you like me to read the mail body as well?')
         if (confirmation) {
