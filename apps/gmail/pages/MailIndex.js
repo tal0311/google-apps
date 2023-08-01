@@ -37,14 +37,15 @@ export default {
             filterBy: null,
             isOpen: false,
             loggedUser: null,
-            isSpeechOn: false
+            isSpeechOn: false,
+            subScriptions: []
         }
     },
     created() {
         this.loadUser()
         utilService.setAppConfig('gmail')
-        eventBus.on('update-user', this.loadUser)
-        eventBus.on('speech', this.setSpeechStatus)
+        this.subScriptions[0] = eventBus.on('update-user', this.loadUser)
+        this.subScriptions[1] = eventBus.on('speech', this.setSpeechStatus)
     },
     methods: {
         setSpeechStatus(val) {
@@ -72,5 +73,8 @@ export default {
         MailCompose,
         UserMsg,
         SpeechControllers
-    }
+    },
+    unmounted() {
+        this.subScriptions.forEach(unSubscribe => unSubscribe())
+    },
 }

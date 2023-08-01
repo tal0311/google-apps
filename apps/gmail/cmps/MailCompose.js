@@ -39,7 +39,7 @@ export default {
         `,
         created() {
                 this.saveToDraft = utilService.debounce(this.saveToDraft, 3000)
-                eventBus.on('record-results', this.setTranscript)
+                this.unsubscribe = eventBus.on('record-results', this.setTranscript)
         },
         data() {
                 return {
@@ -119,5 +119,8 @@ export default {
 
 
 
-        }
+        },
+        unmounted() {
+                this.unsubscribe()
+        },
 }

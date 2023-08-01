@@ -41,7 +41,7 @@ export default {
         </header>
     `,
     created() {
-        eventBus.on('loading', this.setLoading)
+        this.unsubscribe = eventBus.on('loading', this.setLoading)
     },
     data() {
         return {
@@ -89,5 +89,8 @@ export default {
         AppFilter,
         AppLoader,
         UserPreview
-    }
+    },
+    unmounted() {
+        this.unsubscribe()
+    },
 }

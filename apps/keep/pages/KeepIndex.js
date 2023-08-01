@@ -41,13 +41,14 @@ export default {
             filterBy: {},
             isLoading: true,
             isSpeechOn: false,
+            subScriptions: [],
         }
     },
     created() {
         utilService.setAppConfig('keep')
-        eventBus.on('add-note-alarm', this.addNoteAlarm)
-        eventBus.on('note-filter', this.setFilter)
-        eventBus.on('speech', this.setSpeechStatus)
+        this.subScriptions[0] = eventBus.on('add-note-alarm', this.addNoteAlarm)
+        this.subScriptions[1] = eventBus.on('note-filter', this.setFilter)
+        this.subScriptions[2] = eventBus.on('speech', this.setSpeechStatus)
 
         this.loadNots()
         this.reminderInterval = setInterval(this.checkReminder, 5000)
@@ -242,5 +243,6 @@ export default {
     },
     unmounted() {
         clearInterval(this.reminderInterval)
+        this.subScriptions.forEach(unSubscribe => unSubscribe())
     }
 }

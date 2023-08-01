@@ -15,10 +15,6 @@ export default {
       </section>
     `,
 
-  created() {
-    // this.loadMails()
-    // eventBus.on('mail-filter', this.setFilter)
-  },
   data() {
     return {
     }

@@ -40,7 +40,7 @@ export default {
         `,
    created() {
       this.note = noteService.getEmptyNote('NoteTxt')
-      eventBus.on('record-results', this.setTranscript)
+      this.unsubscribe = eventBus.on('record-results', this.setTranscript)
 
    },
    data() {
@@ -131,5 +131,8 @@ export default {
    components: {
       AddNoteActions,
       ColorList
+   },
+   unmounted() {
+      this.unsubscribe()
    },
 }

@@ -30,7 +30,7 @@ export default {
 
   created() {
     this.loadMails()
-    eventBus.on('mail-filter', this.setFilter)
+    this.unsubscribe = eventBus.on('mail-filter', this.setFilter)
   },
   data() {
     return {
@@ -199,5 +199,8 @@ export default {
   components: {
     MailPreview,
     MailActions
+  },
+  unmounted() {
+    this.unsubscribe()
   },
 }

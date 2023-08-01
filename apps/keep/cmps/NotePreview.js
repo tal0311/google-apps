@@ -42,7 +42,6 @@ export default {
                      this.$router.push('/note/' + noteId)
               },
               noteAction(actionType, payload = null) {
-                     console.debug('♠️ ~ file: NotePreview.js:46 ~ noteAction ~ actionType:', actionType)
                      if (actionType === 'color') this.isPaletteOpen = !this.isPaletteOpen
                      if (actionType === 'color-select') {
                             this.isPaletteOpen = false

@@ -42,7 +42,7 @@ export default {
 
         `,
   created() {
-    eventBus.on('get-count', this.setCount)
+    this.unsubscribe = eventBus.on('get-count', this.setCount)
   },
   data() {
     return {
@@ -89,5 +89,8 @@ export default {
     editLabel(label) {
       eventBus.emit('show-modal', { modalType: 'LabelList', data: label })
     }
+  },
+  unmounted() {
+    this.unsubscribe()
   },
 }

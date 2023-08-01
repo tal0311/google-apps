@@ -14,13 +14,11 @@ export default {
     `,
     data() {
         return {
-            // msg: null
             msg: null
         }
     },
     created() {
         this.unsubscribe = eventBus.on('show-msg', (msg) => {
-            console.log('msg:', msg)
             this.msg = msg
             setTimeout(() => {
                 this.msg = null

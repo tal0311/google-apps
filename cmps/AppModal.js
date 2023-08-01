@@ -17,7 +17,7 @@ export default {
         `,
 
    created() {
-      eventBus.on('show-modal', this.setModal)
+      this.unsubscribe = eventBus.on('show-modal', this.setModal)
 
    },
    data() {
@@ -42,9 +42,12 @@ export default {
          this.$refs['app-modal'].close()
       }
    },
-   computed: {},
+
    components: {
       LabelList,
       AlertModal
+   },
+   unmouted() {
+      this.unsubscribe()
    }
 }
