@@ -5,7 +5,7 @@ export default {
         <section class="app-filter">
            <form v-if="isNavDisplay"  @submit.prevent="setFilter">
             <i class="material-symbols-outlined">search</i>
-            <input type="search" name="txt" id="" v-model="filterBy.txt" :placeholder="setPlaceHolder" />
+            <input type="search" name="txt" id="" v-model="filterBy.txt" :placeholder="setPlaceHolder" @focus="fucus" />
            </form>
         </section>
     `,
@@ -18,6 +18,9 @@ export default {
         }
     },
     methods: {
+        fucus() {
+            console.log('on fucus:',)
+        },
         setFilter() {
             const { name } = this.$route
             if (name === 'mail') {
@@ -25,6 +28,9 @@ export default {
             }
             if (name === 'note') {
                 eventBus.emit('note-filter', { ...this.filterBy })
+            }
+            if (name === 'youtube') {
+                eventBus.emit('yt-filter', { ...this.filterBy })
             }
             this.filterBy.txt = ''
         }

@@ -11,11 +11,16 @@ import MainVideo from '../cmps/MainVideo.js'
 export default {
     template: `
         <section class="youtube-index grid">
-            <VideoList v-if="videos" :videos="videos"/>
+            <VideoList @select-vid="selectVideo" v-if="videos" :videos="videos"/>
             <MainVideo v-if="selectedVideo" :selectedVideo="selectedVideo"/>
             <WikiList v-if="items" :items="items"/>
         </section>
     `,
+    created() {
+        eventBus.on('yt-filter', this.setFilter)
+        utilService.setAppConfig('youtube')
+        this.loadData()
+    },
     data() {
         return {
             videos: null,
@@ -24,21 +29,22 @@ export default {
             filter: { searchTerm: 'vue' }
         }
     },
-    computed: {
-    },
-    created() {
-        utilService.setAppConfig('youtube')
-        this.loadData()
-    },
     methods: {
+        setFilter({ txt: searchTerm }) {
+            this.filter = { ...this.filter, searchTerm }
+            this.loadData()
+        },
         async loadData() {
             eventBus.emit('loading', true)
             const data = await youtubeService.query({ ...this.filter })
             this.videos = data.videosData
-            this.selectedVideo = this.videos[0]
+            this.selectVideo(this.videos[0].id)
             this.items = data.wikiData
             eventBus.emit('loading', false)
-
+        },
+        selectVideo(videoId) {
+            this.selectedVideo = this.videos.find(video => video.id === videoId)
+            document.title = this.selectedVideo.title
         }
     },
     components: {

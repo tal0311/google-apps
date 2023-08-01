@@ -7,9 +7,12 @@ import VideoPreview from "./VideoPreview.js"
 export default {
   name: 'VideoList',
   props: ['videos'],
+  emits: ['select-vid'],
   template: `
       <section class="video-list grid">
-          <VideoPreview v-for="video in videos" :key="video.id" :video="video"/>
+          <VideoPreview v-for="video in videos" :key="video.id" :video="video"
+          @select-vid="$emit('select-vid', video.id)"/>
+          />
       </section>
     `,
 

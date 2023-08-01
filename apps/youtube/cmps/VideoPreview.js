@@ -3,8 +3,9 @@
 export default {
   name: 'VideoPreview',
   props: ['video'],
+  emits: ['select-vid'],
   template: `
-      <section class="video-preview grid">
+      <section class="video-preview grid" @click="$emit('select-vid', video.id)">
           <div :title="video.title" class="info-container grid">
               <p>{{video.title}}</p>
               <small>{{video.channel}}</small>
