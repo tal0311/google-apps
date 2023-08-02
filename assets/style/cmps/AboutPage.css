@@ -1,6 +1,34 @@
 body.about-page {
  margin: 0;
  height: 100vh;
- background: lightblue;
+ background: var(--Aclr2);
  overflow-x: hidden;
+ color: var(--Aclr3);
+}
+
+main {
+ display: grid;
+ place-content: center;
+ height: auto;
+}
+
+.about-page header,
+.about-page footer {
+ height: 10vh;
+ background: var(--Aclr1);
+ color: var(--Aclr2);
+}
+
+.about-page footer {
+ text-align: center;
+}
+
+.about-page footer :is(.fa-brands, .fa-solid) {
+ font-size: 2rem;
+}
+
+.social-media-container {
+ place-content: center;
+ gap: 2rem;
+ grid-auto-flow: column;
 }

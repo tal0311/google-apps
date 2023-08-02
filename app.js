@@ -22,13 +22,21 @@ const options = {
     </section>
     `,
     created() {
-
-
+        this.bc = new BroadcastChannel("internal_notification");
+        this.bc.addEventListener("message", this.handleBroadcast)
     },
     data() {
         return {
             user: userService.getLoggedInUser()
         }
+    },
+    methods: {
+        handleBroadcast(app) {
+            router.push(app.data)
+        }
+    },
+    unmounted() {
+        this.bc.close()
     },
     components: {
         AppHeader,

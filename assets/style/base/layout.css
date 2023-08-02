@@ -4,6 +4,7 @@
 }
 
 .main-layout > *:not(.full) {
+    display: grid;
     grid-column: 2;
 }
 

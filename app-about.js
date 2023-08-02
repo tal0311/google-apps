@@ -1,13 +1,16 @@
 const { createApp } = Vue
 import { userService } from './services/user.service.js'
+import { broadcastService } from './services/broadcastChannel.service.js'
 
 
 const options = {
  template: `
-    <section class="about-page">
+    <section class="about-page main-layout">
 
-    <header>
-        <h1>About Google Apps Clone</h1>
+    <header class="full main-layout">
+     <div class="header-container">
+      <h1>About Google Apps Clone</h1>
+     </div>
     </header>
     <main>
         <section>
@@ -20,9 +23,9 @@ const options = {
         <section>
             <h2>Features</h2>
             <ul>
-                <li><strong>YouTube Clone:</strong> The YouTube clone allows users to browse, search, and watch videos from a vast library of content. Users can also create and manage playlists, like and comment on videos, and subscribe to channels.</li>
-                <li><strong>Gmail Clone:</strong> The Gmail clone provides users with a feature-rich email client. They can send and receive emails, organize their inbox with labels and folders, and use a powerful search functionality to find specific emails quickly.</li>
-                <li><strong>Keep Clone:</strong> The Keep clone is a note-taking application that enables users to create, edit, and organize their notes. Users can add reminders, labels, and colors to keep their notes well-structured.</li>
+                <li><strong @click="navigateTo('/youtube')">YouTube Clone:</strong> The YouTube clone allows users to browse, search, and watch videos from a vast library of content. Users can also create and manage playlists, like and comment on videos, and subscribe to channels.</li>
+                <li><strong @click="navigateTo('/mail?tab=inbox')">Gmail Clone:</strong> The Gmail clone provides users with a feature-rich email client. They can send and receive emails, organize their inbox with labels and folders, and use a powerful search functionality to find specific emails quickly.</li>
+                <li><strong @click="navigateTo('/note#home')">Keep Clone:</strong> The Keep clone is a note-taking application that enables users to create, edit, and organize their notes. Users can add reminders, labels, and colors to keep their notes well-structured.</li>
             </ul>
         </section>
 
@@ -39,34 +42,53 @@ const options = {
         </section>
     </main>
 
-    <footer>
-        <p>Contact me on social media</p>
-        <i class="fa-brands fa-square-facebook"></i>
-        <i class="fa-brands fa-square-whatsapp"></i>
-        <i class="fa-brands fa-linkedin"></i>
-        <i class="fa-solid fa-inbox"></i>
-        <i class="fa-brands fa-square-github"></i>
+    <footer class="full main-layout">
+     <p>Contact me on social media</p>
+     <div class="social-media-container grid">
+         <a target="blank" href="https://www.facebook.com/tal.amit.3/" 
+        class="fa-brands fa-facebook-square"></a>
+    
+        <a target="blank" href="https://www.linkedin.com/in/tal-amit/" 
+        class="fa-brands fa-linkedin"></a>
+
+         <a target="blank" href="https://wa.me/+972543113309" 
+       class="fa-brands fa-whatsapp-square"></a>
+         <a target="blank" href="https://github.com/tal0311" 
+       class="fa-brands fa-square-github"></a>
+   
+       <a href="http://" target="_blank" rel="noopener noreferrer" class="fa-solid fa-inbox"></a>
+   
+      
+     </div>
     </footer>
 
+   
 
-
+        
       
+     
     </section>
     `,
  created() {
-
+  // broadcastService.broadcast(this.cannelName)
 
  },
  data() {
   return {
+   bc: new BroadcastChannel("internal_notification"),
    user: userService.getLoggedInUser()
   }
  },
- components: {
-
- }
+ methods: {
+  navigateTo(app) {
+   this.bc.postMessage(app);
+  }
+ },
+ unmounted() {
+  this.bc.close()
+ },
 }
 const app = createApp(options)
 app.provide('defaultErrorMsg', 'Unable to preform your request, tray again later')
 
-app.mount('#app')
+app.mount('#app-about')

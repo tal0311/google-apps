@@ -16,7 +16,7 @@ export default {
             <div class="actions-container grid">
                 <AppLoader :isLoading="isLoading"/>
                 <i @click="isOpen=!isOpen" class="apps-btn material-symbols-outlined">apps</i>
-                <a title="About the developer" href="about.html" class="about-nav grid">
+                <a title="About the developer" href="about.html" target="_blank" class="about-nav grid">
                    <i class="material-symbols-outlined">help</i>
                 </a>
                 <div className="user-preview-container">
