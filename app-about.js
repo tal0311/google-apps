@@ -23,9 +23,16 @@ const options = {
         <section>
             <h2>Features</h2>
             <ul>
-                <li><strong @click="navigateTo('/youtube')">YouTube Clone:</strong> The YouTube clone allows users to browse, search, and watch videos from a vast library of content. Users can also create and manage playlists, like and comment on videos, and subscribe to channels.</li>
-                <li><strong @click="navigateTo('/mail?tab=inbox')">Gmail Clone:</strong> The Gmail clone provides users with a feature-rich email client. They can send and receive emails, organize their inbox with labels and folders, and use a powerful search functionality to find specific emails quickly.</li>
-                <li><strong @click="navigateTo('/note#home')">Keep Clone:</strong> The Keep clone is a note-taking application that enables users to create, edit, and organize their notes. Users can add reminders, labels, and colors to keep their notes well-structured.</li>
+                <li><strong class="app-name" @click="navigateTo('/youtube')">YouTube Clone:</strong> The YouTube clone allows users to browse, search, and watch videos from a vast library of content. Users can also create and manage playlists, like and comment on videos, and subscribe to channels.</li>
+                <li><strong class="app-name" @click="navigateTo('/mail?tab=inbox')">Gmail Clone:</strong> The Gmail clone provides users with a feature-rich email client. They can send and receive emails, organize their inbox with labels and folders, and use a powerful search functionality to find specific emails quickly.</li>
+                <li><strong class="app-name" @click="navigateTo('/note#home')">Keep Clone:</strong> The Keep clone is a note-taking application that enables users to create, edit, and organize their notes. Users can add reminders, labels, and colors to keep their notes well-structured.</li>
+                <li>
+                    <strong>Responsive Design:</strong> Google Apps Clone is fully responsive and can be used on any device, including desktops, laptops, tablets, and smartphones.
+                </li>
+                <li>
+                 <strong>SPA & MPA:</strong> 
+                 The application combines SPA and MPA when all pages in the application have the ability to transfer information between one another. Even when these pages are used in two different instances of vue.js
+                </li>
             </ul>
         </section>
 
@@ -43,7 +50,7 @@ const options = {
     </main>
 
     <footer class="full main-layout">
-     <p>Contact me on social media</p>
+     <small>Contact me on social media</small>
      <div class="social-media-container grid">
          <a target="blank" href="https://www.facebook.com/tal.amit.3/" 
         class="fa-brands fa-facebook-square"></a>
@@ -70,22 +77,20 @@ const options = {
     </section>
     `,
  created() {
-  // broadcastService.broadcast(this.cannelName)
-
+  broadcastService.crateChannel('internal_notification')
  },
  data() {
   return {
-   bc: new BroadcastChannel("internal_notification"),
    user: userService.getLoggedInUser()
   }
  },
  methods: {
   navigateTo(app) {
-   this.bc.postMessage(app);
+   broadcastService.broadcast('internal_notification', app)
   }
  },
  unmounted() {
-  this.bc.close()
+  broadcastService.unSubscribe('internal_notification')
  },
 }
 const app = createApp(options)

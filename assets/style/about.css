@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
 * {
  box-sizing: border-box;
 }
@@ -6,20 +8,21 @@
  /* about vars */
 
  --Aclr1: #4682b4;
- --Aclr2: #e5e5e5;
+ --Aclr2: #efeeee;
  --Aclr3: #444;
 }
 
 html {
+ font-family: "Roboto";
  scroll-behavior: smooth;
- font-family: Arial, Helvetica, sans-serif;
+ /* font-family: Arial, Helvetica, sans-serif; */
 }
 a {
  text-decoration: none;
 }
 body {
+ font-weight: 400;
  margin: 0;
- /* height: 100vh; */
  background: var(--Aclr2);
  overflow-x: hidden;
  color: var(--Aclr3);
@@ -31,24 +34,37 @@ main {
  height: auto;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+ font-weight: 400;
+}
+strong {
+ font-weight: 500;
+}
+
 .about-page {
  height: 100vh;
 }
 
 .about header,
 .about footer {
- /* height: 10vh; */
  background: var(--Aclr1);
  color: var(--Aclr2);
 }
 
 .about footer {
+ gap: 1rem;
  padding: 0.2rem;
  text-align: center;
+ font-weight: 200;
 }
 
 .about footer :is(.fa-brands, .fa-solid) {
- font-size: 2rem;
+ font-size: 1.8rem;
  color: var(--Aclr2);
 }
 
@@ -74,4 +90,10 @@ main {
 
 .full {
  grid-column: 1/-1;
+}
+
+.app-name {
+ cursor: pointer;
+ color: var(--Aclr1);
+ text-decoration: underline;
 }

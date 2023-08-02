@@ -1,17 +1,29 @@
 
 
+const channels = []
 export const broadcastService = {
- bc: null,
- broadcast(data) {
-  this.bc.postMessage(data);
+ broadcast(channelName, data) {
+  const bc = channels.find(channel => channel.name === channelName)
+  bc.postMessage(data);
  },
- setCannel(channel) {
-  this.bc = new BroadcastChannel(channel);
+ crateChannel(channel) {
+  channels.push(new BroadcastChannel(channel))
  },
- subscribe(cb) {
-  this.bc.addEventListener("message", cb)
+ subscribe(channelName, cb) {
+  const bc = channels.find(channel => channel.name === channelName)
+  bc.addEventListener("message", cb)
  },
- unSubscribe() {
-  this.bc.removeEventListener("message")
+ unSubscribe(channelName) {
+  const bc = channels.find(channel => channel.name === channelName)
+  bc.removeEventListener("message")
+  bc.close()
+  channels = channels.filter(channel => channel.name !== channelName)
+ },
+ unSubscribeAll() {
+  channels.forEach(channel => {
+   channel.removeEventListener("message")
+   channel.close()
+  })
+  channels = []
  }
 }

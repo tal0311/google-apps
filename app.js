@@ -1,12 +1,12 @@
 const { createApp } = Vue
 
 import { router } from './routes.js'
-
 import AppHeader from './cmps/AppHeader.js'
 import AppFooter from './cmps/AppFooter.js'
 import UserMsg from './cmps/UserMsg.js'
 import AppModal from './cmps/AppModal.js'
 import { userService } from './services/user.service.js'
+import { broadcastService } from './services/broadcastChannel.service.js'
 
 
 const options = {
@@ -22,8 +22,8 @@ const options = {
     </section>
     `,
     created() {
-        this.bc = new BroadcastChannel("internal_notification");
-        this.bc.addEventListener("message", this.handleBroadcast)
+        broadcastService.crateChannel('internal_notification')
+        broadcastService.subscribe('internal_notification', this.handleBroadcast)
     },
     data() {
         return {
@@ -36,7 +36,7 @@ const options = {
         }
     },
     unmounted() {
-        this.bc.close()
+        broadcastService.unSubscribe('internal_notification')
     },
     components: {
         AppHeader,
