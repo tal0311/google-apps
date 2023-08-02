@@ -85,6 +85,15 @@
     margin-inline-start: auto;
 }
 
+.app-header .about-nav {
+    place-content: center;
+    display: none;
+}
+body[app="apps"] .app-header .about-nav {
+    place-content: center;
+    display: grid;
+}
+
 body[app="gmail"] .app-header {
     background: var(--Mclr1);
 }

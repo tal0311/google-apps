@@ -49,3 +49,6 @@
 @import "cmps/EmptyNotes.css";
 @import "cmps/AppLoader.css";
 @import "cmps/CanvasEditor.css";
+
+/* about */
+@import "cmps/AboutPage.css";

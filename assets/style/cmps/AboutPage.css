@@ -1,0 +1,6 @@
+body.about-page {
+ margin: 0;
+ height: 100vh;
+ background: lightblue;
+ overflow-x: hidden;
+}

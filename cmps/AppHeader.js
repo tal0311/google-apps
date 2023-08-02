@@ -8,7 +8,6 @@ export default {
     props: ['user'],
     template: `
         <header class="app-header">
-            <!-- <i class="material-symbols-outlined">menu</i> -->
             <div class="logo grid" v-if="setLogoByApp" >
                 <div :class="['app-logo', setLogoByApp.logoClass ]"></div>
                 <div class="app-name">{{setLogoByApp.appName}}</div>
@@ -17,13 +16,16 @@ export default {
             <div class="actions-container grid">
                 <AppLoader :isLoading="isLoading"/>
                 <i @click="isOpen=!isOpen" class="apps-btn material-symbols-outlined">apps</i>
+                <a title="About the developer" href="about.html" class="about-nav grid">
+                   <i class="material-symbols-outlined">help</i>
+                </a>
                 <div className="user-preview-container">
                     <UserPreview v-if="user" :user="user" is="header"/>
                     <i v-else class="material-symbols-outlined">account_circle</i>
                 </div>
+                 
                 <nav v-if="isOpen" class="grid">
-                
-                        <RouterLink to="/">
+                       <RouterLink to="/">
                             <span>Home</span><div class="link-logo apps"></div>
                         </RouterLink>
                         <RouterLink to="/mail?tab=inbox">
@@ -35,8 +37,8 @@ export default {
                         <RouterLink to="/youtube">
                             <span>YouTube</span><div class="link-logo yt"></div>
                         </RouterLink>
-                   
-            </nav>
+               </nav>
+           
         </div>
         </header>
     `,
