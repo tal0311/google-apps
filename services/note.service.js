@@ -14,24 +14,17 @@ export const noteService = {
 }
 window.noteService = noteService
 
-function query(filterBy = { txt: '', hash: '#home' }) {
-    return storageService.query(NOTE_KEY).then(notes => {
+async function query(filterBy = { txt: '', hash: '#home' }) {
+    let notes = await storageService.query(NOTE_KEY)
 
-        if (filterBy.txt) {
-            const regex = new RegExp(filterBy.txt, 'i')
-            notes = notes.filter(note => regex.test(note.title) || regex.test(note.info.content))
-        }
-        if (filterBy.hash === '#reminder') {
-            notes = notes.filter(note => note.reminder)
-        }
-        if (filterBy.hash === '#archive') {
-            notes = notes.filter(note => note.archivedAt)
-        }
-        if (filterBy.hash === '#trash') {
-            notes = notes.filter(note => note.removedAt)
-        }
-        return notes
-    })
+    if (filterBy.txt) {
+        const regex = new RegExp(filterBy.txt, 'i')
+        notes = notes.filter(note => regex.test(note.title) || regex.test(note.info.content))
+    }
+    if (filterBy.hash === '#reminder') notes = notes.filter(note => note.reminder)
+    if (filterBy.hash === '#archive') notes = notes.filter(note => note.archivedAt)
+    if (filterBy.hash === '#trash') notes = notes.filter(note => note.removedAt)
+    return notes
 }
 
 function get(noteId) {

@@ -22,38 +22,23 @@ export const mailService = {
 }
 window.mailService = mailService
 
-function query(filterBy = { tab: 'inbox', txt: '' }) {
-    return storageService.query(MAIL_KEY).then(mails => {
+async function query(filterBy = { tab: 'inbox', txt: '' }) {
+    let mails = await storageService.query(MAIL_KEY)
+    if (filterBy.txt) {
+        const regex = new RegExp(filterBy.txt, 'i')
+        mails = mails.filter(mail => regex.test(mail.subject) || regex.test(mail.body) || regex.test(mail.from))
+    }
+    if (filterBy.label) {
+        return mails = mails.filter(mail => mail.label === filterBy.label)
+    }
+    if (filterBy.tab === 'inbox') mails = mails.filter(mail => mail.sentAt && !mail.removedAt)
+    if (filterBy.tab === 'draft') mails = mails.filter(mail => !mail.sentAt)
+    if (filterBy.tab === 'trash') mails = mails.filter(mail => mail.removedAt)
+    if (filterBy.tab === 'starred') mails = mails.filter(mail => mail.isStared)
+    if (filterBy.tab === 'Snoozed') mails = mails.filter(mail => mail.snoozedAt)
+    if (filterBy.tab === 'sent') mails = mails.filter(mail => mail.sentAt)
 
-        if (filterBy.txt) {
-            const regex = new RegExp(filterBy.txt, 'i')
-            mails = mails.filter(mail => regex.test(mail.subject) || regex.test(mail.body) || regex.test(mail.from))
-        }
-        if (filterBy.label) {
-            return mails = mails.filter(mail => mail.label === filterBy.label)
-        }
-        if (filterBy.tab === 'inbox') {
-            mails = mails.filter(mail => mail.sentAt && !mail.removedAt)
-        }
-        if (filterBy.tab === 'draft') {
-            mails = mails.filter(mail => !mail.sentAt)
-        }
-        if (filterBy.tab === 'trash') {
-            mails = mails.filter(mail => mail.removedAt)
-        }
-        if (filterBy.tab === 'starred') {
-            mails = mails.filter(mail => mail.isStared)
-        }
-        if (filterBy.tab === 'Snoozed') {
-            mails = mails.filter(mail => mail.snoozedAt)
-        }
-        if (filterBy.tab === 'sent') {
-            mails = mails.filter(mail => mail.sentAt)
-        }
-
-
-        return mails
-    })
+    return mails
 }
 
 async function getMailCount() {

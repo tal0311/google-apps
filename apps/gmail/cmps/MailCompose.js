@@ -54,26 +54,27 @@ export default {
                 setTranscript(transcript) {
                         this.mail.body = transcript
                 },
-                composeAction(actionTYpe) {
+                async composeAction(actionTYpe) {
                         if (actionTYpe === 'minimize') {
                                 this.composeStatus = 'collapsed'
 
                         }
                         if (actionTYpe === 'close') {
                                 if (!this.mail.subject) this.mail.subject = '(No subject)'
-                                mailService.save({ ...this.mail }).then(() => {
-                                        this.$router.push('/mail?tab=inbox')
+                                await mailService.save({ ...this.mail }).catch(err => {
+                                        console.error('♠️ ~ file: MailCompose.js:65 ~ awaitmailService.save ~ err:', err)
                                 })
-
+                                this.$router.push('/mail?tab=inbox')
                         }
                         if (actionTYpe === 'expend') {
                                 this.isExpend = !this.isExpend
                                 this.composeStatus = this.isExpend ? 'expend' : 'small'
                         }
                         if (actionTYpe === 'send') {
-                                mailService.save({ ...this.mail }).then(() => {
-                                        this.$router.push('/mail?tab=sent')
+                                await mailService.save({ ...this.mail }).catch(err => {
+                                        console.debug('♠️ ~ file: MailCompose.js:75 ~ awaitmailService.save ~ err:', err)
                                 })
+                                this.$router.push('/mail?tab=sent')
                         }
                         if (actionTYpe === 'record') {
                                 speechToTxtService.start()
@@ -84,27 +85,29 @@ export default {
                                 this.title = 'New Message'
                         }, 3000)
                 },
-                saveToDraft() {
-                        mailService.save({ ...this.mail }).then(mail => {
-                                this.title = 'Saved Draft'
-                                this.setTitle()
-                                this.$router.push(`/mail?tab=${this.$route.query.tab}&compose=${mail.id}`)
+                async saveToDraft() {
+                        const mail = await mailService.save({ ...this.mail }).catch(err => {
+                                console.debug('♠️ ~ file: MailCompose.js:90 ~ mail ~ err:', err)
                         })
+                        this.title = 'Saved Draft'
+                        this.setTitle()
+                        this.$router.push(`/mail?tab=${this.$route.query.tab}&compose=${mail.id}`)
+
                 }
         },
         watch: {
                 $route: {
                         deep: true,
                         immediate: true,
-                        handler: function (val, oldVal) {
+                        handler: async function (val, oldVal) {
                                 let { compose, subject, body } = val.query
                                 if (compose === 'new') {
                                         this.mail = mailService.getEmptyMail()
                                 }
                                 if (compose !== 'new' && typeof compose === 'string') {
-                                        this.mail = mailService.get(compose).then(mail => {
-                                                this.mail = mail
-                                        })
+                                        const mail = await mailService.get(compose)
+                                        this.mail = mail
+
                                 }
                                 if (subject && body) {
                                         if (subject === 'undefined') subject = '(No subject)'
