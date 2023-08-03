@@ -4,6 +4,7 @@ import { eventBus, showSuccessMsg } from "./../../../services/event-bus.service.
 import { utilService } from "./../../../services/util.service.js"
 import { userService } from "../../../services/user.service.js"
 import { mailService } from "../../../services/mail.service.js"
+import { storageService } from "../../../services/async-storage.service.js"
 
 
 export default {
@@ -68,7 +69,7 @@ export default {
     async loadMails() {
       eventBus.emit('loading', true)
       const mails = await mailService.query({ ...this.filterBy })
-      this.setAppTitle(mails)
+      this.setAppTitle()
       this.mails = mails
       eventBus.emit('loading', false)
 
@@ -80,7 +81,8 @@ export default {
       this.filterBy = { ...this.filterBy, ...filterBy }
       this.loadMails()
     },
-    setAppTitle(mails) {
+    async setAppTitle() {
+      const mails = await storageService.query('mail_db')
       const loggedUser = userService.getLoggedInUser()
       const { tab } = this.filterBy
       if (!tab) return
@@ -104,15 +106,13 @@ export default {
 
       }
 
-      this.countMails(mails)
+      await this.countMails()
       utilService.setAppConfig('gmail', `${title}  ${extraInfo}`)
     },
-    countMails(mails) {
-      const inboxCount = mails.filter(m => !m.isRead).length
-      const draftCount = mails.filter(m => !m.sentAt).length
-      eventBus.emit('get-count', { count: inboxCount, tab: 'inbox' })
-      eventBus.emit('get-count', { count: draftCount, tab: 'draft' })
+    async countMails() {
+      mailService.getMailCount()
     },
+
     async selectedMailsUpdate(action) {
       await mailService.updateMany([...this.selectedMails], action).catch(() => showSuccessMsg(defaultErrorMsg))
 
@@ -144,6 +144,7 @@ export default {
         mail.snoozedAt = mail.snoozedAt ? null : Date.now()
         msg = 'Conversation was scheduled a reminder'
       }
+      // this is for not saving state on the mail object
       if (mail.isSelected) {
         delete mail.isSelected
       }
@@ -178,9 +179,8 @@ export default {
       deep: true,
       immediate: true,
       handler: function (val, oldVal) {
-
-        this.setFilter({ tab: val.tab, label: val.label })
-
+        const { tab, label } = val
+        this.setFilter({ tab, label })
       },
 
     },
@@ -188,11 +188,10 @@ export default {
       deep: false,
       immediate: false,
       handler: function (val, oldVal) {
-        if (val) {
-          this.selectMails(true)
-        } else {
-          this.selectMails(false)
-        }
+        val
+          ? this.selectMails(true)
+          : this.selectMails(false)
+
       }
     }
   },

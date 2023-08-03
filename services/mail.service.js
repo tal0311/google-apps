@@ -1,5 +1,6 @@
 import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
+import { eventBus } from './event-bus.service.js'
 
 const PAGE_SIZE = 5
 const MAIL_KEY = 'mail_db'
@@ -16,12 +17,14 @@ export const mailService = {
     remove,
     save,
     getEmptyMail,
-    updateMany
+    updateMany,
+    getMailCount
 }
 window.mailService = mailService
 
 function query(filterBy = { tab: 'inbox', txt: '' }) {
     return storageService.query(MAIL_KEY).then(mails => {
+
         if (filterBy.txt) {
             const regex = new RegExp(filterBy.txt, 'i')
             mails = mails.filter(mail => regex.test(mail.subject) || regex.test(mail.body) || regex.test(mail.from))
@@ -51,6 +54,14 @@ function query(filterBy = { tab: 'inbox', txt: '' }) {
 
         return mails
     })
+}
+
+async function getMailCount() {
+    const mails = await storageService.query(MAIL_KEY)
+    const inboxCount = mails.filter(m => !m.isRead).length
+    const draftCount = mails.filter(m => !m.sentAt).length
+    eventBus.emit('get-count', { count: inboxCount, tab: 'inbox' })
+    eventBus.emit('get-count', { count: draftCount, tab: 'draft' })
 }
 
 function get(mailId) {

@@ -94,6 +94,4 @@ const options = {
  },
 }
 const app = createApp(options)
-app.provide('defaultErrorMsg', 'Unable to preform your request, tray again later')
-
 app.mount('#app-about')
