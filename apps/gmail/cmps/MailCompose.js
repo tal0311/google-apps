@@ -92,7 +92,6 @@ export default {
                         this.title = 'Saved Draft'
                         this.setTitle()
                         this.$router.push(`/mail?tab=${this.$route.query.tab}&compose=${mail.id}`)
-
                 }
         },
         watch: {
@@ -105,7 +104,9 @@ export default {
                                         this.mail = mailService.getEmptyMail()
                                 }
                                 if (compose !== 'new' && typeof compose === 'string') {
-                                        const mail = await mailService.get(compose)
+                                        const mail = await mailService.get(compose).catch(err => {
+                                                console.debug('♠️ ~ file: MailCompose.js:109 ~ mail ~ err:', err)
+                                        })
                                         this.mail = mail
 
                                 }
@@ -118,10 +119,6 @@ export default {
                                 }
                         }
                 },
-
-
-
-
         },
         unmounted() {
                 this.unsubscribe()

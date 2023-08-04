@@ -14,6 +14,7 @@ const { createRouter, createWebHashHistory } = VueRouter
 
 const options = {
     history: createWebHashHistory(),
+
     routes: [
         {
             path: '/',
@@ -71,3 +72,8 @@ const options = {
     ]
 }
 export const router = createRouter(options)
+
+export const routerHistory = []
+router.beforeEach(async (to, from) => {
+    routerHistory.push(to)
+})
