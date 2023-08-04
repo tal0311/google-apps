@@ -45,7 +45,6 @@ export default {
         }
     },
     created() {
-        utilService.setAppConfig('keep')
         this.subScriptions[0] = eventBus.on('add-note-alarm', this.addNoteAlarm)
         this.subScriptions[1] = eventBus.on('note-filter', this.setFilter)
         this.subScriptions[2] = eventBus.on('speech', this.setSpeechStatus)

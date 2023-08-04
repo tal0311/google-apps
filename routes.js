@@ -7,6 +7,7 @@ import MailDetails from './apps/gmail/pages/MailDetails.js'
 import NoteDetails from './apps/keep/pages/NoteDetails.js'
 import YouTubeIndex from './apps/youtube/pages/YouTubeIndex.js'
 import CanvasEditor from './apps/keep/cmps/CanvasEditor.js'
+import { utilService } from './services/util.service.js'
 
 
 const { createRouter, createWebHashHistory } = VueRouter
@@ -74,6 +75,15 @@ const options = {
 export const router = createRouter(options)
 
 export const routerHistory = []
-router.beforeEach(async (to, from) => {
+router.beforeEach((to, from) => {
+    if (to.fullPath.includes('mail')) {
+        utilService.setAppConfig('gmail')
+    }
+    if (to.fullPath.includes('note')) {
+        utilService.setAppConfig('keep')
+    }
+    if (to.fullPath.includes('youtube')) {
+        utilService.setAppConfig('youtube')
+    }
     routerHistory.push(to)
 })

@@ -43,7 +43,6 @@ export default {
     },
     created() {
         this.loadUser()
-        utilService.setAppConfig('gmail')
         this.subScriptions[0] = eventBus.on('update-user', this.loadUser)
         this.subScriptions[1] = eventBus.on('speech', this.setSpeechStatus)
     },

@@ -18,7 +18,6 @@ export default {
     `,
     created() {
         window.addEventListener('scroll', this.handleScroll);
-        utilService.setAppConfig('youtube')
         this.loadData()
     },
     data() {
