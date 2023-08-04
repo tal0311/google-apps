@@ -65,21 +65,22 @@ export default {
         async loadNote() {
             const noteId = this.$route.params.id
             const note = await noteService.get(noteId).catch(err => {
-                console.debug('♠️ ~ file: NoteDetails.js:66 ~ note ~ err:', err)
                 showErrorMsg(this.defaultErrorMsg)
+                throw '♠️ ~ file: NoteDetails.js:69 ~ loadNote ~ err: ' + err
             })
             this.note = note
 
         },
         async updateNoteInfo({ info }) {
             const note = await noteService.get(this.note.id).catch(err => {
-                console.debug('♠️ ~ file: NoteDetails.js:74 ~ note ~ err:', err)
+                console.debug()
                 showErrorMsg(this.defaultErrorMsg)
+                throw '♠️ ~ file: NoteDetails.js:78 ~ updateNoteInfo ~ err:', err
             })
             note.info = info
             await noteService.save(note).catch(err => {
-                console.debug('♠️ ~ file: NoteDetails.js:79 ~ await noteService.save ~ err:', err)
                 showErrorMsg(this.defaultErrorMsg)
+                throw '♠️ ~ file: NoteDetails.js:83 ~ updateNoteInfo await noteService.save ~ err:', err
             })
             this.loadNote()
         },
@@ -121,13 +122,13 @@ export default {
 
             if (actionType === 'duplicate') {
                 const note = await noteService.get(this.note.id).catch(err => {
-                    console.error('♠️ ~ file: NoteDetails.js:132 ~ noteAction noteService.save ~ err:', err)
                     showErrorMsg(this.defaultErrorMsg)
+                    throw '♠️ ~ file: NoteDetails.js:126 ~ noteAction ~ err: ' + err
                 })
                 delete note.id
                 await noteService.save(note).catch(err => {
-                    console.debug('♠️ ~ file: NoteDetails.js:136 ~ noteAction noteService.get ~ err:', err)
                     showErrorMsg(this.defaultErrorMsg)
+                    throw '♠️ ~ file: NoteDetails.js:131 ~ noteAction noteAction noteService.get ~ err: ' + err
                 })
                 this.closeModal()
                 this.$router.push('/note#home')
@@ -146,8 +147,8 @@ export default {
             const note = await noteService.get(this.note.id)
             note[key] = payload
             await noteService.save(note).catch(err => {
-                console.debug('♠️ ~ file: NoteDetails.js:143 ~ await noteService.save ~ err:', err)
                 showErrorMsg(this.defaultErrorMsg)
+                throw '♠️ ~ file: NoteDetails.js:150 ~ updateNote await noteService.save ~ err: ' + err
             })
             this.loadNote()
 

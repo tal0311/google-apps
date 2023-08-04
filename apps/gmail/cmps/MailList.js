@@ -71,7 +71,7 @@ export default {
       eventBus.emit('loading', true)
       const mails = await mailService.query({ ...this.filterBy }).catch(err => {
         showSuccessMsg(this.defaultErrorMsg)
-        throw err
+        throw '♠️ ~ file: MailList.js:74 ~ loadMails ~ err: ' + err
       })
       this.setAppTitle()
       this.mails = mails
@@ -118,9 +118,9 @@ export default {
     },
 
     async selectedMailsUpdate(action) {
-      await mailService.updateMany([...this.selectedMails], action).catch(() => {
+      await mailService.updateMany([...this.selectedMails], action).catch((err) => {
         showSuccessMsg(this.defaultErrorMsg)
-        throw err
+        throw '♠️ ~ file: MailList.js:123 ~ selectedMailsUpdate ~ err: ' + err
       })
 
       showSuccessMsg('Action completed')
@@ -130,7 +130,6 @@ export default {
 
     },
     async updateMail({ action, mailId }) {
-      console.debug('♠️ ~ file: MailList.js:122 ~ updateMail ~ action, mailId:', action, mailId)
 
       let mail = this.mails.find(m => m.id === mailId)
 
@@ -162,7 +161,7 @@ export default {
         if (!msg) return
       } catch (error) {
         showSuccessMsg(this.defaultErrorMsg)
-        throw error
+        throw '♠️ ~ file: MailList.js:163 ~ updateMail ~ error: ' + error
       } finally {
         this.loadMails()
       }
@@ -175,7 +174,7 @@ export default {
         showSuccessMsg('conversation was permanently deleted')
       } catch (error) {
         showSuccessMsg(this.defaultErrorMsg)
-        throw error
+        throw '♠️ ~ file: MailList.js:177 ~ removeMail ~ error: ' + error
       } finally {
         this.loadMails()
 

@@ -114,8 +114,8 @@ export default {
             }
             if (actionType === 'delete') {
                 await noteService.remove(noteId).catch(err => {
-                    console.error('♠️ ~ file: KeepIndex.js:89 ~ noteService.remove ~ err:', err)
                     showSuccessMsg(this.defaultErrorMsg)
+                    throw '♠️ ~ file: KeepIndex.js:118 ~ updateNote noteService.remove ~ err:', err
                 })
                 showSuccessMsg('Note has been removed')
                 this.loadNots()
@@ -123,13 +123,13 @@ export default {
             }
             if (actionType === 'duplicate') {
                 const note = await noteService.get(noteId).catch(err => {
-                    console.error('♠️ ~ file: KeepIndex.js:101 ~ noteService.get ~ err:', err)
                     showSuccessMsg(this.defaultErrorMsg)
+                    throw '♠️ ~ file: KeepIndex.js:126 ~ note ~ err: ' + err
                 })
                 delete note.id
                 await noteService.save(note).catch(err => {
-                    console.debug('♠️ ~ file: KeepIndex.js:120 ~ awaitnoteService.save ~ err:', err)
                     showSuccessMsg(this.defaultErrorMsg)
+                    throw '♠️ ~ file: KeepIndex.js:131 ~ updateNote noteService.save ~ err: ' + err
                 })
                 showSuccessMsg('Note duplicated')
                 this.loadNots()
@@ -145,8 +145,8 @@ export default {
             }
             if (actionType === 'share') {
                 const note = await noteService.get(noteId).catch(err => {
-                    console.debug('♠️ ~ file: KeepIndex.js:137 ~ note ~ err:', err)
                     showSuccessMsg(this.defaultErrorMsg)
+                    throw '♠️ ~ file: KeepIndex.js:148 ~ note ~ err: ' + err
                 })
                 this.$router.push(`/mail?tab=inbox&compose=new&subject=${note.title}&body=${note.info.content}`)
 
@@ -155,8 +155,8 @@ export default {
             if (actionType === 'speech') {
                 var notesToSpeech = ['NoteMail', 'NoteTxt']
                 const note = await noteService.get(noteId).catch(err => {
-                    console.debug('♠️ ~ file: KeepIndex.js:137 ~ note ~ err:', err)
                     showSuccessMsg(this.defaultErrorMsg)
+                    throw '♠️ ~ file: KeepIndex.js:158 ~ note ~ err: ' + err
                 })
                 note.title && speechService.speak(note.title)
                 if (notesToSpeech.includes(note.type)) {
@@ -171,20 +171,20 @@ export default {
             note.updatedAt = Date.now()
             note[key] = payload
             await noteService.save(note).catch(err => {
-                console.debug('♠️ ~ file: KeepIndex.js:152 ~ awaitnoteService.save ~ err:', err)
                 showSuccessMsg(this.defaultErrorMsg)
+                throw '♠️ ~ file: KeepIndex.js:174 ~ updateNote await noteService.save ~ err: ' + err
             })
             this.loadNots()
         },
         async addNoteAlarm({ noteId, reminder }) {
             const note = await noteService.get(noteId).catch(err => {
-                console.debug('♠️ ~ file: KeepIndex.js:160 ~ note ~ err:', err)
                 showSuccessMsg(this.defaultErrorMsg)
+                throw '♠️ ~ file: KeepIndex.js:182 ~ addNoteAlarm ~ err:', err
             })
             note.reminder = reminder
             await noteService.save(note).catch(err => {
-                console.debug('♠️ ~ file: KeepIndex.js:164 ~ await noteService.save ~ err:', err)
                 showSuccessMsg(this.defaultErrorMsg)
+                throw '♠️ ~ file: KeepIndex.js:186 ~ addNoteAlarm await noteService.save ~ err: ' + err
             })
             this.loadNots()
 
@@ -195,8 +195,8 @@ export default {
                 await noteService.save(note)
                 showSuccessMsg('Note added')
             } catch (error) {
-                console.debug('♠️ ~ file: KeepIndex.js:177 ~ addNote ~ error:', error)
                 showErrorMsg(this.defaultErrorMsg)
+                throw '♠️ ~ file: KeepIndex.js:199 ~ addNote ~ error:', error
             }
             finally {
                 this.loadNots()
@@ -205,8 +205,8 @@ export default {
         async loadNots() {
             eventBus.emit('loading', true)
             const notes = await noteService.query({ ...this.filterBy }).catch(err => {
-                console.debug('♠️ ~ file: KeepIndex.js:186 ~ notes ~ err:', err)
                 showSuccessMsg(this.defaultErrorMsg)
+                throw '♠️ ~ file: KeepIndex.js:208 ~ loadNots ~ err: ' + err
             })
             this.totalNotes = notes
             this.pinnedNotes = notes.filter(note => note.isPinned)
@@ -222,8 +222,8 @@ export default {
                 if (Date.now() > new Date(note.reminder)) {
                     note.reminder = null;
                     await noteService.save(note).catch(err => {
-                        console.debug('♠️ ~ file: KeepIndex.js:203 ~ awaitnoteService.save ~ err:', err)
                         showSuccessMsg(this.defaultErrorMsg)
+                        throw '♠️ ~ file: KeepIndex.js:226 ~ checkReminder await noteService.save ~ err:', err
                     })
                     notificationService.notifyUser(`Reminder: ${note.title}`, 'keep')
                     this.$router.push(`/note/${note.id}`)

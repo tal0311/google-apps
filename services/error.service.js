@@ -2,6 +2,7 @@
 import { utilService } from './util.service.js'
 import { DEV_URL } from '../config.js'
 
+
 export const errorService = {
  logError
 }

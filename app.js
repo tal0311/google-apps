@@ -52,3 +52,4 @@ app.use(errorPlugin)
 app.provide('defaultErrorMsg', 'Unable to preform your request, tray again later')
 app.use(router)
 app.mount('#app')
+
