@@ -46,6 +46,7 @@ const options = {
         AppModal
     }
 }
+
 const app = createApp(options)
 app.use(errorPlugin)
 app.provide('defaultErrorMsg', 'Unable to preform your request, tray again later')

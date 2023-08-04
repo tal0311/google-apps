@@ -1,9 +1,10 @@
+
 import { utilService } from './util.service.js'
+import { DEV_URL } from '../config.js'
+
 export const errorService = {
  logError
 }
-
-const DEV_URL = 'http://127.0.0.1:5500'
 
 function logError(user, err, instance, info, routeHistory) {
  const errorToLog = _createNewError(user, err, instance, info, routeHistory)

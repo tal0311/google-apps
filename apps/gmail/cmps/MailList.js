@@ -30,6 +30,7 @@ export default {
     `,
 
   created() {
+
     this.loadMails()
     this.unsubscribe = eventBus.on('mail-filter', this.setFilter)
   },
@@ -92,7 +93,7 @@ export default {
       let title = ''
       let extraInfo = ''
       if (tab === 'inbox') {
-        const count = mails.filter(m => !m.isRead).length
+        const count = mails.filter(m => !m.isRead && !m.sentAt).length
         title = 'Inbox'
         extraInfo = `(${count})`
       }
