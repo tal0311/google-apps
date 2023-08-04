@@ -7,7 +7,7 @@ export default {
          
          <ul>
            <li :class="['todo-item grid', todo.donAt? 'done':'']" v-for="todo,idx in info.todos" :key="todo.id">
-             <input type="checkbox" @change="updateDone(idx)" :checked="isChecked(idx)" name=""  id="" />         
+                      <input type="checkbox"  @change="updateDone(idx)" aria-label="todo-checkbox" :checked="isChecked(idx)" />         
             <p :contenteditable="$attrs.isDetails"  @blur="updateTodoTitle(idx, $event)">{{todo.txt}}</p>
           </li>
          </ul>

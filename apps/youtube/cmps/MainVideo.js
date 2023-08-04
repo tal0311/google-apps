@@ -3,7 +3,7 @@ export default {
   props: ['selectedVideo'],
   template: `
       <section class="main-video grid">
-          <iframe :src="getVideoIdUrl" frameborder="0"></iframe>
+          <iframe  title="main-video" :src="getVideoIdUrl" frameborder="0"></iframe>
     <div class="info-container">
       <p class="video-desc" data-title="Video description">{{ selectedVideo.desc }}</p>
     </div>

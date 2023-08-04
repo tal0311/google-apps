@@ -51,6 +51,7 @@ img,
 embed,
 video,
 object {
+    min-height: 100px;
     max-width: 100%;
 }
 

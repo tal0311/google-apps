@@ -42,9 +42,6 @@ export default {
         }
     },
     created() {
-
-
-        // throw '♠️ ~ file: MailIndex.js:46 ~ created ~ error'
         this.loadUser()
         this.subScriptions[0] = eventBus.on('update-user', this.loadUser)
         this.subScriptions[1] = eventBus.on('speech', this.setSpeechStatus)

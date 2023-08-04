@@ -28,7 +28,7 @@ function logError(user, err, instance, info, routeHistory) {
 function _createNewError(user, err, instance, info, routeHistory) {
  return {
   _id: utilService.makeId(),
-  desc: `[global error handler ${err}]`,
+  desc: `[global handler ${err}]`,
   user,
   info,
   instance: instance.$.type.name,
@@ -44,11 +44,6 @@ function _createNewError(user, err, instance, info, routeHistory) {
 function _getStyles() {
  return 'color:#fff; background:red; padding:5px; border-radius:5px; font-weight:bold'
 }
-
-
-// function getBuId(userId) {
-//  db.getCollection("user").find({ _id: ObjectId(userId) })
-// }
 
 
 

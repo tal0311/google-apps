@@ -26,7 +26,7 @@ export default {
                <h3 contenteditable="true" >Title...</h3>
          </header>
          <main>
-              <img v-if="tempFile.src" :src="tempFile.src" alt="note-img">
+              <img  v-if="tempFile.src" :src="tempFile.src" alt="note-img">
             <input type="text" autofocus  placeholder="Title"  :placeHolder="placeHolder" v-model="content"/>
           </main>
           <footer class="grid">
