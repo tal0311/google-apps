@@ -2,14 +2,15 @@ import MainVidActions from "./MainVidActions.js"
 
 export default {
   name: 'MainVideo',
-  props: ['selectedVideo'],
+  props: ['selectedVideo', 'isLiked'],
+  emits: ['vid-action'],
   template: `
       <section class="main-video grid">
           <iframe  title="main-video" :src="getVideoIdUrl" frameborder="0"></iframe>
          <div class="info-container">
            <p class="video-desc" data-title="Video description">{{ selectedVideo.desc }}</p>
          </div>
-         <MainVidActions/>
+         <MainVidActions :isLiked="isLiked" @vidAction="$emit('vid-action', $event)"/>
       </section>
   `,
 
