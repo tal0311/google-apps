@@ -4,7 +4,8 @@ export const userService = {
   getLoggedInUser,
   createLabel,
   addLabel,
-  updateLabel
+  updateLabel,
+  addItemToUserList
 }
 
 const USER_KEY = 'loggedInUser'
@@ -42,7 +43,10 @@ function _createUser() {
       labels: [
         createLabel('label 1'),
         createLabel('label 2'),
-        createLabel('label 3')]
+        createLabel('label 3')],
+      searchHistory: [],
+      watchLater: [],
+      likedVideos: [],
     }
     utilService.saveToStorage(USER_KEY, user)
   }
@@ -53,4 +57,11 @@ function createLabel(name) {
     name,
     id: utilService.makeId()
   }
+}
+
+function addItemToUserList(listName, item) {
+  const user = getLoggedInUser()
+  user[listName] = [...user[listName], item]
+  utilService.saveToStorage(USER_KEY, user)
+  console.debug('♠️ ~ file: user.service.js:22 ~ addLabel ~ user:', user)
 }

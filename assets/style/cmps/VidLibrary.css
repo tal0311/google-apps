@@ -1,0 +1,9 @@
+.vid-Library {
+}
+
+.vid-Library .list-container .list-header {
+ grid-auto-flow: column;
+ align-items: center;
+ justify-content: end;
+ gap: 1rem;
+}

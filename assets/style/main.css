@@ -37,6 +37,8 @@
 @import "cmps/MainVideo.css";
 @import "cmps/WikiList.css";
 @import "cmps/BottomNav.css";
+@import "cmps/VidLibrary.css";
+@import "cmps/MainVidActions.css";
 
 @import "cmps/NoteIndex.css";
 @import "cmps/k-SideNav.css";

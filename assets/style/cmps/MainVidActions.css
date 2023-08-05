@@ -1,0 +1,17 @@
+.main-vid-actions {
+ grid-auto-flow: column;
+ align-items: center;
+ justify-content: start;
+ gap: 1rem;
+ height: min-content;
+}
+
+.main-vid-actions .action {
+ background: var(--ClrHover);
+ gap: 0.3rem;
+ padding: 0.5rem 1rem;
+ border-radius: 100vh;
+ grid-auto-flow: column;
+ place-content: center;
+ grid-template-columns: min-content min-content;
+}

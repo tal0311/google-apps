@@ -1,12 +1,15 @@
+import MainVidActions from "./MainVidActions.js"
+
 export default {
   name: 'MainVideo',
   props: ['selectedVideo'],
   template: `
       <section class="main-video grid">
           <iframe  title="main-video" :src="getVideoIdUrl" frameborder="0"></iframe>
-    <div class="info-container">
-      <p class="video-desc" data-title="Video description">{{ selectedVideo.desc }}</p>
-    </div>
+         <div class="info-container">
+           <p class="video-desc" data-title="Video description">{{ selectedVideo.desc }}</p>
+         </div>
+         <MainVidActions/>
       </section>
   `,
 
@@ -33,5 +36,6 @@ export default {
     // },
   },
   components: {
+    MainVidActions
   },
 }
