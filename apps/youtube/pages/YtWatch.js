@@ -47,11 +47,13 @@ export default {
       }
       if (opts.hasOwnProperty(actionType)) {
         userService.addItemToUserList(opts[actionType], JSON.parse(JSON.stringify(this.selectedVideo)))
+        this.loadUser()
       }
 
       if (actionType === 'share') {
         console.log('share');
       }
+
 
     },
     handleScroll(ev) {
