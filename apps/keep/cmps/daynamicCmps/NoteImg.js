@@ -3,7 +3,7 @@ export default {
   props: ['info'],
   template: `
          <article class="note-dynamic note-img">
-           <img :src="info.content" alt="note-url" />
+           <img :src="info.content" alt="note-url" loading="lazy" />
         </article>
         `,
 }

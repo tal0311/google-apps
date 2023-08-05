@@ -1,4 +1,4 @@
-.youtube-index {
+.yt-watch {
     margin-top: 1.5rem;
     height: 100vh;
     height: 100dvh;
@@ -18,7 +18,7 @@
 }
 
 @media (width> 900px) {
-    .youtube-index {
+    .yt-watch {
         height: 100vh;
         height: 100dvh;
         margin-top: 1.5rem;

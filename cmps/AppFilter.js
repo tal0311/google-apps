@@ -29,7 +29,7 @@ export default {
             if (name === 'note') {
                 eventBus.emit('note-filter', { ...this.filterBy })
             }
-            if (name === 'youtube') {
+            if (name.includes('youtube')) {
                 eventBus.emit('yt-filter', { ...this.filterBy })
             }
             this.filterBy.txt = ''

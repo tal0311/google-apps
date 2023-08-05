@@ -1,0 +1,25 @@
+.bottom-nav {
+ grid-auto-flow: column;
+ place-content: center;
+ border-radius: var(--Ybr);
+ position: fixed;
+ bottom: 1rem;
+ left: 50%;
+ transform: translateX(-50%);
+ width: 150px;
+ height: 50px;
+ background-color: #fff;
+ /* border-top: 1px solid #ccc; */
+ z-index: 100;
+ justify-content: space-around;
+ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-nav .nav-bar {
+ grid-auto-flow: column;
+ gap: 1.5rem;
+}
+
+.router-link-exact-active .material-symbols-outlined {
+ color: var(--ClrHover);
+}

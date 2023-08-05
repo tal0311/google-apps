@@ -5,6 +5,8 @@
 /* note-img & note-video */
 .note-img img,
 .note-video iframe {
+ aspect-ratio: 16/9;
+ object-fit: cover;
  border-top-left-radius: var(--Kbr);
  border-top-right-radius: var(--Kbr);
 }

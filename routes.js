@@ -1,12 +1,13 @@
 import MailIndex from './apps/gmail/pages/MailIndex.js'
 import KeepIndex from './apps/keep/pages/KeepIndex.js'
 import HomePage from './pages/HomePage.js'
-import AboutPage from './pages/AboutPage.js'
 import MailList from './apps/gmail/cmps/MailList.js'
 import MailDetails from './apps/gmail/pages/MailDetails.js'
 import NoteDetails from './apps/keep/pages/NoteDetails.js'
 import YouTubeIndex from './apps/youtube/pages/YouTubeIndex.js'
 import CanvasEditor from './apps/keep/cmps/CanvasEditor.js'
+import YtWatch from './apps/youtube/pages/YtWatch.js'
+import YtLibrary from './apps/youtube/pages/VidLibrary.js'
 import { utilService } from './services/util.service.js'
 
 
@@ -19,15 +20,10 @@ const options = {
     routes: [
         {
             path: '/',
-            component: HomePage,
+            component: () => HomePage,
             name: 'home'
         },
-        {
-            path: '/about',
-            component: AboutPage,
-            name: 'about'
 
-        },
         {
             path: '/gmail',
             component: MailIndex,
@@ -47,7 +43,7 @@ const options = {
         },
         {
             path: '/note',
-            component: KeepIndex,
+            component: () => KeepIndex,
             name: 'note',
             children: [
 
@@ -67,8 +63,20 @@ const options = {
         {
             path: '/youtube',
             component: YouTubeIndex,
-            name: 'youtube'
-
+            redirect: '/youtube/watch',
+            name: 'youtube',
+            children: [
+                {
+                    path: '/youtube/library',
+                    component: YtLibrary,
+                    name: 'youtube-vid-library',
+                },
+                {
+                    path: '/youtube/watch',
+                    component: YtWatch,
+                    name: 'youtube-vid-watch',
+                }
+            ]
         },
     ]
 }
