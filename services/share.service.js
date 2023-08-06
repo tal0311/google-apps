@@ -3,6 +3,15 @@ export const shareService = {
 }
 
 function shareTo(platform, data) {
+ if (isMobile()) {
+  navigator.share({
+   title: 'Check this video',
+   text: 'Check this video',
+
+  })
+
+  return
+ }
  const url = _getPlatform(platform)
  if (!url) throw new Error('No such platform')
  window.open(url + data, '_blank')
@@ -17,4 +26,11 @@ function _getPlatform(platform) {
   email: 'mailto:?subject=Check this video&body='
  }
  return opts[platform]
+}
+
+function isMobile() {
+ if (navigator.userAgentData.mobile || navigator.maxTouchPoints > 1) {
+  return true
+ }
+ return false
 }

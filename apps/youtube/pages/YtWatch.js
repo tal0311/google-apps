@@ -91,7 +91,7 @@ export default {
   },
   computed: {
     isLiked() {
-      console.log('this.user.likedVideos');
+      console.log('isLiked');
       return this.user.likedVideos.some(vid => vid.id === this.selectedVideo.id)
     }
   },

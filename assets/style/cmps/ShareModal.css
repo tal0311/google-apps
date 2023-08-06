@@ -24,7 +24,7 @@
 
 .copy-container {
  grid-auto-flow: column;
- gap: 0.5em;
+ /* gap: 0.5em; */
  padding: 0.2em;
  border: 1px solid var(--Kclr4);
 
@@ -33,4 +33,7 @@
 .copy-container .url-input {
  border: none;
  outline: none;
+}
+.copy-container .url-input:focus {
+ background: none;
 }

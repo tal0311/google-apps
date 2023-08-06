@@ -14,24 +14,28 @@ export default {
   </section>
 
         `,
-      created() {
-            console.log('isLiked:', this.isLiked)
-      },
       data() {
             return {
                   actions: [
                         { icon: 'share', actionType: 'share', title: 'Share', txt: 'Share' },
                         { icon: 'thumb_down', actionType: 'dislike', title: 'Dislike', txt: 'Dislike' },
-                        { icon: 'thumb_up', actionType: 'like', title: 'like', txt: 'Like', isFill: this.isLiked },
+                        { icon: 'thumb_up', actionType: 'like', title: 'like', txt: 'Like', isFill: false },
                   ]
 
             }
       },
       methods: {
             onVidAction(actionType) {
-                  console.log('actions.actionType', actionType);
                   this.$emit('vidAction', actionType)
             }
       },
-      computed: {},
+      watch: {
+            isLiked: {
+                  deep: true,
+                  immediate: true,
+                  handler: function (val, oldVal) {
+                        this.actions[2].isFill = val
+                  }
+            },
+      }
 }
