@@ -90,7 +90,7 @@ export default {
   },
   computed: {
     isLiked() {
-      if (!this.user) return false
+      if (!this.user.likedVideos.length) return false
       return this.user.likedVideos.some(vid => vid.id === this.selectedVideo.id)
     }
   },
