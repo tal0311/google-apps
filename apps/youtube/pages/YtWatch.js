@@ -36,6 +36,7 @@ export default {
   },
   methods: {
     loadUser() {
+
       this.user = userService.getLoggedInUser()
     },
     vidAction(actionType) {
@@ -46,12 +47,19 @@ export default {
         search: 'searchHistory',
       }
       if (opts.hasOwnProperty(actionType)) {
+        if (opts[actionType] === 'likedVideos') {
+          this.isLiked ? userService.removeItemFromUserList(opts[actionType], this.selectedVideo.id) : userService.addItemToUserList(opts[actionType], JSON.parse(JSON.stringify(this.selectedVideo)))
+          this.loadUser()
+
+          return
+        }
         userService.addItemToUserList(opts[actionType], JSON.parse(JSON.stringify(this.selectedVideo)))
         this.loadUser()
       }
 
       if (actionType === 'share') {
         console.log('share');
+        eventBus.emit('show-modal', { modalType: 'ShareModal', data: this.selectedVideo.id })
       }
 
 
@@ -83,7 +91,8 @@ export default {
   },
   computed: {
     isLiked() {
-      return this.user.likedVideos.includes(vid => vid.id === this.selectedVideo.id)
+      console.log('this.user.likedVideos');
+      return this.user.likedVideos.some(vid => vid.id === this.selectedVideo.id)
     }
   },
   components: {

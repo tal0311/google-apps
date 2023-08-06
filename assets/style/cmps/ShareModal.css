@@ -1,0 +1,36 @@
+.share-modal {
+ border-radius: var(--Ybr);
+ gap: 1rem;
+}
+.app-to-share {
+ grid-auto-flow: column;
+}
+
+.app-to-share .action {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ padding: 0.2em;
+ border-radius: 50%;
+ background: var(--Mclr1);
+ color: var(--Mclr6);
+ margin-inline-end: 0.5em;
+}
+.app-icon {
+ display: block;
+ height: 3rem;
+ /* max-height: 40px; */
+}
+
+.copy-container {
+ grid-auto-flow: column;
+ gap: 0.5em;
+ padding: 0.2em;
+ border: 1px solid var(--Kclr4);
+
+ border-radius: var(--Ybr);
+}
+.copy-container .url-input {
+ border: none;
+ outline: none;
+}

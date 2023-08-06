@@ -3,6 +3,9 @@ body[app="keep"] .app-modal {
 }
 body[app="gmail"] .app-modal {
 }
+body[app="youtube"] .app-modal {
+ border-radius: var(--Ybr);
+}
 
 .app-modal {
  border: none;

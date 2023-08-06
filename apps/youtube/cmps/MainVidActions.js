@@ -4,16 +4,16 @@ export default {
       props: ['isLiked'],
       template: `
   <section class="main-vid-actions grid">
-   <div  v-for="(action,idx) in actions" :key="idx" @click="onVidAction(action.actionType)" class="grid action">
-      <i :class="['material-symbols-outlined', actions.isFill? 'fill':'']">{{action.icon}}</i>
-      {{action.isFill}}
-      <span>{{action.title}}</span>
-</div>
+      
+            <div  v-for="(action,idx) in actions" :key="idx" @click="onVidAction(action.actionType)"
+            :class="['grid action', action.isFill? 'fill':'']">
+                  <i class="material-symbols-outlined">{{action.icon}}</i>
+                  <span>{{action.title}}</span>
+            </div>
 
   </section>
 
         `,
-      components: {},
       created() {
             console.log('isLiked:', this.isLiked)
       },

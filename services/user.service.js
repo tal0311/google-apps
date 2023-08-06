@@ -5,7 +5,8 @@ export const userService = {
   createLabel,
   addLabel,
   updateLabel,
-  addItemToUserList
+  addItemToUserList,
+  removeItemFromUserList
 }
 
 const USER_KEY = 'loggedInUser'
@@ -13,8 +14,7 @@ const USER_KEY = 'loggedInUser'
 _createUser()
 
 function getLoggedInUser() {
-  return utilService.loadFromStorage(USER_KEY)
-
+  return { ...utilService.loadFromStorage(USER_KEY) }
 }
 
 function addLabel(labelName) {
@@ -65,3 +65,12 @@ function addItemToUserList(listName, item) {
   utilService.saveToStorage(USER_KEY, user)
   console.debug('♠️ ~ file: user.service.js:22 ~ addLabel ~ user:', user)
 }
+
+function removeItemFromUserList(listName, itemId) {
+  const user = getLoggedInUser()
+  user[listName] = user[listName].filter(item => item.id !== itemId)
+  utilService.saveToStorage(USER_KEY, user)
+  console.debug('♠️ ~ file: user.service.js:22 ~ addLabel ~ user:', user)
+}
+
+

@@ -1,6 +1,7 @@
 import { eventBus } from "../services/event-bus.service.js"
 import LabelList from './LabelList.js'
 import AlertModal from './AlertModal.js'
+import ShareModal from './ShareModal.js'
 
 
 export default {
@@ -45,7 +46,8 @@ export default {
 
    components: {
       LabelList,
-      AlertModal
+      AlertModal,
+      ShareModal
    },
    unmouted() {
       this.unsubscribe()

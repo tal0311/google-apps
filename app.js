@@ -6,6 +6,7 @@ import AppFooter from './cmps/AppFooter.js'
 import UserMsg from './cmps/UserMsg.js'
 import AppModal from './cmps/AppModal.js'
 import errorPlugin from './plugins/errorPlugin.js'
+import svgPlugin from './plugins/svgPlugin.js'
 import { userService } from './services/user.service.js'
 import { broadcastService } from './services/broadcastChannel.service.js'
 
@@ -49,6 +50,7 @@ const options = {
 
 const app = createApp(options)
 app.use(errorPlugin)
+app.use(svgPlugin)
 app.provide('defaultErrorMsg', 'Unable to preform your request, tray again later')
 app.use(router)
 app.mount('#app')

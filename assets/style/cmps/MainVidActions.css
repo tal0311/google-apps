@@ -15,3 +15,8 @@
  place-content: center;
  grid-template-columns: min-content min-content;
 }
+
+.main-vid-actions .action.fill .material-symbols-outlined {
+ font-variation-settings: "FILL" 1;
+ color: var(--Mclr6);
+}

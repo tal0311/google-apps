@@ -29,7 +29,11 @@ body[app="gmail"] .app-btn {
     background: var(--Mbtn);
     color: var(--Mclr5);
 }
-body[app="youtube"] {
+body[app="youtube"] .app-btn {
+    border-radius: 100vh;
+    padding: 0.5rem 1rem;
+    background: var(--Mbtn);
+    color: var(--Mclr5);
 }
 
 body[app="youtube"]::-webkit-scrollbar {
