@@ -4,6 +4,7 @@ export const shareService = {
 
 function shareTo(platform, data) {
  const url = _getPlatform(platform)
+ if (!url) throw new Error('No such platform')
  window.open(url + data, '_blank')
 }
 
