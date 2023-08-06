@@ -1,3 +1,5 @@
+import { shareService } from "../services/share.service.js";
+
 export default {
  name: 'ShareModal',
  props: ['extraData'],
@@ -39,16 +41,22 @@ export default {
 
    }
    if (actionType === 'share-to-wa') {
-    window.open(`https://wa.me/?text=${this.getVideoIdUrl}`)
+    shareService.shareTo('whatsapp', this.getVideoIdUrl)
    }
    if (actionType === 'share-to-mail') {
-    window.open(`mailto:?subject=Check this video&body=${this.getVideoIdUrl}`)
+    const isDefaultApp = confirm('Use your default mail app?')
+    if (isDefaultApp) {
+     shareService.shareTo('email', this.getVideoIdUrl)
+     return
+    }
+    shareService.shareTo('gmail', this.getVideoIdUrl)
    }
    if (actionType === 'share-to-facebook') {
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${this.getVideoIdUrl}`)
+    shareService.shareTo('facebook', this.getVideoIdUrl)
+
    }
    if (actionType === 'share-to-twitter') {
-    window.open(`https://twitter.com/intent/tweet?text=${this.getVideoIdUrl}`)
+    shareService.shareTo('twitter', this.getVideoIdUrl)
    }
   },
   copyToClipBoard(val) {
