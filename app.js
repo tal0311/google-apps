@@ -18,7 +18,6 @@ const options = {
         <div class="main-route">
             <RouterView  />
         </div>
-        <!-- <AppFooter /> -->
         <UserMsg />
         <AppModal/>
     </section>

@@ -11,7 +11,7 @@ export default {
   name: 'YtWatch',
   props: [],
   template: `
-          <section class="yt-watch grid" v-if="selectedVideo">
+          <section class="yt-watch grid" v-if="selectedVideo && user">
             <VideoList @select-vid="selectVideo" v-if="videos" :videos="videos"/>
             <MainVideo :isLiked="isLiked" @vid-action="vidAction" v-if="selectedVideo" :selectedVideo="selectedVideo"/>
             <WikiList v-if="items" :items="items"/>
@@ -21,7 +21,7 @@ export default {
 
   async created() {
     eventBus.on('yt-filter', this.setFilter)
-    window.addEventListener('scroll', this.handleScroll);
+    // window.addEventListener('scroll', this.handleScroll);
     await this.loadData()
     this.loadUser()
   },
