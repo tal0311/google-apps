@@ -14,7 +14,7 @@ const USER_KEY = 'loggedInUser'
 _createUser()
 
 function getLoggedInUser() {
-  return { ...utilService.loadFromStorage(USER_KEY) }
+  return utilService.loadFromStorage(USER_KEY)
 }
 
 function addLabel(labelName) {

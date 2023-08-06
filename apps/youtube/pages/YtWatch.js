@@ -36,7 +36,6 @@ export default {
   },
   methods: {
     loadUser() {
-
       this.user = userService.getLoggedInUser()
     },
     vidAction(actionType) {
