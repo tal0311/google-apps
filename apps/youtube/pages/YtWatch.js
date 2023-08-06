@@ -11,7 +11,7 @@ export default {
   name: 'YtWatch',
   props: [],
   template: `
-          <section class="yt-watch grid">
+          <section class="yt-watch grid" v-if="selectedVideo">
             <VideoList @select-vid="selectVideo" v-if="videos" :videos="videos"/>
             <MainVideo :isLiked="isLiked" @vid-action="vidAction" v-if="selectedVideo" :selectedVideo="selectedVideo"/>
             <WikiList v-if="items" :items="items"/>
@@ -19,11 +19,11 @@ export default {
           </section>
         `,
 
-  created() {
+  async created() {
     eventBus.on('yt-filter', this.setFilter)
     window.addEventListener('scroll', this.handleScroll);
+    await this.loadData()
     this.loadUser()
-    this.loadData()
   },
   data() {
     return {
@@ -90,7 +90,7 @@ export default {
   },
   computed: {
     isLiked() {
-      console.log('isLiked');
+      if (!this.user) return false
       return this.user.likedVideos.some(vid => vid.id === this.selectedVideo.id)
     }
   },
