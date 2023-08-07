@@ -1,4 +1,6 @@
 .vid-Library {
+ margin: 1rem auto;
+ width: 80vw;
 }
 
 .vid-Library .list-container .list-header {
@@ -6,4 +8,15 @@
  align-items: center;
  justify-content: end;
  gap: 1rem;
+ height: min-content;
+}
+.liked-list,
+.watch-list {
+ gap: 1rem;
+ grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.vid-Library .video-preview {
+ display: flex;
+ flex-direction: column-reverse;
 }
