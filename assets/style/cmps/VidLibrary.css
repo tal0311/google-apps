@@ -3,7 +3,6 @@
  width: 80vw;
 }
 .vid-Library .list-container .list-header {
- border-bottom: 1px solid var(--Kclr4);
  grid-auto-flow: column;
  align-items: center;
  justify-content: end;
