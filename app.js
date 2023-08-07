@@ -8,7 +8,9 @@ import AppModal from './cmps/AppModal.js'
 import errorPlugin from './plugins/errorPlugin.js'
 import svgPlugin from './plugins/svgPlugin.js'
 import { userService } from './services/user.service.js'
+
 import { broadcastService } from './services/broadcastChannel.service.js'
+import { utilService } from './services/util.service.js'
 
 
 const options = {
@@ -25,6 +27,7 @@ const options = {
     created() {
         broadcastService.crateChannel('internal_notification')
         broadcastService.subscribe('internal_notification', this.handleBroadcast)
+        utilService.setConsoleData(true, true, false)
     },
     data() {
         return {

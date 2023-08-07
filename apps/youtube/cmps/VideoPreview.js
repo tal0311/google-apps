@@ -1,4 +1,4 @@
-// import { utilService } from "../../../services/util.service.js"
+import { utilService } from "../../../services/util.service.js"
 
 export default {
   name: 'VideoPreview',
@@ -10,21 +10,25 @@ export default {
               <p>{{video.title}}</p>
               <small>{{video.channel}}</small>
               <div class="video-info grid">
-                <span>{{video.publishedAt}}</span> 
-                <span>Views: 100K</span>
+                <span>{{formatDate(video.publishedAt)}}</span> 
+                <span>{{getViews}}K</span>
               </div>
           </div>
           <img :src="video.cover" alt="">
       </section>
   `,
-  components: {},
-  created() { },
   data() {
     return {
     }
   },
   methods: {
+    formatDate(ts) {
+      return utilService.getVidFormattedDate(ts)
+    },
   },
   computed: {
+    getViews() {
+      return Math.floor(Math.random() * 500)
+    }
   },
 }

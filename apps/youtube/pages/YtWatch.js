@@ -39,17 +39,16 @@ export default {
       this.user = userService.getLoggedInUser()
     },
     vidAction(actionType) {
-      console.log('actionType', actionType);
-
-      var opts = {
+      const opts = {
         like: 'likedVideos',
         search: 'searchHistory',
       }
       if (opts.hasOwnProperty(actionType)) {
         if (opts[actionType] === 'likedVideos') {
-          this.isLiked ? userService.removeItemFromUserList(opts[actionType], this.selectedVideo.id) : userService.addItemToUserList(opts[actionType], JSON.parse(JSON.stringify(this.selectedVideo)))
+          this.isLiked ?
+            userService.removeItemFromUserList(opts[actionType], this.selectedVideo.id) :
+            userService.addItemToUserList(opts[actionType], JSON.parse(JSON.stringify(this.selectedVideo)))
           this.loadUser()
-
           return
         }
         userService.addItemToUserList(opts[actionType], JSON.parse(JSON.stringify(this.selectedVideo)))
@@ -57,7 +56,6 @@ export default {
       }
 
       if (actionType === 'share') {
-        console.log('share');
         eventBus.emit('show-modal', { modalType: 'ShareModal', data: this.selectedVideo.id })
       }
 

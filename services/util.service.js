@@ -52,6 +52,9 @@ function getFormattedTime(ts) {
     console.debug('♠️ ~ file: util.service.js:51 ~ getFormattedTime ~ date:', date)
     return { date, time }
 }
+function getVidFormattedDate(ts) {
+    return new Date(ts).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+}
 
 function getMonthName(date) {
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
@@ -125,6 +128,13 @@ const debounce = (func, wait) => {
     }
 }
 
+function setConsoleData(isCode, isLI, isColab) {
+    var strOps = {
+        isCode: 'https://github.com/tal0311/google-apps',
+        isLI: 'Contact me At https://www.linkedin.com/in/tal-amit/'
+    }
+    console.log(`%c ${strOps['isCode']} \n ${strOps['isLI']}`, "color:#35495e; background:#42b883; font-size:1rem; padding:0 0.4rem; border-radius:4px")
+}
 
 
 export const utilService = {
@@ -140,5 +150,6 @@ export const utilService = {
     getFormattedDate,
     debounce,
     getFormattedTime,
-
+    getVidFormattedDate,
+    setConsoleData
 }
