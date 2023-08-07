@@ -52,6 +52,9 @@ function getFormattedTime(ts) {
     console.debug('♠️ ~ file: util.service.js:51 ~ getFormattedTime ~ date:', date)
     return { date, time }
 }
+function getVidFormattedDate(ts) {
+    return new Date(ts).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+}
 
 function getMonthName(date) {
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
@@ -140,5 +143,5 @@ export const utilService = {
     getFormattedDate,
     debounce,
     getFormattedTime,
-
+    getVidFormattedDate
 }
