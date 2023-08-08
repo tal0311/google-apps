@@ -58,6 +58,8 @@
 
     /* youtube vars */
     --Ybr: 0.6rem;
+    /* preview action btn */
+    --YPA: #333333d1;
 
     /* scroll bar */
     --sb-track-color: #232e33;
