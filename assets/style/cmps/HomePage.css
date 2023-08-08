@@ -12,6 +12,14 @@
  max-height: 200px;
 }
 
+.home .refresh-btn {
+ border: none;
+ background: none;
+ position: fixed;
+ bottom: 1rem;
+ box-shadow: 0 0 3px 2px lightgray;
+}
+
 @media (width> 640px) {
  .home {
   place-content: center;
