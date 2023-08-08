@@ -34,7 +34,7 @@ export default {
       videos: null,
       selectedVideo: null,
       items: null,
-      filter: { searchTerm: 'אריק ברמן גוני' }
+      filter: { searchTerm: 'vue' }
 
 
     }
