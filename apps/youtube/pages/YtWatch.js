@@ -61,7 +61,7 @@ export default {
           return
         }
 
-        if (opts[actionType] === '') { }
+        if (this.user.searchHistory.includes(this.selectedVideo.id)) return
         userService.addItemToUserList(opts[actionType], JSON.parse(JSON.stringify(this.selectedVideo)))
         this.loadUser()
       }
