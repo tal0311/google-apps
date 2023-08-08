@@ -3,6 +3,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 0.8rem;
     cursor: pointer;
+    position: relative;
     /* max-height: 50px; */
 }
 
@@ -20,8 +21,22 @@
 .video-preview p {
     margin: 0;
     width: 100%;
-    /* word-wrap: break-word; */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.img-container {
+    position: relative;
+}
+.img-container:hover .preview-action {
+    display: grid;
+}
+.img-container .preview-action {
+    display: none;
+    place-items: center;
+    position: absolute;
+    background: black;
+    color: var(--Kclr2);
+    border: none;
+    padding: 2px;
 }
