@@ -1,0 +1,25 @@
+.now-wiki-data {
+ display: grid;
+ place-items: center;
+ background: lightgray;
+ border-radius: var(--Ybr);
+ padding: 1rem;
+}
+
+.now-wiki-data .wiki-logo {
+ height: 100px;
+}
+.now-wiki-data h2 {
+ text-align: center;
+ font-size: 1.5rem;
+}
+@media (width>500px) {
+ .now-wiki-data .wiki-logo {
+  height: 300px;
+ }
+
+ .now-wiki-data h2 {
+  text-align: center;
+  font-size: 2rem;
+ }
+}
