@@ -1,7 +1,7 @@
 import { youtubeService } from '../../../services/youtube.service.js'
 import { eventBus } from "../../../services/event-bus.service.js"
 import { userService } from "../../../services/user.service.js"
-
+import NoWikiData from '../cmps/NoWikiData.js'
 
 import VideoList from '../cmps/VideoList.js'
 import WikiList from '../cmps/WikiList.js'
@@ -16,7 +16,8 @@ export default {
             @watch-Later="setVidQueue"
             @select-vid="selectVideo"  :videos="videos"/>
             <MainVideo :isLiked="isLiked" @vid-action="vidAction" v-if="selectedVideo" :selectedVideo="selectedVideo"/>
-            <WikiList v-if="items" :items="items"/>
+            <NoWikiData v-if="!items.length"/>
+            <WikiList v-else="items" :items="items"/>
             <BottomNav/>
           </section>
         `,
@@ -33,7 +34,9 @@ export default {
       videos: null,
       selectedVideo: null,
       items: null,
-      filter: { searchTerm: 'vue' }
+      filter: { searchTerm: 'אריק ברמן גוני' }
+
+
     }
   },
   methods: {
@@ -104,5 +107,6 @@ export default {
     VideoList,
     WikiList,
     MainVideo,
+    NoWikiData
   }
 }
