@@ -8,7 +8,7 @@ export default {
             <RouterLink to="/note#home">
                 <img src="./assets/img/keep-big.png" alt="Keep" />
             </RouterLink>
-            <RouterLink to="/youtube">
+            <RouterLink to="/youtube/watch">
                 <img src="./assets/img/Youtube-big.png" alt="YouTube" />
             </RouterLink>
             <button @click="clearData" class="refresh-btn grid" title="Clear local storage">
