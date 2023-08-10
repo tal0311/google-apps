@@ -4,6 +4,7 @@ import EmptyNotes from '../cmps/EmptyNotes.js'
 import AddNote from '../cmps/AddNote.js'
 import NotesLoader from '../../../cmps/AppLoader.js'
 import SpeechControllers from '../../../cmps/SpeechControllers.js'
+import CaptureMedia from '../../../cmps/CaptureMedia.js'
 import { speechService } from '../../../services/textToSpeech.service.js'
 import { noteService } from './../../../services/note.service.js'
 import { utilService } from '../../../services/util.service.js'
@@ -30,7 +31,7 @@ export default {
            <RouterView/>
            <SideNav/>
            <SpeechControllers v-if="isSpeechOn" />
-          
+          <CaptureMedia/>
         </section>
     `,
     data() {
@@ -238,7 +239,8 @@ export default {
         AddNote,
         EmptyNotes,
         NotesLoader,
-        SpeechControllers
+        SpeechControllers,
+        CaptureMedia
     },
     unmounted() {
         clearInterval(this.reminderInterval)
