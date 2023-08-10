@@ -68,11 +68,6 @@ export default {
       }
 
       if (actionType === 'share') {
-
-        if (shareService.isMobile()) {
-          shareService.shareToMobile(data)
-          return
-        }
         eventBus.emit('show-modal', { modalType: 'ShareModal', data: this.selectedVideo.id })
       }
 

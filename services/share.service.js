@@ -1,11 +1,13 @@
 export const shareService = {
  shareTo,
- isMobile,
- shareToMobile
 }
 
 const defaultMsg = 'Check this video '
 function shareTo(platform, data) {
+ isMobile() ? shareToMobile(data) : shareToDesktop(platform, data)
+}
+
+function shareToDesktop(platform, data) {
  const url = _getPlatform(platform)
  if (!url) throw new Error('No such platform')
  window.open(url + data, '_blank')
