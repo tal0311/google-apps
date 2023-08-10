@@ -1,4 +1,5 @@
 import { utilService } from './../services/util.service.js'
+
 export default {
     template: `
         <section class="home grid">
@@ -14,6 +15,7 @@ export default {
             <button @click="clearData" class="refresh-btn grid" title="Clear local storage">
                 <i class="material-symbols-outlined">autorenew</i>
             </button>
+            
         </section>
     `,
     data() {
@@ -29,5 +31,6 @@ export default {
             localStorage.clear()
             window.location.reload()
         }
-    }
+    },
+
 }

@@ -1,0 +1,20 @@
+.capture-media {
+ position: fixed;
+ left: 1rem;
+ bottom: 2rem;
+}
+
+.capture-media button {
+ border: none;
+ background: none;
+ box-shadow: 0 0 3px 2px lightgray;
+ margin: 0;
+}
+
+.capture-media .video-preview {
+ display: none;
+}
+
+.capture-media .preview-container {
+ display: none;
+}
