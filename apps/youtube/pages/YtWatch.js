@@ -68,6 +68,7 @@ export default {
       }
 
       if (actionType === 'share') {
+
         if (shareService.isMobile()) {
           shareService.shareToMobile(data)
           return

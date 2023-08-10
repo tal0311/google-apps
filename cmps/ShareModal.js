@@ -10,7 +10,8 @@ export default {
               <div v-for="(action,idx) in actions" @click="onAction(action.actionType)" :key="idx" class="action">
               <i class="app-icon" v-html="$getSvg(action.icon)"></i>
               </div>
-         </section>
+
+                       </section>
          <div class="copy-container grid">
           <button class="app-btn"  @click="copyToClipBoard(getVideoIdUrl)">Copy</button>
           <input :value="getVideoIdUrl" class="url-input" type="text" name="" id="" />

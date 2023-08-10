@@ -10,6 +10,7 @@ export default {
                   <i class="material-symbols-outlined">{{action.icon}}</i>
                   <span>{{action.title}}</span>
             </div>
+            <button @click="onVidAction('share')">share</button>
 
   </section>
 
