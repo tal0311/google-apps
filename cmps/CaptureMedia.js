@@ -42,8 +42,5 @@ export default {
   this.screenStream = null;
   this.$refs.videoElement.srcObject = null;
   this.$refs.previewImage.src = '';
-  // this.$refs.previewImage.classList.remove('show');
-  // this.$refs.previewImage.classList.remove('hide');
-  // this.$refs.previewImage.classList.remove('error');
  },
 }
