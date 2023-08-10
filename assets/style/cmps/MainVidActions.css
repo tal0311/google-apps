@@ -14,6 +14,8 @@
  grid-auto-flow: column;
  place-content: center;
  grid-template-columns: min-content min-content;
+ cursor: pointer;
+ user-select: none;
 }
 
 .main-vid-actions .action.fill .material-symbols-outlined {

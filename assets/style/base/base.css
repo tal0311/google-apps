@@ -64,5 +64,5 @@ i {
 }
 
 .material-symbols-outlined {
-    text-selection: none;
+    user-select: none;
 }
