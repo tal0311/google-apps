@@ -62,3 +62,7 @@ object {
 i {
     cursor: pointer;
 }
+
+.material-symbols-outlined {
+    text-selection: none;
+}
