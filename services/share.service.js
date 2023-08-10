@@ -4,23 +4,15 @@ export const shareService = {
  shareToMobile
 }
 
+const defaultMsg = 'Check this video '
 function shareTo(platform, data) {
- if (isMobile()) {
-  navigator.share({
-   title: 'Check this video',
-   text: 'Check this video',
-
-  })
-
-  return
- }
  const url = _getPlatform(platform)
  if (!url) throw new Error('No such platform')
  window.open(url + data, '_blank')
 }
 
 function _getPlatform(platform) {
- const defaultMsg = 'Check this video '
+
  const opts = {
   whatsapp: `https://wa.me/?text=${defaultMsg}`,
   facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
@@ -38,10 +30,10 @@ function isMobile() {
  return false
 }
 
-function shareToMobile() {
+function shareToMobile(data) {
  navigator.share({
-  title: 'Check this video',
-  text: 'Check this video',
+  title: defaultMsg,
+  text: data,
 
  })
 }
