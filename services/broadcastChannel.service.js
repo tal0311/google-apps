@@ -1,4 +1,4 @@
-
+// !this service will prevent caching of data in the browser
 
 const channels = []
 export const broadcastService = {

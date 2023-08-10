@@ -18,12 +18,13 @@ function shareTo(platform, data) {
 }
 
 function _getPlatform(platform) {
+ const defaultMsg = 'Check this video '
  const opts = {
-  whatsapp: 'https://wa.me/?text=',
+  whatsapp: `https://wa.me/?text=${defaultMsg}`,
   facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
-  twitter: 'https://twitter.com/intent/tweet?text=',
-  gmail: 'https://mail.google.com/mail/?view=cm&fs=1&to=&su=Check this video&body=',
-  email: 'mailto:?subject=Check this video&body='
+  twitter: `https://twitter.com/intent/tweet?text=${defaultMsg}&url=`,
+  gmail: `https://mail.google.com/mail/?view=cm&fs=1&to=&su=${defaultMsg}&body=`,
+  email: `mailto:?subject=${defaultMsg}&body=`
  }
  return opts[platform]
 }
