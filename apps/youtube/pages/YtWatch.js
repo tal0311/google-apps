@@ -6,6 +6,7 @@ import NoWikiData from '../cmps/NoWikiData.js'
 import VideoList from '../cmps/VideoList.js'
 import WikiList from '../cmps/WikiList.js'
 import MainVideo from '../cmps/MainVideo.js'
+import { shareService } from '../../../services/share.service.js'
 
 export default {
   name: 'YtWatch',
@@ -67,6 +68,10 @@ export default {
       }
 
       if (actionType === 'share') {
+        if (shareService.isMobile()) {
+          shareService.shareToMobile()
+          return
+        }
         eventBus.emit('show-modal', { modalType: 'ShareModal', data: this.selectedVideo.id })
       }
 

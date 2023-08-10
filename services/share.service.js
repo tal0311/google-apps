@@ -1,5 +1,7 @@
 export const shareService = {
- shareTo
+ shareTo,
+ isMobile,
+ shareToMobile
 }
 
 function shareTo(platform, data) {
@@ -34,4 +36,12 @@ function isMobile() {
   return true
  }
  return false
+}
+
+function shareToMobile() {
+ navigator.share({
+  title: 'Check this video',
+  text: 'Check this video',
+
+ })
 }
