@@ -1,8 +1,11 @@
 import { screenCaptureService } from '../services/screenCapture.service.js';
+import { notificationService } from '../services/sysNotification.service.js';
+import { showUserMsg } from '../services/event-bus.service.js';
 
 export default {
- name: '',
+ name: 'CaptureMedia',
  props: [],
+ inject: ['defaultErrorMsg'],
  template: `
     <section class="capture-media" title="Take screen shot">
        <video class="video-preview" ref="videoElement" autoplay controls></video>
@@ -24,8 +27,10 @@ export default {
 
    try {
     this.screenStream = await screenCaptureService.getDisplayMedia(elVideo, previewContainer);
+    notificationService.notifyUser('You have successfully captured the screen', 'keep');
    } catch (error) {
-    console.error('Error capturing screen:', error);
+    showUserMsg(this.defaultErrorMsg);
+    throw '♠️ ~ file: CaptureMedia.js:33 ~ startCapture ~ error: ' + error
    }
   }
  },

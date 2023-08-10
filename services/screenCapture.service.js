@@ -26,7 +26,7 @@ function capture(video, stream, previewContainer) {
 
  // if tou want to show the preview
  // previewContainer.src = canvas.toDataURL();
- download(canvas.toDataURL(), 'myImage.png');
+ download(canvas.toDataURL(), 'google-apps-screen-capture.png');
 }
 
 function download(dataurl, filename) {
