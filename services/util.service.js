@@ -136,6 +136,13 @@ function setConsoleData(isCode, isLI, isColab) {
     console.log(`%c ${strOps['isCode']} \n ${strOps['isLI']}`, "color:#35495e; background:#42b883; font-size:1rem; padding:0 0.4rem; border-radius:4px")
 }
 
+function isMobile() {
+    if (navigator.userAgentData.mobile || navigator.maxTouchPoints > 1) {
+        return true
+    }
+    return false
+}
+
 
 export const utilService = {
     makeId,
@@ -151,5 +158,6 @@ export const utilService = {
     debounce,
     getFormattedTime,
     getVidFormattedDate,
-    setConsoleData
+    setConsoleData,
+    isMobile
 }

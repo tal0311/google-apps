@@ -1,10 +1,11 @@
+import { utilService } from './util.service.js'
 export const shareService = {
  shareTo,
 }
 
 const defaultMsg = 'Check this video '
 function shareTo(platform, data) {
- isMobile() ? shareToMobile(data) : shareToDesktop(platform, data)
+ utilService.isMobile() ? shareToMobile(data) : shareToDesktop(platform, data)
 }
 
 function shareToDesktop(platform, data) {
@@ -25,12 +26,7 @@ function _getPlatform(platform) {
  return opts[platform]
 }
 
-function isMobile() {
- if (navigator.userAgentData.mobile || navigator.maxTouchPoints > 1) {
-  return true
- }
- return false
-}
+
 
 function shareToMobile(data) {
  navigator.share({
