@@ -37,3 +37,9 @@
  color: var(--Mclr6);
  font-size: 2rem;
 }
+
+.vid-Library.empty {
+ height: calc(100vh - 10rem);
+ place-items: center;
+ text-align: center;
+}

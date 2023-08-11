@@ -6,7 +6,8 @@ export default {
     name: 'VidLibrary',
     props: [],
     template: `
-  <section class="vid-Library grid">
+  <section :class="['vid-Library grid', showEmptyMsg?'empty':'' ]">
+    <h2 v-if="showEmptyMsg">Like search or add to watch later, to add videos to your library</h2>
     <section v-if="user.searchHistory.length" class="list-container history-list-container">
             <div class="list-header grid">
               <h3>history list</h3>
@@ -54,5 +55,9 @@ export default {
 
         }
     },
-    computed: {},
+    computed: {
+        showEmptyMsg() {
+            return (!this.user.searchHistory.length && !this.user.watchLater.length && !this.user.likedVideos.length)
+        }
+    },
 }
