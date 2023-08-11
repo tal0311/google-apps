@@ -4,7 +4,7 @@ import { broadcastService } from './services/broadcastChannel.service.js'
 
 
 const options = {
- template: `
+    template: `
     <section class="about-page main-layout">
 
     <header class="full main-layout">
@@ -16,7 +16,7 @@ const options = {
         <section>
             <h2>Overview</h2>
             <p>
-                Google Apps Clone is a web application that combines the best features of popular Google apps like YouTube, Gmail, and Keep. It is built using Vue.js, a progressive JavaScript framework, and CSS3 for styling to create a seamless and modern user experience.
+                <strong>Google Apps</strong> Clone is a web application that combines the best features of popular Google apps like YouTube, Gmail, and Keep. It is built using Vue.js, a progressive JavaScript framework, and CSS3 for styling to create a seamless and modern user experience.
             </p>
         </section>
 
@@ -45,6 +45,8 @@ const options = {
                 <li><strong>Broadcast Channel API:</strong> This API enables seamless communication and data sharing between different components and modules of the application.</li>
                 <li><strong>Speech to Text API:</strong> The Speech to Text API provides voice recognition capabilities, allowing users to interact with the application using voice commands.</li>
                 <li><strong>Text to Speech API:</strong> The Text to Speech API converts text content into spoken audio, enhancing accessibility and user experience.</li>
+               <li><strong>Web share API:</strong> Web Share API allows web apps to invoke native device share dialogs, simplifying sharing content directly from the browser.</li>
+               <li > <strong>Get Displayed Media API:</strong> Get Displayed Media API retrieves media currently being displayed, aiding dynamic content manipulation.</li> 
             </ul>
         </section>
     </main>
@@ -76,22 +78,22 @@ const options = {
      
     </section>
     `,
- created() {
-  broadcastService.crateChannel('internal_notification')
- },
- data() {
-  return {
-   user: userService.getLoggedInUser()
-  }
- },
- methods: {
-  navigateTo(app) {
-   broadcastService.broadcast('internal_notification', app)
-  }
- },
- unmounted() {
-  broadcastService.unSubscribe('internal_notification')
- },
+    created() {
+        broadcastService.crateChannel('internal_notification')
+    },
+    data() {
+        return {
+            user: userService.getLoggedInUser()
+        }
+    },
+    methods: {
+        navigateTo(app) {
+            broadcastService.broadcast('internal_notification', app)
+        }
+    },
+    unmounted() {
+        broadcastService.unSubscribe('internal_notification')
+    },
 }
 const app = createApp(options)
 app.mount('#app-about')
