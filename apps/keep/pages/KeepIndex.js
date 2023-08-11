@@ -31,7 +31,7 @@ export default {
            <RouterView/>
            <SideNav/>
            <SpeechControllers v-if="isSpeechOn" />
-          <CaptureMedia/>
+          <CaptureMedia v-if="isDeskTop"/>
         </section>
     `,
     data() {
@@ -232,6 +232,11 @@ export default {
             }
         }
 
+    },
+    computed: {
+        isDeskTop() {
+            return !utilService.isMobile()
+        }
     },
     components: {
         NoteList,
